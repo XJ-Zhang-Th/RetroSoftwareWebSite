@@ -1,0 +1,11 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+理论峰值填充率(Theoretical Peak Fillrate)</span>
+
+
+<hr size="1" color="#000080"></p>
+　　大多3D芯片制造商都喜欢标明自己产品的像素填充率是多少，而实际上这指的是理论峰值填充率，那么这些填充率的数值是怎么得来的呢？要获得一块显卡的填充率的前提条件是必须知道3D芯片的运行频率。将芯片运行频率与贴图处理单元的数目相乘，即可得到芯片的填充率数值。贴图处理单元就是可以生成经过贴图处理的屏幕像素的单元。下面的几个例子有助于理解：<br>
+　　3dfx Banshee芯片通常在100MHz下运行，它只有一个贴图处理单元（每个周期它只能计算出一个经过贴图处理的像素并在屏幕上显示出来）。根据填充率的定义，Banshee的理论峰值填充率就是100MHz×1=100M 像素/秒。nVidia RIVA TNT有两个贴图处理单元，芯片运行频率为90MHz，很容易算出TNT的理论填充率为180M 像素/秒。125MHz的TNT2、143MHz的Voodoo3 2000以此类推，其像素填充率分别为250M 像素/秒、286M像素/秒。<p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年09月13日第36期</a></font> 
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+解除Windows 98 SE 版的时间限制</span>
+
+
+<hr size="1" color="#000080"></p>
+　　我看了今年第33期《电脑报》，才知道第二版Windows 98有时间限制，感到挺着急的，她的好处不必多说大家也知道。通过我的努力，终于找到了两种解决办法，现介绍如下：<br>
+　　第一种：因改时间或2000年以后第二版Windows 98启动不了（就是再装一遍也没用）。这时候请你不要着急，也别以为被什么病毒感染。其实是她的时间到了。解决办法是：<br>
+　　准备一张老版本（98－06－19）Windows 98的启动盘并用它启动电脑。然后依次执行以下命令后重启动计算机即可。<br>
+　　ATTRIB －S －R －H  c:\＊.＊<br>
+　　MD 119<br>
+　　COPY c：\MSDOS.SYS  c:\119 <br>
+　　COPY c：\COMMAND.COM  c:\119<br>
+　　SYS C∶<br>
+　　ATTRIB －S －R －H  c:\＊.＊<br>
+　　DEL c:\MSDOS.SYS<br>
+　　DEL c:\MSDOS.SYS<br>
+　　COPY c:\119\＊.＊  c:\<br>
+　　ATTRIB ＋S ＋R ＋H IO.SYS<br>
+　　ATTRIB ＋S ＋R ＋H MSDOS.SYS<br>
+　　DELTREE／Y C:\119<br>
+　　第二种： 趁现在你的第二版Windows 98还能启动，请你打开资源管理器上的“查看”菜单，选择“文件夹选项”，打开后选择“查看”选项卡，设为“显示所有文件”。将启动软盘上的IO.SYS拷贝到C盘根目录覆盖原IO.SYS，然后重启动计算机即可。<br>
+　　OK！你的第二版Windows 98将随你一起跨入新世纪。<br><b>　　(安徽　郑庆)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年10月4日第39期</a></font> 
+</body>
+</html>

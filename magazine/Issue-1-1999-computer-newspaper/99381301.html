@@ -1,0 +1,73 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+在VC++6.0开发中实现全屏显示</span>
+
+
+<hr size="1" color="#000080"></p>
+　　全屏显示是一些应用软件程序必不可少的功能。比如在用VC＋＋编辑工程源文件或编辑对话框等资源时，选择菜单“View\Full Screen”，即可进入全屏显示状态，按“Esc”键后会退出全屏显示状态。<br>
+　　在VC＋＋6.0中我们用AppWizard按默认方式生成单文档界面的应用程序框架。下面将先讨论点击菜单项“View\Full Screen”实现全屏显示的方法，再讲述按“Esc”键后如何退出全屏显示状态。<br>
+　　1） 在CMainFrame类中，增加如下三个成员变量。<br>
+　　class CMainFrame : public CFrameWnd<br>
+　　{   private:  ／／自己添加的三个成员变量<br>
+　　WINDOWPLACEMENT m_OldWndPlacement; ／／用来保存原窗口位置<br>
+　　BOOL m_bFullScreen; ／／全屏显示标志<br>
+　　CRect m_FullScreenRect; ／／表示全屏显示时的窗口位置<br>
+　　protected: CMainFrame();<br>
+　　DECLARE_DYNCREATE(CMainFrame)}<br>
+　　2）在资源编辑器中编辑菜单IDR_MAINFRAME。在“View”菜单栏下添加菜单项“Full Screen”。在其属性框中，ID设置为ID_FULL_SCREEN，Caption为“Full Screen”。还可以在工具栏中添加新的工具图标，并使之与菜单项“Full Screen”相关联，即将其ID值也设置为ID_FULL_SCREEN。<br>
+　　3）设计全屏显示处理函数，在CMainFrame类增加上述菜单项ID_FULL_SCREEN消息的响应函数。响应函数如下：<br>
+　　void CMainFrame::OnFullScreen() <br>
+　　{GetWindowPlacement(＆m_OldWndPlacement);<br>
+　　CRect WindowRect;<br>
+　　GetWindowRect(＆WindowRect);<br>
+　　CRect ClientRect;<br>
+　　RepositionBars(0, 0xffff, AFX_IDW_PANE_FIRST, reposQuery, ＆ClientRect);<br>
+　　ClientToScreen(＆ClientRect);<br>
+　　／／ 获取屏幕的分辨率<br>
+　　int nFullWidth=GetSYstemMetrics(SM_CXSCREEN);<br>
+　　int nFullHeight=GetSystemMetrics(SM_CYSCREEN);<br>
+　　／／ 将除控制条外的客户区全屏显示到从(0,0)到(nFullWidth, nFullHeight)区域, 将(0,0)和(nFullWidth, nFullHeight)两个点外扩充原窗口和除控制条之外的 客户区位置间的差值, 就得到全屏显示的窗口位置<br>
+　　m_FullScreenRect.left=WindowRect.left－ClientRect.left;<br>
+　　m_FullScreenRect.top=WindowRect.top－ClientRect.top;<br>
+　　m_FullScreenRect.right=WindowRect.right－ClientRect.right＋nFullWidth;<br>
+　　m_FullScreenRect.bottom=WindowRect.bottom－ClientRect.bottom＋nFullHeight;<br>
+　　m_bFullScreen=TRUE;  ／／ 设置全屏显示标志为 TRUE<br>
+　　／／ 进入全屏显示状态<br>
+　　WINDOWPLACEMENT wndpl;<br>
+　　wndpl.length=sizeof(WINDOWPLACEMENT);<br>
+　　wndpl.flags=0;<br>
+　　wndpl.showCmd=SW_SHOWNORMAL;<br>
+　　wndpl.rcNormalPosition=m_FullScreenRect;<br>
+　　SetWindowPlacement(＆wndpl);}<br>
+　　4）重载CMainFrame类的OnGetMinMaxInfo函数，在全屏显示时提供全屏显示的位置信息。<br>
+　　void CMainFrame::OnGetMinMaxInfo(MINMAXINFO FAR＊ lpMMI) <br>
+　　{if(m_bFullScreen)<br>
+　　{lpMMI－>ptMaxSize.x=m_FullScreenRect.Width();<br>
+　　lpMMI－>ptMaxSize.y=m_FullScreenRect.Height();<br>
+　　lpMMI－>ptMaxPosition.x=m_FullScreenRect.Width();<br>
+　　lpMMI－>ptMaxPosition.y=m_FullScreenRect.Height();<br>
+　　／／ 最大的Track尺寸也要改变<br>
+　　lpMMI－>ptMaxTrackSize.x=m_FullScreenRect.Width();<br>
+　　lpMMI－>ptMaxTrackSize.y=m_FullScreenRect.Height();<br>
+　　}CFrameWnd::OnGetMinMaxInfo(lpMMI) ;<br>
+　　}完成上面的编程后，可以联编执行FullScreen.exe，选择菜单“View\Full Screen”或点击与之关联的工具栏按钮即可进入全屏显示状态。但现在还需要增加用户退出全屏显示状态的操作接口,下面讲述如何编程实现按“Esc”键退出全屏显示状态。<br>
+　　1）在ClassView中选中CMainFrame并单击鼠标右键，选择“Add Member Function...”，添加public类型的成员函数EndFullScreen，该函数将完成退出全屏显示的操作。<br>
+　　void CMainFrame::EndFullScreen()<br>
+　　{if(m_bFullScreen)<br>
+　　{／／ 退出全屏显示, 恢复原窗口显示<br>
+　　ShowWindow(SW_HIDE);<br>
+　　SetWindowPlacement(＆m_OldWndPlace<br>
+ment);}}<br>
+　　2）函数EndFullScreen可以退出全屏显示状态，问题是如何在“Esc”键被按下之后调用执行此函数。由于视图类可以处理键盘输入的有关消息（如WM_KEYDOWN表示用户按下了某一个键），我们将在视图类CFullScreenView中添加处理按键消息WM_KEYDOWN的响应函数OnKeyDown。判断如果按的键为“Esc”键，则调用CMainFrame类的函数EndFullScreen，便可退出全屏显示状态。<br>
+　　void CFullScreenView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) <br>
+　　{if(nChar==VK_ESCAPE)  ／／ 如果按的键为Esc键<br>
+　　{／／ 获取主框架窗口的指针<br>
+　　CMainFrame ＊pFrame=(CMainFrame＊)AfxGetApp()－>m_pMainWnd;<br>
+　　／／ 调用主窗口类的自定义函数 EndFullScreen ，便可退出全屏显示状态<br>
+　　pFrame－>EndFullScreen();}<br>
+　　CView::OnKeyDown(nChar, nRepCnt, nFlags);}<br>
+　　这样我们就实现了比较专业的全屏显示的功能，相信肯定会令你设计的软件程序增色不少。 <br> 
+<b>(广东　粟利民　孙强)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年09月27日第38期</a></font> 
+</body>
+</html>

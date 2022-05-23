@@ -1,0 +1,113 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+VB编程俱乐部</span>
+
+
+<hr size="1" color="#000080"></p>
+　　大家好，版主我最近有两大喜事：一是我的女儿刚过了三周岁的生日（可是，我这个做爹的那天却无法回家，谨以本期内容作为给她的生日祝福，祝她健康成长、美丽聪明！）二是VBForums 的首期 网上HTML 版本终于新鲜出炉了。大家提交问题或解答问题，可使用 VBForums@126.com 或 VBForums@bigfoot.com邮件地址，也可以通过访问网站 http://VBForums.yeah.net 在 BBS板上讨论。订阅VBForums请向 sub－vbforums@e－lists.lawton.com.cn 发送一封空白信即可。</p>
+　　<b>问题1：(难度系数：初级)</b><br>
+　　我用ADO访问ACCESS数据库时用AddNew方法往里添加一条纪录,但当输入不符要求的数据时,ado会引发一个异常,这时我应该在异常处理中废弃当前纪录,重新加入新的记录;可实际上,我发现什么也做不了了,任何操作(如cancleUpdate,update,move,AddNew)都返回错误或引发异常.我可以确定权限和共享都正确,怀疑是ado的缓冲机制有bug,请哪位高手指点。<br>
+　　答：在操纵记录时应对各种可能出现的错误做相应的陷阱处理。根据错误号代表的含义来改正错误，如：<br>
+　　on error goto ErrorCode<br>
+　　rst001.AddNew 或 rst001.Update ....<br>
+　　…<br>
+　　exit Sub <br>
+　　ErrorCode:<br>
+　　Select case Err.Number  <br>
+　　Case 94<br>
+　　Msgbox ″Null无效错误″<br>
+　　Case 461<br>
+　　MsgBox ″指定的格式与数据格式不匹配″<br>
+　　Case ErrNumber<br>
+　　…<br>
+　　End Select</p>
+　　<b>问题2(难度系数：初级)</b><br>
+　　如何打开加密的数据库(access)?<br>
+　　答：打开加密的ACCESS采用如下命令：<br>
+　　Set Db = WS.OpenDatabases (″MyDBFile.mdb″,False,False,″;PWD=密码″)  (记住前面有个分号。)</p>
+　　<b>问题3(难度系数：中级)</b><br>
+　　如何使用MSCOMM32.OCX发送大于80H的字符，可否给个示例程序?<br>
+　　答：该接发方式为<br>
+　　MSComm1.InputMode=comInputModeBinary<br>
+　　如发一个A0H<br>
+　　Dim TxData(0) As Byte<br>
+　　TxData(0)=＆HA0<br>
+　　MSComm1.Output=TxData<br>
+　　这是接收方寄存器为8位的情况,如为16位，则：<br>
+　　Dim TxData(1) As Byte<br>
+　　TxData(0)=＆HA0<br>
+　　TxData(1)=＆H0<br>
+　　MSComm1.Output=TxData</p>
+　　<b>问题4(难度系数：中级)</b><br>
+　　我有一程序，将生成一个数据文件，生成之后要将该文件以附件的方式发到指定的信箱。现在我要在程序上直接提供发送按钮，调用默认的邮件处理程序将附件发送，并附上主题和简单的内容。不知如何实现？<br>
+　　答：可使用MAPISESSION、MAPIMESSAGES控件实现调用默认的支持MAPI的电子邮件如OUTLOOK EXPRESS、EXCHANGE。其中MAPISESSION实现登录、MAPIMESSAGES实现信息操作。<br>
+　　MAPISession1.signon<br>
+　　MAPIMessages1.SessionID = MAPISession1.SessionID<br>
+　　MAPIMessages1.Compose   ′创建一封新的消息<br>
+　　MAPIMessages1.RecipAddress = ″xxx@aaa.com″<br>
+　　MAPIMessages1.AddressResolveUI = True<br>
+　　MAPIMessages1.ResolveName<br>
+　　MAPIMessages1.MsgSubject = Trim(txtSubject)<br>
+　　MAPIMessages1.MsgNoteText = Trim(txtText)<br>
+　　MAPIMessages1.AttachmentPathName = ″c:\Detlog.txt″   ′attach file location<br>
+　　MAPIMessages1.Send′发送<br>
+　　MAPISession1.SignOff<br>
+　　详见vb5.0 onlinebook。（由lsh提供答案）</p>
+　　<b>问题5(难度系数：中级)</b><br>
+　　用VB生成EXE文件后，如何在后面加上参数？这个参数怎样传给VB？（就像：notepad c:\vb.txt 一样）<br>
+　　答：对于使用 Visual Basic 开发并编译为 .exe 文件的应用程序，VB提供了一个Command 对象，该对象返回出现在命令行中应用程序名之后的任何参数。下面函数演示了如何获取参数的所有技术细节。<br>
+　　Function GetCommandLine(Optional MaxArgs)<br>
+　　′声明变量。<br>
+　　Dim C, CmdLine, CmdLnLen, InArg, I, NumArgs<br>
+　　′检查是否提供了 MaxArgs 参数。<br>
+　　If IsMissing(MaxArgs) Then MaxArgs = 10<br>
+　　′ 使数组的大小合适。<br>
+　　ReDim ArgArray(MaxArgs)<br>
+　　NumArgs = 0: InArg = False<br>
+　　′取得命令行参数。<br>
+　　CmdLine = Command()<br>
+　　CmdLnLen = Len(CmdLine)<br>
+　　′以一次一个字符的方式取出命令行参数。<br>
+　　For I = 1 To CmdLnLen<br>
+　　C = Mid(CmdLine, I, 1) ′检测是否为 space 或 tab。<br>
+      　　If (C &lt;&gt; ″ ″ And C &lt;&gt;vbTab) Then<br>
+　　′若既不是 space 键，也不是 tab 键，则检测是否为参数内含之字符。<br>
+　　If Not InArg Then<br>
+　　′新的参数。检测参数是否过多。<br>
+　　If NumArgs = MaxArgs Then Exit For<br>
+　　NumArgs = NumArgs ＋ 1<br>
+　　InArg = True<br>
+　　End If<br>
+　　′将字符加到当前参数中。<br>
+　　ArgArray(NumArgs) = ArgArray(NumArgs) ＋ C<br>
+　　Else<br>
+　　′找到 space 或 tab。将 InArg 标志设置成 False。<br>
+　　InArg = False<br>
+　　End If<br>
+　　Next I<br>
+　　ReDim Preserve ArgArray(NumArgs)   ′调整数组大小使其刚好符合参数个数。<br>
+　　GetCommandLine = ArgArray() ′将数组返回。<br>
+　　End Function</p>
+　　<b>问题6：(难度系数：高级)</b><br>
+　　我现在编了一个屏幕保护程序，但不能拦截″ctrl＋alt＋del″的操作，不知如何处理?<br>
+　　答：需要调用API函数″SystemParametersInfo″拦截″ctrl＋alt＋del″,″ctrl＋esc″,″alt＋tab″三组热键。将以下代码加入你的一般模块：<br>
+　　Option Explicit<br>
+　　Public Declare Function SystemParametersInfo Lib ″user32″ Alias ″SystemParametersInfoA″ _<br>
+　　(ByVal uAction As Long, ByVal uParam As Long, ByRef lpvParam As Any, ByValfuWinIni As Long) As Long<br>
+　　Public Const SPL_SCREENSAVERRUNNING = 97<br>
+　　以下加入你的窗体<br>
+　　Option Explicit<br>
+　　′读取窗体时使热键失效<br>
+　　Private Sub Form_Load()<br>
+　　SystemParametersInfo SPL_SCREENSAVERRUNNING, True, ByVal 1＆, 0<br>
+　　End Sub<br>
+　　′程序退出时使热键有效<br>
+　　Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)<br>
+　　SystemParametersInfo SPL_SCREENSAVERRUNNING, False, ByVal 1＆, 0<br>
+　　End Sub<br>
+　　切记：一定要一起使用，否则使热键失效后，只有重新启动Windows热键才会恢复。(由HBG提供解答) <br>
+<b>(VB版主  庞一鸣）</b>
+<p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年06月21日第24期</a></font> 
+</body>
+</html>

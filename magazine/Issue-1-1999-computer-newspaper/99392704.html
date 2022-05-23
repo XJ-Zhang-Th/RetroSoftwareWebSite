@@ -1,0 +1,74 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+让鼠标带个笑脸</span>
+
+
+<hr size="1" color="#000080"></p>
+　　单一的鼠标在网页上移动是不是感觉很单调呢？在鼠标旁能不能始终带一个"笑脸"或其它动画以突出鼠标和增加网页的动感呢？回答是肯定的。按以下步骤即可立即完成。<br>
+　　第一步：将下面的代码加入<head>和</head>之间：<br>
+　　&lt;!－－ 以下代码是设定smile的代码 －－&gt;<br>
+　　&lt;script language=″JavaScript″&gt;<br>
+　　var newtop=0<br>
+　　var newleft=0<br>
+　　if (navigator.appName == ″Netscape″) {<br>
+　　 layerStyleRef=″layer.″;<br>
+　　 layerRef=″document.layers″;<br>
+　　 styleSwitch=″″;<br>
+　　}<br>
+　　else<br>
+　　{<br>
+　　 layerStyleRef=″layer.style.″;<br>
+　　 layerRef=″document.all″;<br>
+　　 styleSwitch=″.style″;<br>
+　　}<br>
+　　function doMouseMove() {<br>
+　　 layerName = ′iit′<br>
+　　 eval(′var curElement=′＋layerRef＋′[″′＋layerName＋′″〗′)<br>
+　　 eval(layerRef＋′[″′＋＋layerName＋′″〗′＋styleSwitch＋′.visibility=″hidden″′)<br>
+　　 eval(′curElement′＋styleSwitch＋′.visibility=″visible″′)<br>
+　　 eval(′newleft=document.body.clientWidth－curElement′＋styleSwitch＋′.pixelWidth′)<br>
+　　 eval(′newtop=document.body.clientHeight－curElement′＋styleSwitch＋′.pixelHeight′)<br>
+　　eval(′height=curElement′＋styleSwitch＋′.height′)<br>
+　　eval(′width=curElement′＋styleSwitch＋′.width′)<br>
+　　width=parseInt(width)<br>
+　　height=parseInt(height)<br>
+　　if (event.clientX &gt; (document.body.clientWidth － 5 － width))<br>
+　　{<br>
+　　 newleft=document.body.clientWidth＋document.body.scrollLeft － 5 － width<br>
+　　}<br>
+　　else<br>
+　　{<br>
+　　 newleft=document.body.scrollLeft ＋ event.clientX<br>
+　　}<br>
+　　 eval(′curElement′＋styleSwitch＋′.pixelLeft=newleft′)<br>
+　　if (event.clientY &gt; (document.body.clientHeight － 5 － height))<br>
+　　{<br>
+　　 newtop=document.body.clientHeight＋document.body.scrollTop－5－height　　<br>　
+　　 }<br>
+　　else<br>
+　　{<br>
+　　newtop=document.body.scrollTop ＋ event.clientY<br>
+　　}<br>
+　　 eval(′curElement′＋styleSwitch＋′.pixelTop=newtop′)<br>
+　　 }<br>
+　　document.onMousemove = doMouseMove;<br>
+　　&lt;/script&gt;<br>
+　　第二步：将下面的代码加入<body>和</body>之间任意地方：<br>
+　　&lt;!－－ 以下代码是设定此页的鼠标样式代码<br>
+　　 －－&gt;<br>
+　　&lt;script language=″javascript″&gt;<br>
+　　　if (navigator.appName == ″Netscape″) {<br>
+　　　}<br>
+　　　else<br>
+　　　{<br>
+　　	document.write(′&lt;div ID=OuterDiv&gt;′)<br>
+　　	document.write(′&lt;img ID=iit src=″smile.gif″ STYLE=″position:absolute;TOP:5pt;<br>
+LEFT:5pt;Z－INDEX:10;visibility:hidden;″&gt;′)<br>
+　　　	document.write(′&lt;/div&gt;′)<br>
+　　　　}<br>
+　　&lt;/script&gt;<br>
+　　第三步：将笑脸的动画图片(smile.gif)保存到你的html文件的路径下,当然，你也可以将“笑脸”图片改成你自己喜欢的其它图片。<br>
+<b>(湖北　郭　萍)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年10月4日第39期</a></font> 
+</body>
+</html>

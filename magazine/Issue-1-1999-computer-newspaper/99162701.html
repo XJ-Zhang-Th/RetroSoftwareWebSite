@@ -1,0 +1,74 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+个人主页DIY之五——为你的主页锦上添花</span>
+
+
+<hr size="1" color="#000080"></p>　　通过前面的几讲，我们已经作好了一个有声有色的主页，但要想吸引更多的访客成为回头客，你还需要用到以下几个小东东，来为你的主页锦上添花。<br>
+　　<B>＊ 醒目的计数器</B><br>
+　　如果你希望得到详细的站点访问分析报告，可以去网易申请一个计数器（ http://best.netease.com/），这样你就可以随时查看你站点的访问情况，包括来自何方的IP、最近几天的访问数或者是一个月的访问统计等等，非常详细的报表！你想对你站点的访问量做一次大的跟踪，这应该算是一个非常好的站点。<br>
+　　<b>＊ 体贴的问候语</b><br>
+　　当你的主页访问者在光临你站点时候，如果你的主页能显示一句有些人情味的问候语，想必对每个访问者来说，应该是一次愉快而有新奇的经历吧，其实，这很简单，只要用到一点点的JavaScript就可以完成这样的效果。下面是“体贴的问候”的源代码，你只要将这些语句放到你的主页上，就可以实现这个功能了。<br>
+　　小于号script language=″JavaScript″大于号<br>
+　　function SayHello(){<br>
+　　var today = new Date();<br>
+　　var hours = today.getHours();<br>
+　　var minutes = today.getMinutes();<br>
+　　var string = ″嗨！你好，现在时刻″;<br>
+　　string ＋= number(hours,″点″);<br>
+　　string ＋= number(minutes,″分。″);<br>
+　　if(hours==0) alert(″朋友：已经是午夜零点多了，应该上床睡觉罗！！不过还是先逛逛本网页再睡。″);<br>
+　　if(hours==1) alert(″已经是午夜1点多了，还在当网络游民啊！可要注意身体哟:) ″);<br>
+　　if(hours==2) alert(″朋友：已经是深夜2点多了，还在找寻什么吗？需要帮忙吗？″); 
+<br>
+　　if(hours==3) alert(″朋友：已经是深夜3点多了，竟然还没睡，果然是现代的网络夜猫族！！″);<br>
+　　if(hours==4) alert(″朋友：已经是凌晨4点多了，难道一点睡意都没有吗？佩服！佩服！！白天可能起不来喔！″);<br>
+　　if(hours==5) alert(″朋友：这么早起床啊！早起的鸟儿有虫吃喔！你不是整夜未眠吧？″);<br>
+　　if(hours==6) alert(″朋友：早安！！刷牙、洗脸了吗？一起迎接一天的开始。″);<br>
+　　if(hours==7) alert(″朋友：早啊！！吃过早餐了吗？民以食为天喔！″);<br>
+　　if(hours>7 ＆＆ hours<11) alert(″朋友：早啊！！开始一天的工作学习了，还顺利吧！″);<br>
+　　if(hours==11) alert(″朋友：快中午了，肚子是不是饿了？想好要吃什么了吗？″);<br>
+　　if(hours==12) alert(″朋友：已经是中午了，吃饱吃好了吗？千万不要虐待自己喔！！″);<br>
+　　if(hours>12 ＆＆ hours<15) alert(″朋友：当一天和尚撞一天钟，演什么就要像什么，千万别太混喔！！″);<br>
+　　if(hours==15) alert(″朋友：来杯下午茶吧！休息是为了走更长远的路。″);<br>
+　　if(hours>15 ＆＆ hours<18) alert(″朋友：下午好！又开始期待下班(下课)的来临了，但是记住：一定要今日事今日毕！！″);<br>
+　　if(hours==18) alert(″朋友：应该回到自己温馨的家了吧！也该是用晚饭的时间口罗！″);<br>
+　　if(hours==19) alert(″朋友：7点多了。用过晚饭了吗？偶而也要创造机会和亲密爱人来份烛光晚餐培养感情。″);<br>
+　　if(hours==20) alert(″朋友：你都不看电视八点档吗？是不是觉得好戏难寻？没关系，到我这儿就对了。″);<br>
+　　if(hours>20 ＆＆ hours<23) alert(″朋友：是不是又要开始网络之旅，本网页是最佳选择喔！″);<br>
+　　if(hours==23) alert(″朋友：已经快到午夜了，是不是需要来份宵夜点心，以解嘴馋呢？″);}<br>
+　　&#160;&#160;&#160; SayHello();<br>
+　　小于号/script大于号
+　　<b>＊ 可选的背景色</b><br>
+　　如果你的web站点可以让访客选择他们喜欢的背景色，那么这一定会使他们感到很爽。记住，背景色只有在没有背景图的时候才显示。 <br>
+　　第一步：在<HEAD>里粘贴下面的 JavaScript 代码：<br> 
+　　小于号SCRIPT language=″JavaScript″大于号<br>
+　　&lt!— hide javascript<br>
+　　function changeBackground(hexNumber) {<br>
+　　document.bgColor=hexNumber;<br>
+　　}<br>
+　　// done hiding —&gt<br>
+</SCRIPT> </pre>
+　　第二步：在 <BODY> 里粘贴下面的代码： <br>
+　　小于号FORM method=″post″ name=″background″大于号<br>
+　　小于号INPUT type=″button″ value=″red″<br>
+　　onclick=″changeBackground(′＃cc0000′)″大于号<br>
+　　小于号INPUT type=″button″ value=″green″<br>
+　　onclick=″changeBackground(′＃006600′)″大于号<br>
+　　小于号INPUT type=″button″ value=″yellow″<br>
+　　onclick=″changeBackground(′＃ffff99′)″大于号<br>
+　　小于号INPUT type=″button″ value=″white″<br>
+　　onclick=″changeBackground(′＃ffffff′)″大于号<br>
+　　小于号INPUT type=″button″ value=″black″<br>
+　　onclick=″changeBackground(′＃000000′)″大于号<br>
+　　小于号INPUT type=″button″ value=″grey″<br>
+　　onclick=″changeBackground(′＃666666′)″大于号<br>
+　　小于号/FORM大于号<br>
+　　<b>＊ 精巧的留言本</b><br>
+　　访问者可能会对你的站点有些想法，这时候除了给出电子邮件地址作为沟通你和访问者之间的联系外，增加一个精巧的留言本，对于个人主页的拥有者来说，是一个非常好的办法。在此，我们向你推荐中文热讯的“ABC留言系统（个人论坛随意建）”，你只要登录到：http://abc.yesite.com/，输入你需要的ID，比如Tigergu，如果该ID没有被人使用，你就成为http://tigergu.abc.yesite.com/这个留言本的拥有者了，只要在你主页适当位置插入下面的代码，你就拥有了属于你的留言本了：<br>
+　　小于号a href=″http://abc.yesite.com/cgi－bin/abc.cgi?owner=xxxx″大于号<br>
+　　小于号img src=″http://abc.yesite.com/abc.gif″ alt=″xxxx″ width=88 height=31 
+border=0&lt!—当然你也可以根据需要，把上面的小图标换成其他更漂亮的图形或者文字链接—&gt小于号/a大于号<br>
+　　编后：《个人交友主页DIY》自此全部发完，在这五讲里，大家在骄傲中华(www.pridechina.com)的纸老虎和茶博士的帮助下，学习了如何制作一个简单的主页，并在此基础上添加图片、声音等，相信通过这五讲的内容，大家已经可以做一个漂亮的的主页了，过过当站长的瘾。但要作得更精致，那还需要学更多的技术，也许有朋友会问，那今后还介绍吗？当然。水手以后还会向大家介绍主页设计的新方向及一些小窍门啦，欢迎投稿啊!<br><b>（纸老虎 茶博士）</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年04月26日第16期</a></font> 
+</body>
+</html>

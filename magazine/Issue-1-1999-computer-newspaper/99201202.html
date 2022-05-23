@@ -1,0 +1,49 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+ScanReg命令行参数</span>
+
+
+<hr size="1" color="#000080"></p>
+　　提起Windows 98新增的专门用于对注册表数据库进行维护的注册表检查程序ScanReg,想必大家都不会陌生，但绝大多数用户都只知道它可在Windows 98启动时自动运行，而对于该如何利用它进行修复、还原等操作却知之不多，这就影响了用户进一步的使用。其实Windows 98的注册表检查程序一共提供有两个不同的版本，即在图形界面下运行的ScanRegW和在MS－DOS状态下运行的ScanReg。其中ScanRegW比较简单，系统每次启动时它都会自动运行，并完成有关检查、恢复等操作，根本无需用户操心，而ScanReg则有所不同，它是一个纯DOS应用程序，我们必须通过有关命令行参数才能完成有关恢复、还原等操作。为方便用户使用，现将ScanReg的有关命令行参数列表介绍如下（需要说明的是，Windows版的ScanRegW也提供有命令行参数，这里也一并进行说明）：<b>(湖北　胡锦承)</b></p>
+<table border="1" width="60%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="15%"><small>参数</small></td>
+    <td width="64%"><small>含意</small></td>
+    <td width="21%"><small>适用范围</small></td>
+  </tr>
+  <tr>
+    <td width="15%"><small>/backup</small></td>
+    <td width="64%"><small>自动对注册表数据进行备份，并且在备份前不再要求用户确认</small></td>
+    <td width="21%"><small>可同时运用于ScanReg和ScanRegW</small></td>
+  </tr>
+  <tr>
+    <td width="15%"><small>/restore</small></td>
+    <td width="64%"><small>列出所的备份以供用户选择恢复</small></td>
+    <td width="21%"><small>仅用于ScanReg</small></td>
+  </tr>
+  <tr>
+    <td width="15%"><small>&quot;/comment=注释内容&quot;</small></td>
+    <td width="64%"><small>为所有的备份添加一个适当的注释，此举主要是为了说明备份的内容以方便恢复（使用/restor参数即可显示该注释）。如：“/comment=this 
+    is a backup comment&quot;</small></td>
+    <td width="21%"><small>可同时运用于ScanReg和ScanRegW</small></td>
+  </tr>
+  <tr>
+    <td width="15%"><small>/fix</small></td>
+    <td width="64%"><small>对注册表数据进行修复（注意，SCANREG一般都是利用以前所做备份对系统进行恢复操作的，它只在没有发现备份才会自动对其修复，也就是说SCANREG不提倡用户进行修复，但人我们可利用/fix参数强行令SCANREG进行修复）</small></td>
+    <td width="21%"><small>仅用于ScanRegW</small></td>
+  </tr>
+  <tr>
+    <td width="15%"><small>/AutoScan</small></td>
+    <td width="64%"><small>指定系统在每次启动时都对注册表文件进行扫描（每天只备份一次注册表）</small></td>
+    <td width="21%"><small>仅用于ScanRegW</small></td>
+  </tr>
+  <tr>
+    <td width="15%"><small>/Scanonly</small></td>
+    <td width="64%"><small>仅仅对注册表数据进行扫描而不进行备份</small></td>
+    <td width="21%"><small>仅用于ScanRegW</small></td>
+  </tr>
+</table>
+</TD></TR></TABLE>　　    <p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年05月24日第20期</a></font> 
+</body>
+</html>

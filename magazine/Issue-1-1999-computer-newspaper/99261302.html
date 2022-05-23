@@ -1,0 +1,57 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+用DLL在程序中实现文件拷贝</span>
+
+
+<hr size="1" color="#000080"></p>
+　　在所开发的应用软件中，有时我们对某些文件进行拷贝（如对数据库进行备份、制作安装程序等），但是常用的一些语言却没有提供可直接进行文件拷贝的过程或函数。为此，我曾利用Delphi编制了可提供文件拷贝过程的动态连接库Copf.dll，其输出过程为CopyFile。由于DLL具有简化编程、运行速度快等诸多优点，且不受编程语言的限制，用Delphi编 写的Copf.dll同样可被VB、VC等面向对象语言进行静态或动态调用，从而方便地在程序中实现文件拷贝。<br>
+　　附源程序如下：<br>
+　　library copf;<br>
+　　uses<br>
+　　SysUntils,<br>
+　　Classes;<br>
+　　Procedure  copyfile(Sfname.Dfname:string):far;export;//带路径的文件名；<br>
+　　Var<br>
+　　Sourcef,Destinef:file;<br>
+　　NumRead,NumWritten: Integer;<br>
+　　Buf: array[1..4096] of Char;//定义缓冲区；<br>
+　　Begin<br>
+　　AssignFile(Sourcef,Dfname);<br>
+　　Reset(Sourcef,1);<br>
+　　AssignFile(Destinef,Dfname);<br>
+　　Rewrite(Destinef,1);<br>
+　　Repeat<br>
+　　BlockRead(Sourcef,Buf,Size Of(Buf),NumRead);//读源文件；<br>
+　　BlockWrite(Destinef,Buf,NumRead,NumWritten);//写目标文件；<br>
+　　Until (NumRead = 0) or (NumWritten&lt;&gt;NumRead);<br>
+　　CloseFile(Soucef);<br>
+　　CloseFile(Destinef);<br>
+　　End;<br>
+　　Exports<br>
+　　Copyfile;//输出过程；<br>
+　　End；<br>
+　　以上源程序编译后便生成Copf.dll。<br>
+　　现就静态调用举例：<br>
+　　unit Name;<br>
+　　interface<br>
+　　uses<br>
+　　Windows…;<br>
+　　Type<br>
+　　Tzcform=class(Tform)<br>
+　　…<br>
+　　end;<br>
+　　var<br>
+　　Form1: Tform1;<br>
+　　Implementation<br>
+　　Procedure  copyfile(Sfname,Dfname:string);far;external ′c:\copf′;//DDL路径名；<br>
+　　{＄R ＊.DFM}<br>
+　　Procedure  Tform1.CopyButtonClick(Sender: Tobject);<br>
+　　Begin<br>
+　　…<br>
+　　if fileexist(Sfname)//如果源文件；<br>
+　　then copyfile(Sfname,Dfname);<br>
+　　…<br>
+　　end;   <br><b>（河北　王寅龙）</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年07月5日第26期</a></font> 
+</body>
+</html>

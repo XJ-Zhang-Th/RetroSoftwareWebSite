@@ -1,0 +1,35 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">C++编程俱乐部</span>
+</p>
+<hr size="1" color="#000080"><br>
+　　大家好！C＋＋编程俱乐部自第一期推出以来，受到广大C＋＋爱好者的热烈拥护。我们的邮箱每天都被塞得满满的，并且邮件列表的订阅数量倍增。在这里，玉海园的张龙、Mory、邵自成和杨晓东非常感谢朋友们的关心和支持，玉海园网站将继续真诚地为每一位朋友服务，丰富邮件列表的内容，认真对待每位朋友的来信，做到有问必答。对于老朋友，我们将继续真诚对待；对于新朋友，我们将热忱欢迎。无论在工作还是学习中，当你在遇到困难时请想到玉海园（http://yuhail.cj.net.cn），因为我们永远是你真诚的朋友。<br>
+　　需要订阅邮件列表以及要解答各种相关问题的朋友可以访问http://yuhail.cj.net.cn/other/mail.htm 或发邮件到MFC2000@990.net 、MFC2000@126.com （如订阅邮件列表请注明“订阅”字样）。</p>
+　　<b>问题1:我将一个16x16的图标用在CListCtrl中时,发现它需要一个HICON句柄,请问我怎样才能从图标的ID中获取句柄?</b><br>
+　　答: 用以下的方法可以取得图标的句柄 <br>
+　　 HICON hIcon = NULL;<br>
+　　 hIcon = LoadIcon(IDI_YOURICONID);</p>
+　　<b>问题2:我已经调用了SetModifiedFlag()方法,但为什么在用户关闭文档窗口时仍然没有方法得知,如果我等到OnCloseDocument()时已经晚了,虽然我设置了标志,但它在改变时依然没有任何提示,请问这是为什么?</b><br>
+　　答:1)时刻检查用户的状态，只要用户有所变动就马上调用SetModifiedFlag()函数,并且多次调用完全没有性能上的问题。不要等到开始关闭时才调用SetModifiedFlag()。<br>
+　　2)当用户文档进行了改动时,在视类中调用“GetDocument()－>SetModifiedFlag(TRUE)”。例如,如果在视中有一个CEdit控件,加入一个对消息ON_EN_CHANGE的自定义函数(假设为OnEditChange()),在这个函数里你就可以调用SetModifiedFlag()。 现在无论用户什么时候关闭计算机都可以询问是否保存。</p>
+　　<b>问题3:打印程序中如何定义一页纸的区域，即无论如何画线，都不超出此区域?</b><br>
+　　答:在OnDraw中获得打印页面的范围，然后在该范围中画线。<br>
+　　void CView::OnDraw(CDC＊ pDC)<br>
+　　{ if(pDC－>IsPrinting()!=0)<br>
+　　{ int cxPage = pDC－>GetDeviceCaps(HORZRES);//获取打印页面范围<br>
+　　int cyPage = pDC－>GetDeviceCaps(VERTRES);//get printer pixels per inch<br>
+　　int cxInch = pDC－>GetDeviceCaps(LOGPIXELSX);<br>
+　　int cyInch = pDC－>GetDeviceCaps(LOGPIXELSY);<br>
+　　...}}</p>
+　　<b>问题4:在VC6（非MFC）中，我想实现将Ctrl＋Alt＋Del、Ctrl＋Esc、Alt＋Tab等功能组合键锁住，请问怎样使用Windows API函数实现？</b><br>
+　　答：在VC6如果需要将功能组合键锁住，只需调用API函数SystemParametersInfo即可，使用如下：SystemParametersInfo(SPI_SETSCREENSAVERRUNNING, TRUE, NULL, 0)。</p>
+　　<b>问题5:我通过产生的一组随机数，在视中显示波形图。我采用了CRECT计算出视的失效区，并采用UPDATEWINDOW函数刷新视。程序进入死循环（呈现的波形正常），但我设置的SETTIMER(1,256,NULL)却没有起作用，请问这是为什么？</b><br>
+　　答:你可能在编写程序强制执行死循环，并且在死循环里没有加入消息处理机制，SetTimer发的WM_TIMER消息不能执行。因为在执行死循环时系统处于等待状态，解决这个问题的方法是：在循环中加入下面的语句 <br>
+　　if (PeekMessage()) { TranslateMessage(); DispatchMessage() }; </p>
+　　<b>问题6:请问如何实现在移动窗口时,显示的是窗口而非虚框?</b><br>
+　　答：在Windows系统中，需要在移动窗口时显示窗口或虚框，可以调用Windows API函数来实现：<br>
+　　SystemParametersInfo(SPI_GETDRAGFULLWINDOWS, TRUE, NULL, 0)。<br>
+<b>(玉涨园工作室（http://yuhail.cj.net.cn)) </b><p align="right">
+<span class="ourfont"><font color="#369681">本文出自：</font><a href="index.htm">《电脑报》1998年06月14日第23期</a>
+</body>
+</html>

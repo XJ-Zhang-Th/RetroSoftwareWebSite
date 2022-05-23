@@ -1,0 +1,19 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+PB中客户机从服务器获取系统时间</span>
+
+
+<hr size="1" color="#000080"></p>
+　　PowerBuilder开发常采用Client／Server模式，而此种模式下对于系统时间的读取操作要注意前台与后台的分别。PowerBuilder中有函数today()和time()可以分别返回当前机器的日期和时间，虽然用户在自己的PC机上可以任意地修改系统的日期和时间，而在应用系统中就得不到正确的当前日期和时间了。在Client／Server结构中，有一台机器是用作数据库服务器的，一般用户没有权限修改时间，但我们可以读取时间作为系统时间。<br>
+　　以Oracle 数据库为例，定义函数f_get_current_time() 返回datetime变量。函数脚本如下：<br>
+　　datetime ldt_cur_time<br>
+　　select sysdate<br>
+　　into :ldt_cur_time<br>
+　　from sys.dual;<br>
+　　if sqlca.sqlcode <> 0 then<br>
+　　messagebox(″出错信息″,″读系时间出错！″,Exclamation!)<br>
+　　end if<br>
+　　return  ldt_cur_time<br><b>(江西　柯建勋)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年08月16日第32期</a></font> 
+</body>
+</html>

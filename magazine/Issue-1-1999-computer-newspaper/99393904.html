@@ -1,0 +1,37 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+如何建立Win95下的DOS工作站</span>
+
+
+<hr size="1" color="#000080"></p>
+　　关于Windows95对等网或以WindowsNT为服务器的网络都较容易配置成功。而目前，许多单位计算机中只安装了Windows95和DOS＋PWin32操作系统，能否将这些以DOS为操作系统的计算机与Windows95联网呢？，我们通过仔细查阅Windows95/NT有关文档资料，并经过多次反复调试，终于找到了将这些以DOS为操作系统的计算机作为工作站联入以Windows95为操作系统的计算机的具体方法：<br>
+　　一、在以DOS为操作系统的计算机中，正确安装好网卡（正确配置网卡的DMA、IRQ、I/O及网络接口类型）。<br>
+　　二、第二步，利用Windows NT4.0安装系统盘制作MS Network Client for MS－DOS安装软盘一张（即将NT4.0光盘目录MSCLIENT\NETSETUP下的所有文件复制到一张软盘上）。<br>
+　　三、在DOS为操作系统的计算机上运行刚制作的MS Network Client for MS－DOS安装软盘中的SETUP.EXE程序。安装程序为：<br>
+　　1.自动检测网络配置<br>
+　　2.自动拷贝Client软件<br>
+　　3.请你为每个DOS工作站及工作组命名<br>
+　　4.请你选择网卡类型<br>
+　　5.请你选择添加网络协议（Add Protocol）。网络协议选择Microsoft TCP/IP。<br>
+　　6.自动修改DOS根目录下的CONFIG.SYS和AUTOEXEC.BAT文件以自动配置网络启动文件。<br>
+　　四、重新启动计算机，计算机自动运行网络软件过程，但过程中有错，联网不成功。因此，还应在CLIENT软件目录下修改PROTOCOL.INI文件如下：<br>
+　　指定IP地址：IPaddress0=192　168　0　1<br>
+　　指定掩码：subNETMask0=255　255　255　0<br>
+　　设DHCP无效：DisableDHCP=1（0有效，1无效）<br>
+　　修改好后存盘退出。<br>
+　　（★注：各台微机的IP地址应不同。假若有10台，IP各为192　168　0　1到192　168　0　10）<br>
+　　五、再次重新启动计算机后，我们就可以在DOS工作站上使用Windows95计算机的共享资源了。在DOS工作站上执行C：\&gt;net网络命令后，就可以映射Windows95的共享文件夹及打印机等资源。如果进入PWin32后，可以在PWin32环境下使用Windows95的共享资源。<br>
+　　关于net网络命令的一些用法，简单介绍如下：<br>
+　　1.NET　运行网络连接程序<br>
+　　2.NET/？　查看NET命令的用法<br>
+　　3.NET LOGON　登录网络<br>
+　　4.NET LOGOFF　注销网络<br>
+　　5.NET VIEW \\Win95Server　观察服务器Win95Server中的共享资源<br>
+　　6.NET USE F：\\Win95Server\Public　将网络驱动器F：连接服务器Win95Server中的共享资源，其共享名称为Public<br>
+　　7.NET USE　观察网络驱动器及网络打印机连接状况<br>
+　　8.NET USE F：/DELETE　删除网络驱动器F：<br>
+　　9.NET USE LPTn：\\Win95Server\EpsonLQ－1600K　将服务器Win95Server上的EpsonLQ－1600K作为网络共享打印机连接到本机的LPTn端口上<br>
+　　10.NET USE LPTn：/DELETE　中断所连接的网络打印机<p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年10月4日第39期</a></font> 
+</body>
+</html>

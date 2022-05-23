@@ -1,0 +1,41 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+HTML文档中&lt;META&gt;的标记</span>
+
+
+<hr size="1" color="#000080"></p>
+　　&lt;META&gt;标记位于HTML文档头部的&lt;HEAD&gt;标记和&lt;TITLE&gt;标记之间，它提供用户不可见的信息。&lt;META&gt;标记通常用来为搜索引擎robots定义页面主题，或者是定义用户浏览器上的cookie，还可以设置页面使其可以根据你定义的时间间隔刷新自己,以及设置RASC内容等级。<br>
+　　下面介绍一些有关&lt;META&gt;标记的例子及解释：<br>
+　　1.定义内容<br>
+　　&lt;META&gt;标记允许使用关键字和描述定义页面的内容。<br>
+　　&lt;META NAME=″Keywords″     CONTENT=″Computer,Sales,Intel,Compaq,Discount″&gt;<br>
+　　&lt;META NAME=″Description″ CONTENT=″We sell discount computers on the web!″&gt;<br>
+　　上面的HTML语句为搜索引擎列出了关键字列表，这些关键字可以将页面正确地放置在Excite，Alta vista，Lycos和InfoSeek等站点列表上。<br>
+　　2.定义页面内容的等级<br>
+　　你可以利用&lt;META&gt;标记来设置你站点页面的内容等级（RSAC等级）：<br>
+　　&lt;META http－equiv=″PICS－Label″ content=′(PICS－1.1<br>
+　　″http://www.rsac.org/ratingsv01.html″I gen comment ″RSACi<br>
+　　North America Sever″ by ″inet@microsoft.com″ for<br>
+　　″http://www.microsoft.com″ on ″1997.06.30T14:21－0500″r(n0 s0<br>
+　　v0 l0))′&gt;<br>
+　　RSAC的评估系统提供了一种用来评价Web站点内容的标准。用户可以设置Microsoft Internet Explorer（IE3.0以上）来排除包含有色情和暴力内容的站点。本例中的HTML取自Microsoft的主页。代码中的（n 0 s 0 v 0 l 0）表示该站点不包含不健康内容。如果你想进一步了解RSAC评估系统的等级内容，可以访问RSAC的站点：http://www.rsac.org/。<br>
+　　3.控制页面的缓存<br>
+　　Microsoft Internet Explorer支持&lt;META&gt;标记用于定义页面内容到期的日期：<br>
+　　&lt;META HTTP－EQUIV=″expires″ <br>
+　　CONTENT=″Mon,12 May 1998 00:36:05 GMT″&gt;<br>
+　　如果你在IE浏览器中设置为先去查看浏览器的缓存，那么它将在访问者再次访问页面时使用页面的缓存版本，直到到达&lt;META&gt;标记设置的期限，对于不希望快速存取的页面，可以将期限设成一个过去的时刻。<br>
+　　4.设置页面以便改变或刷新URL<br>
+　　你可以利用&lt;META&gt;标记在指定的时间内改变URL：<br>
+　　&lt;META HTTP－EQUIV=″refresh″ CONTENT=″5;URL=http://host.domain.com/index.html″&gt;<br>
+　　这个例子在当前页面被加载5秒后调用一个新的页面。<br>
+　　5.定义语言<br>
+　　&lt;META&gt;标记允许你对语言进行设置：<br>
+　　&lt;META HTTP－EQUIV=″content－language″ CONTENT=″en″&gt;<br>
+　　此例将页面语言设置为英语（en=English）。<br>
+　　6.Robots信息<br>
+　　可以友好地通知Robots将一个页面列入索引中而不提供链接：<br>
+　　&lt;META NAME=″ROBOTS″ CONTENT=″INDEX,NOFOLLOW″&gt;<br>
+　　CONTENT属性的其它选项还包括NOINDEX和FOLLOW。　<br><b>　(辽宁　阿辉)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年09月6日第35期</a></font> 
+</body>
+</html>

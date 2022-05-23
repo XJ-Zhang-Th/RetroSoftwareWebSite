@@ -1,0 +1,65 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">VFP5中实现菜单、表单与工具条的动态连接</span>
+</p>
+<hr size="1" color="#000080"></p>
+　　<b>一、表单与菜单的连接</b></p>
+　　用VFP构建应用程序时，往往通过主菜单调用表单完成相应功能模块，其实我们可以像WORD打开文档一样将每一个打开的表单显示在Window菜单上，以便于切换。具体步骤如下：<br>
+　　1. 创建一表单类MyForm，新建向菜单项Window追加、删除表单名的方法：AddFormNameToMenu、RemoveFormNamefromMenu，同时修改init、activate、destroy方法。<br>
+　　2. 设置表单类MyForm为新建表单的模板类即可。</p>
+　　<strong>二、表单与工具条的连接。</strong></p>
+　　在应用系统中对表单的操作往往有很多相同之处，所以我们可以针对多个表单使用一个工具条，以节省表单空间。具体步骤如下：<br>
+　　1. 利用工具条基类ToolBar创建一工具条类MyTBR，然后向工具条中添加命令按钮，在每个按钮的click事件中调用激活表单中的相应方法，例如：_screen.activateform.first()。由于每个表单的方法可写入不同的代码，从而实现用一个工具条控制不同的表单及操作。<br>
+　　2. 创建应用程序类MyAPP，添加属性nFormInstanceCount、oToolBar，其初始值分别为0、NULL。新建显示、隐藏工具条的方法：ShowAppToolBar、RemoveAppToolBar。在主程序中建立MyAPP实例：oAPP=createobject (′MyAPP′)<br>
+　　3. 修改表单类MyForm，添加属性cToolbar，其初始值为MyTBR；添加相应方法(例如first)。同时修改init、destroy方法。</p>
+　　<b>三、源代码</b></p>
+　　AddFormNameToMenu（）<br>
+　　if cntbar(′window′)=0 or getbar(′window′,cntbar(′window′))<0<br>
+　　nNoMenu=cntbar(′window′)＋1<br>
+　　else<br>
+　　nNoMenu=getbar(′window′,cntbar(′window′))＋1<br>
+　　endif<br>
+　　define bar nNoMenu of window prompt thisform.caption;<br>
+　　after _mlast<br>
+　　cNameform=thisform.name<br>
+　　on selection bar nNoMenu of window activate window ＆cNameform<br>
+　　RemoveFormNamefromMenu（）<br>
+　　local nBar,cCaption<br>
+　　for nBar=cntbar(′window′) to 1 step －1<br>
+　　if prmbar(′window′,getbar(′window′,nBar))=this.caption<br>
+　　release bar getbar(′window′,nBar) of window<br>
+　　exit<br>
+　　endif<br>
+　　endfor<br>
+　　Init（）　　local nNomenu,cNameform<br>
+　　if !empty(thisform.cToolbar)<br>
+　　thisform.Addformnametomenu()<br>
+　　oAPP.showapptoolbar(thisform.cToolbar)<br>
+　　endif<br>
+　　Activate（）<br>
+　　activate menu _msysmenu nowait<br>
+　　Destroy（）<br>
+　　if !empty(thisform.cToolbar)<br>
+　　thisform.removeformnamefrommenu()<br>
+　　oAPP.removeapptoolbar()<br>
+　　endif<br>
+　　ShowAppToolBar（）<br>
+　　lpara tcToolBar<br>
+　　if this.nforminstancecount=0 or isnull(oAPP.oToolbar)<br>
+　　set sysmenu on<br>
+　　set classlib to basetbr<br>
+　　this.oToolbar=createobject(′MyTBR′)<br>
+　　this.oToolbar.show()<br>
+　　activate menu _msysmenu nowait<br>
+　　set sysmenu automatic<br>
+　　endif<br>
+　　this.nforminstancecount=this.nforminstancecount＋1<br>
+　　RemoveAppToolBar（）<br>
+　　this.nforminstancecount=this.nforminstancecount－1<br>
+　　if this.nforminstancecount=0<br>
+　　this.otoolbar=.NULL.<br>
+　　endif<br>
+<b>(刘露军) </b><p align="right">
+<span class="ourfont"><font color="#369681">本文出自：</font><a href="index.htm">《电脑报》1998年06月14日第23期</a>
+</body>
+</html>

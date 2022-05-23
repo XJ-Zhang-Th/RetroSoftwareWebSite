@@ -1,0 +1,21 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+大众LEO  5000笔记本电脑故障处理两例</span>
+
+
+<hr size="1" color="#000080"></p>　　大众LEO 5000笔记本电脑配置为：Intel 166 MMX CPU,16M内存，10倍速光驱(东芝)，1.2G昆腾硬盘，预装Windows 95 OSR2，使用Poenix BIOS。<br>
+　　<b>故障现象1：Windows95系统资源管理器的“最小化”、“最大化”、“关闭”三个按钮变成数字或怪字符。系统丢失隶书字体。</b><br>
+　　故障分析与处理：<br>
+　　1.笔者先用KV300＋(U＋)版查杀病毒，杀除“CMOS破坏者”及多个宏病毒。在该机上运行KV300＋的KVWSetup.exe文件，安装KV300 For Word，用KV300 For  Word又杀除了多个宏病毒。至此，再也查不出病毒了。但怪字符不能消除，估计是系统文件受到破坏。<br>
+　　2.在不删除原Windows95系统的情况下，用同版本的Windows95安装盘重装一次Windows95系统(覆盖安装)，怪字符消失，也找回了隶书字体，系统恢复正常。<br>
+　　3.在第二次启动机器时，出现如下提示：<br>
+　　“Invalid command.com,please special file path.(eg.c:\command.com\p)”<br>
+　　怀疑系统文件Command.com丢失或无效造成本故障。欲用Windows95启动盘启动，并将其中的Command.com文件拷贝到“C:\”下，这时，发现Windows95启动盘引导失败，出现同前的提示。改用DOS6.22启动盘引导机器，能正常进入提示符状态。检查C盘根目录下Command.com文件的字节数，属性均正常。<br>
+　　可能是病毒“生前”修改了CMOS设置数据引起故障。进入CMOS设置程序，发现可供用户设置的项目很少，许多台式机上的高级设置参数它都没有，唯一能做的装载CMOS缺省设置，保存设置并退出，这时从硬盘或Windows95启动盘均可引导系统进入DOS状态(DOS 7.10)。但不能进入Windows图形界面，估计原因是用DOS 6.22启动盘执行过“SYS C:”，后来用Windows95启动盘又执行过一次“SYS C:”。这样C盘里的Msdos.sys文件被覆盖。Windows95启动盘中的Msdos.sys与C盘下的不同，只有6字节。C盘下的Msdos.sys文件大小在1K以上。从其他机器上(Windows95都装在C:\Windows目录下)Copy一份Msdos.sys过来。重新启动，顺利进入Windows95。故障排除。<br>
+　　<b>故障现象2：每次开机都出现红条提示，但系统能正常运行，提示如下：</b><br>
+　　“Save to disk feature is disabled.Press any key to continue…”<br>
+　　故障分析与处理：该故障是在对机器的硬盘作了重新分区、格式化，并重装Windows系统后出现的。故障一定与此操作有关。查阅资料得知品牌机都会有一些特殊的设计(也是特色)，以区别于兼容机。大众LED 5000具有快速开机功能，该功能在关机时将系统运行数据及状态保存到硬盘的隐含分区或隐含文件中，下次开机时能快速回到上次的工作环境下，以方便用户。因为对硬盘作了重新分区及高级格式化，隐含分区或文件被破坏，故而BIOS在每次开机时显示红条提示。<br>
+　　找到随机附带软盘，其中有个程序叫Phdisk.exe。运行phdisk.exe／?后显示帮助信息。“／F”参数表示选择建立隐含文件，“/d”参数表示选择建立隐含分区；该隐含文件或分区将占用约18M的硬盘空间。运行“phdisk／F”，提示硬盘空间不够。删除一些暂时不用的文件，并运行Defrag.exe后，再次执行“Phdisk／F”，隐含文件建立成功。但开机后红条提示没有立即消失，后来在连续多次清理硬盘无用文件并整理硬盘碎片后，提示红条不再出现。故障排除。<br>   <b>(广东　许庆照)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年04月26日第16期</a></font> 
+</body>
+</html>

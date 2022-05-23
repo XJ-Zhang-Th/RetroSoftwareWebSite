@@ -1,0 +1,83 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+<!--
+
+A:link {text-decoration: none; color: blue}
+A:visited {text-decoration: none; color: "#54646D"}
+A:active {text-decoration: none}
+A:hover {text-decoration: underline; color: 000080} 
+-->
+</style>
+<title>如何让NT连上INTERNET</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+<div align="center"><center>
+
+<table border="0" width="700" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="100%" valign="top"><div align="center"><center><table border="0" width="680"
+    cellspacing="0" cellpadding="4">
+      <tr>
+        <td width="672" valign="top" bgcolor="#55002B"><p align="center"><font face="黑体"
+        color="#FFFFFF"><big><strong>如何让NT连上INTERNET</strong></big></font></td>
+      </tr>
+      <tr>
+        <td width="672" valign="top" background="../../../images/底纹.gif"><p class="ourfont">　　在Windows 
+        NT4.0上利用“拨号网络”连接Internet，相当于NT服务器利用远程访问服务RAS（Remote 
+        Access Service）方式，登录到Internet服务商ISP（Internet Service Provider）的Internet服务器，此时NT服务器变成了Internet的客户机。登录到Internet后，使用Internet工具，便可以访问Internet上的信息与享受Internet提供的各种服务。此时你会发现，用Windows 
+        NT操作系统连接Internet,在网络操作方面的优越性是Win98／Win95无法与之相比的。<br>
+        　　通常NT连接Internet的操作步骤是：A.安装配置“远程访问服务”与“TCP／IP协议”（一般情况下，TCP／IP协议在安装NT4.0时已经安装）。B.设置“拨号网络”。C.拨号连入Internet。安装操作前，要以系统管理员Administrator身份登录到NT服务器，具体过程如下：<br>
+        　　一、 安装配置远程访问服务和 TCP／IP协议<br>
+        　　1． 
+        启动“控制面板→网络→服务→添加”，弹出“选定网络服务”对话框。在“网络服务”列表中，选定“远程访问服务”，如图1。<br>
+        　　2. 单击“确定”按钮，在Windows NT安装程序路径提示栏上输入NT安装程序的正确路径，单击“继续” 
+        按钮，屏幕显示“文件复制”对话框，将RAS文件复制到NT服务器。<br>
+        　　3． 出现图2的对话框，说明还没有安装配置用于远程访问的MODEM，单击“是”按钮，以添加调制解调器。<br>
+        　　4．屏幕出现调制解调器安装向导，可根据安装向导安装调制解调器，单击“完成”结束调制解调器安装，其方法与在Win95下安装调制解调器的方法相同。<br>
+        　　5． 出现“添加RAS设备”对话框，在RAS设备下拉列表框中选中你用于连接Internet的调制解调器类型，单击“确定”按钮。<br>
+        　　6． 屏幕弹出“安装远程访问”对话框，如图3。单击“配置”按钮，在“配置端口用法” 
+        对话框中，选中“拨出与接收”（表示NT服务器即可作局域网的RAS服务器，又可作Internet的工作站），单击“确定”,如图4。 
+        <br>
+        　　7． 单击图3的“网络”按钮，弹出“网络配置”对话框，在“拨出协议”和“服务器设置”项中，必须选中“TCP／IP”复选框，“NetBEUI”与“IPX”应根据你的需要选择。在“加密设置”中，选择一种加密方式，如图5。<br>
+        　　8． 单击“确定”按钮后，如果上一步选择了“NetBEUI”，则会出现“RAS服务器NetBEUI配置”对话框，根据局域网的具体情况，设置允许远程NetBEUI客户访问整个网络或仅限于本地计算机。<br>
+        　　9． 单击“确定”按钮，在弹出的“RAS服务器TCP／IP配置”对话框中，根据服务器在局域网中承担的相关服务与功能，对图6的TCP／IP作具体的设置，如果你还没有在局域网内起动TCP／IP地址配置，可单击“取消”按钮退出。 
+        <br>
+        　　 10. 以上设置完成，如果系统以前没有安装TCP／IP协议，此时系统会自动安装TCP／IP协议的相关文件。当出现“完成安装信息”提示时，说明“远程访问服务”与“TCP／IP”协议安装完成。单击“确定”按钮，返回到“网络”对话框。最后单击“确定”按钮，系统将进行绑定服务与协议过程。重新启动计算机，使以上的安装及配置生效。<br>
+        　　二、 拨号网络的设置<br>
+        　　1. 在“我的电脑”窗口中双击“拨号网络”图标（Win95下为文件夹），出现“拨号网络”对话框，单击“新建”按钮。弹出“新的电话簿项向导”对话框，在“命名新的电话簿项”栏中填入电话簿项，如“nj169&quot;(南京市169)，单击“下一步”。<br>
+        　　2.屏幕弹出“服务器”对话框，选择相应的请求（一般用户可以不添），单击“下一步”。 
+        在“电话号码”选项中，输入国家／地区代码、区号、电话号码。选中“使用电话拨号属性”复选框， 
+        单击“下一步”，按“完成”保存“nj169”电话簿项的设置。<br>
+        　　3.出现“拨号网络－Administ.pbk”对话框，单击“位置”按钮，以配置拨号属性（与Win95相同）。单击“其他”选项，弹出下拉菜单，选中“编辑项和调制解调器属性”，如图7。 
+        <br>
+        　　4.屏幕出现“编辑电话簿项”对话框，如图8。单击“配置”，在弹出的“调制解调器配置”对话框中， 
+        设置初始速度为115200bps，选中“MODEM硬件流程控制、MODEM错误控制、MODEM压缩”复选框、选择“禁用MODEM扬声器”。按“确定”返回图8对话框。 
+        <br>
+        　　5.单击图8的“服务器”选项卡，此处的设置与Win95相同，选择“PPP”拨号服务器类型，网络协议只选中“TCP／IP”，选中“启用软件压缩”与“启用PPP 
+        LCP扩展”。单击“TCP／IP设置”按钮，弹出如图9所示对话框，选中“已分配IP地址的服务器”、“指定命名服务器地址”、“使用IP报头压缩”与“使用远程网路的默认网关”。在“主控DNS”栏中填入ISP服务商提供的IP地址，如南京169为10.74.32.30,单击“确定”，返回图8对话框。<br>
+        　　6.单击图8的“语系”标签，将“拨号后”设置成“弹出一个终端窗口”，以便在拨号后登录时输入用户名与口令，“拨号之前”选项可设为“无”。<br>
+        　　7.选择图8中的“安全”标签，有三种“认证加密规则”可选。需要注意的是，假如你选择“仅接受Microsoft密码验证”，则不能复选“请求数据加密”。单击“确定”保存设置，返回到7对话框。对于图7中“其他”选项卡的下拉菜单项，一般使用其默认值。 
+        <br>
+        　　三、 拨号连接Internet<br>
+        　　1.在图7的“拨号网络－Administ.plk”对话框中，单击“拨号”， 
+        出现“连接到nj169”提示后，屏幕弹出“终端拨号之后”对话框，如图10所示，在“Login:”处输入用户名回车，在 
+        “Password:”处输入口令回车。随后出现的提示信息说明NT服务器已经以PPP方式登录到IP 
+        地址为10.74.68.XX的Internet服务器，其中MODEM的MTU值为1524。单击“确定”。<br>
+        　　2. 当屏幕出现如图11的“连接完成”对话框时，单击“确定”，此时在任务栏右下角出现电话远程连接图标，当显示信号灯为蓝色闪烁时，表示正在发送或接收数据。至此，拨号连接Internet过程顺利完成。<br>
+        　　3.在访问Internet服务器的过程中，你可以双击任务栏上的连接图标，弹出拨号网络监视器最大化窗口，通过选择“状态”、“摘要”、“首选项”选项卡，可以监视拨号网络的详细工作情况及进行相关的监视属性设置，如图12。右击任务栏上“网络监视器图标”，可以选择重新拨号、挂断、关闭或检查连接状态 
+        。<br>
+        <strong>(江苏　陈文革)</strong></p>
+        <p align="right"><font color="#000000"><span class="ourfont">本文出自：<a
+        href="index.htm">《电脑报》1999年3月01日第08期</a></span></font></td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+</table>
+</center></div>
+</body>
+</html>

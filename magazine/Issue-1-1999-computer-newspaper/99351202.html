@@ -1,0 +1,16 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+巧设你的MTU</span>
+
+
+<hr size="1" color="#000080"></p>
+　　MTU即Maxium Transport Unit，它是数据的最大传输单元。通常，在网上PC是以64KB为一个包来传送数据的，也就是说，MTU值最好是64KB的倍数才能使文件传输过程以一个完整的包传递。MTU值放在Windows98的注册表中，它能够在被绑定的协议中设置。下面我们来看看优化MTU的具体操作步骤吧：<BR>
+　　1.打开注册表编辑器，在HKEY_LOCAL_MACHINE\Enum\Root\Net\000?(?代表1、2、3)分支，在这里查找DeviceDesc字符串，其键值为“拨号适配器”的子键。然后，进入bindings中，记下其中的串值MSTCP\000?。<BR>
+　　2.在HKEY_LOCAL_MACHINE\Enum\NetWork\MSTCP \000?(?为在步骤1中搜索到MSTCP\000?中的最后一个数字)找到Driver字符串，记录下NetTrans\000?。<BR>
+　　3.在HKEY_LOCAL_MACHINE\System\CurrentControlSet\Service\Class\NetTrans\000?分支中（？为上面找到的NetTrans\000?中的最后一个数字）增加字符串值：MaxMTU=576.(Windows98中缺省值为1500字节，最大值为65535字节，你可以写入1384或1576等不同值进行调试，但不能低于552）。<BR>
+　　4.重新启动计算机。<BR>
+　　如此一番设定后，您的MTU就调整到了最佳状态。那么在网上冲浪试试效果吧，相信现在您一定有疾走如飞的感觉。<BR>
+<b>(湖北　蒋云鹏)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年09月6日第35期</a></font> 
+</body>
+</html>

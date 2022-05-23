@@ -1,0 +1,42 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+让主页说话</span>
+
+
+<hr size="1" color="#000080"></p>　　不经意间，因特网上“有色有声”的站点似雨后春笋般的越来越多。当你每次聆听到格外悦耳动听的迷笛（MIDI）音乐，不禁沉浸其中，平添怡然自得的舒心冲浪的感觉！其实，如果你愿意动手的话，你也可以在自己的个人交友主页加上你亲切的问候语（可以让访问者觉得更加亲切），或将自己非常喜爱的音乐作为背景音乐，为自己的个人网站营造一种独特的氛围。<br>
+                          　　现在常见的音频文件的格式有MP3、WAV、RM、MIDI等。音频文件的获得可以通过Windows自带的“录音机”获取，或者是直接从CD上抓取音轨。一般音频文件都很大，MIDI文件则非常小巧，配合较好的声卡（没有硬波表的话，配上软波表效果也不错），音效非常好！所以成为现在广泛使用的网上音乐格式。</p>
+                          　　<b>1.加入背景音乐</b></p>
+                          　　现在让我们在个人交友主页中加上MIDI格式的背景音乐（与插入WAV格式操作方法一致）。 　　在FrontPage Express中选择菜单“插入”－>“背景音乐”－>“从文件－>浏览”，选中需要插入的MIDI音乐文件后，按“打开”按钮，插入背景音乐的操作就完成了。<br>
+                          　　现在让我们打开页面的源码（菜单“查看”－>“HTML”），可以看见<bgsound src=″wolf.midi″ loop=″－1
+″>，这就是为页面加上背景音乐的所必须要用到的标记，格式是：<br>
+                          　　&lt;bgsound src=“音乐文件名”loop=&quot;n&quot;&gt;<bgsound src=″音乐文件名″ loop=″n″>，各项参数设置如下：<br>
+                          　　src：指定待播放音乐文件的地址。<br>
+                          　　loop：这个参数指定重复播放多少次数，如果当n=－1或者loop=″infinite″的时候，音乐将无限制循环播放。<br>
+                          　　如上例就是指定文件wolf.midi作为背景音乐无限制循环播放。但是在实际使用的过程中，IE和Netscape所使用的标记不一样，所以不同的浏览器将有可能不能正确播放，为此，我们还必须引入同时支持Netscape播放的标记：<br>
+                          　　 &lt;embed src=&quot;音乐文件名&quot; hidden=&quot;true&quot; 
+                          loop=&quot;true&quot;&gt;<br>
+                          　　各项参数的设置基本一致，我们怎么做到让浏览器能够自动识别浏览者所使用的浏览器，进而调用不同的语句播放背景音乐呢？你可以直接这么写：<br>
+                          　　&lt;bgsound src=“音乐文件名” loop=“infinte”&gt;<br>
+                          　　&lt;embed src=&quot;音乐文件名&quot; hidden=&quot;true&quot; 
+                          loop=&quot;true&quot;&gt;<br>
+                          　　以上背景音乐待浏览者全部下载完毕之后就开始自动播放。如果你愿意给浏览者更多的自由(如下例)，在页面任意位置放置一个“音乐播放器”，使浏览者可以控制音乐的播放。<br>
+                          　　&lt;embed src=&quot;音乐文件名&quot;align=&quot;center&quot;border=&quot;0&quot; 
+                          width=&quot;128&quot;height=&quot;130&quot; width=&quot;100&quot; 
+                          autostart=&quot;true&quot; loop=&quot;true&quot;<br>
+                          　　 可以看到，你能指定播放器的大小（width、heigh标记）、是否自动开始（autostart）、是否循环播放（loop），而浏览者则可以自主的决定是否播放音乐。</p>
+                          　　<b>2.加入语音文件</b></p>
+                          　　MIDI格式的音乐文件没有语音，你可能感觉和访问者的距离要远些；WAV格式的文件又太大，不太适合页面上使用。如何让你和访问者的距离进一步缩小呢，亲切地对来访者问声好呢？很简单，Real 
+                          Encoder加上Real Paly G2甚至可以让网上浏览者听到你的声音、看到你的面容呢！并且，播放的时候，不需要等待声音文件全部下载完毕！<br>
+                          　　第一步　如果你没有Real Encoder和Real Player G2，请从http://www.real.com下载，也可以到下面地址：home.ptt.js.cn/～person/tiger/r32g20.zip下载,并保证安装成功。<br>
+                          　　第二步　请用Windows中的“录音机”将你的问候语录制成WAV格式文件存盘，适当地剪辑（可以自己加上背景音乐或者做点声音的淡入淡出效果，不至于声音干巴巴的），当然，你也可以直接将你喜欢的CD上的音乐，使用抓音轨的工具抓成WAV后，按下面的步骤炮制好，让访问者一起欣赏。<br>
+                          　　第三步　使用Real Encoder进行转换。选择菜单“File－>New session－>Record 
+                          From File”（或者是Record From MediaDevice），按提示在弹出的窗口中选择好源文件和目标文件，按OK退出。由于普通拨号上网的速度受到很大的限制，而且国内的网络传输速度也很慢，所以转换时建议选择28K 
+                          Modem和VoiceOnly，然后按“start”开始转换，结果生成目标RM文件。以eagle2.wav为例，在转换成RM之前有101K，转换后文件仅有21K大小。转换完的文件还不能直接连接到页面上使用。要用 
+                          edit等文本编辑程序再建立一个扩展名为ram的文件，文件内容只有一行，格式如下例：<br>
+                          　　pnm://10.75.28.108/tiger/eagle2.rm <br>
+                          　　其中pnm：//后面是文件所在的地址。然后将建立的＊.ram文件连接到相应的页面上，如在交友主页上有如下的一句话：<br>
+                          　　&lt;a href=&quot;eaglo2.ram&quot;&gt; 这里是我们的问候语！&lt;/a&gt;<br>
+                           最后将＊.rm和＊.ram文件传到你的主页上就完成了。 当浏览者点击聆听问候的连接时，RealPlayer将播放页面指定的RM文件！<p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年04月19日第15期</a></font> 
+</body>
+</html>

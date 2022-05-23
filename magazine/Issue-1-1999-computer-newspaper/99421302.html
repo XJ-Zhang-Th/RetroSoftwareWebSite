@@ -1,0 +1,37 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+VFP中备份大量数据</span>
+
+
+<hr size="1" color="#000080"></p>
+　　在实践中，我摸索出一种比较简单的方法来实现VFP中大量数据的备份，该方法利用DOS下的共享程序arj.exe的多盘备份命令来实现。我所编的两个文件的代码，一个是Getdata.prg文件，用于备份数据；一个是Recdata.prg，用于恢复数据。程序中假定数据备份成labor.arj文件。<br>
+　　1．＊Getdata.prg<br>
+=messagebox(″请准备好软盘″,48)<br>
+　　x=file(″arj.exe″)<br>
+　　if x=.t.<br>
+　　x1=″run arj.exe a －vavw a:\labor data″<br>
+　　＆x1<br>
+　　=messagebox(″数据备份完成!″,48)<br>
+　　else<br>
+　　=messagebox(″系统文件丢失,数据备份失败!″,48)<br>
+　　endif<br>
+　　retu<br>
+　　2．＊Recdata.prg<br>
+　　=messagebox(″请准备好软盘″,48)<br>
+　　x=file(″arj.exe″)<br>
+　　if x=.t.<br>
+　　if file(″a:\labor.arj″)<br>
+　　x1=″run arj.exe x －v －r a:\labor″<br>
+　　＆x1<br>
+　　=messagebox(″数据还原完成!″,48)<br>
+　　else<br>
+　　=messagebox(″无源数据!″,48)<br>
+　　endif<br>
+　　else<br>
+　　=messagebox(″系统文件丢失,数据还原失败!″,48)<br>
+　　endif<br>
+　　retu<br>
+　　以上程序在VFP5.0环境下调试通过。<br><b>(刘建和)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年10月25日第42期</a></font> 
+</body>
+</html>

@@ -1,0 +1,50 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+在网页上实现文字闪烁</span>
+
+
+<hr size="1" color="#000080"></p>
+　　很多朋友在上网时，在一些网页上看到有闪烁的文字，感到很新奇。其实这并不难，只要用JavaScript编段程序就可以了，不会JavaScript语言的朋友也不用急，只要将下面的源代码放进你的网页里，在你的网页上也能实现文字闪烁。<br>
+　　源文件如下：<br>
+&lthtml&gt<br>
+&lthead&gt<br>
+&ltmeta http－equiv=″Content－Type″ content=″text/html; charset=gb2312″&gt<br>
+&lttitle&gt闪烁的文字&lt/title&gt<br>
+&ltmeta name=″GENERATOR″ content=″Microsoft FrontPage 3.0″&gt<br>
+&lt/head&gt<br>
+&ltbody bgcolor=″＃000000″ text=″＃000000″&gt<br>
+&ltp&gt　&lt/p&gt<br>
+&lth1 align=″center″&gt闪烁的文字&lt/h1&gt<br>
+&lt/body&gt<br>
+&ltscript language=″JavaScript″&gt<br>
+//color为文字颜色的RGB值，令其由″0F″增至″FF″<br>
+var color=new Array(″0F″,″1F″,″2F″,″3F″,<br>
+″4F″,″5F″,″6F″,″7F″,″8F″,″9F″,″AF″,″BF″,<br>
+″CF″,″DF″,″EF″,″FF″);<br>
+//i是数组color的坐标，add决定color的增减<br>
+var i=0,add=1;<br>
+FadeText();<br>
+function FadeText()<br>
+{<br>
+　　 //document.fgColor确定文字颜色的RGB值<br>
+　　 document.fgColor=″＃″＋color[i]＋color[i]＋color[i];<br>
+　　 //判断文字颜色是渐亮或是渐暗<br>
+　　if( add==1 )<br>
+　　{<br>
+　　        i＋＋;　<br>　 
+　　        if( i==15 ) add=0;<br>
+　　}<br>
+　　else<br>
+　　{<br>
+　　        i－－;<br>
+　　        if( i==0 ) add=1;<br>
+　　}<br>
+　　//设置每0.1秒运行一次函数FadeText()<br>
+　　setTimeout(″FadeText()″,100);<br>
+}<br>
+&lt/script&gt<br>
+&lt/html&gt<br> 
+<b>（广东　许德炜）</b>　　    <p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年05月24日第20期</a></font> 
+</body>
+</html>

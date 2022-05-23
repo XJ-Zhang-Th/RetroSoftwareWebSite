@@ -1,0 +1,39 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+用邮件下载软件两绝招</span>
+
+
+<hr size="1" color="#000080"></p>　　在这个网络越来越拥挤的时代,下载一个软件变得越来越困难。经过我的实践经验,特向大家介绍用电子邮件下载软件的两个绝招。</p>
+　　<b>一、直接用电子邮件来下载</b></p>
+　　首先到http://archie.hensa.ac.uk/archie.html处,填上要搜索的软件的名字,然后Search,等待结果，结果出来以后你可以直接下载,但是往往速度特别慢,有时只有几十字节。这时最好记下软件所在的地址,然后发一封电子邮件给FTP服务器，邮件主题为空,信内容为:<br>
+　　open＋文件所在的服务器的名字<br>
+　　cd ＋目录<br>
+　　asc <br>
+　　get＋文件<br>
+　　quit.<br>
+　　发送到以下FTP地址(任选一个)即可:<br>
+　　ftpmail@sunsite.unc.edu<br>
+　　ftpmail@decwrl.dec.com<br>
+　　ftpmail@ftp.uni－stuttgart.de<br>
+　　ftpmail@archie.inesc.pc<br>
+　　ftpmail@ccc.uba.ar<br>
+　　bitftp@vm.gmd.de　<br>
+　　ftpmail@src.doc.ic.ac.uk<br>
+　　ftpmail@census.gov<br>
+　　ftp－request@netcom.com<br>
+　　文件传输时通常会被分割,你只需用COPY命令合并一下就可。另外get最多可以得到十个文件,不过你得注意你的信箱不要被撑爆了，否则就前功尽弃了。下载后的软件有的需要用uudecode.exe还原，现在大部分邮件软件已经能支持自动Uudecode，若不支持还可用WinZip代用。你可能会遇到下面的一些压缩格式，看看用什么解压文件：<br>
+　　文件扩展名           解压缩程序    <br> 
+　　.Z　　　　 　　　uncompress<br>
+　　.gz　　　　　　 　gunzip<br>
+　　.z　　　　  　　　unpack<br>
+　　.Sit　　　   　　　unsit<br>
+　　.pit　　　　　　　unpit<br>
+　　.zoo　　　  　　　zoo10</p>
+　　<b>二、通过电邮卡车下载</b></p>
+　　电邮卡车是应用ftpmail等电子邮件网关服务器访问HTTP、FTP等服务器的软件。如果你无法直接访问某些站点或者传输速度让你失望,电邮卡车可以通过E－mail把你需要的文本和文件下载到你的电子信箱中，然后你就可以在本地以较快的速度下载这些文件和文本了。<br>
+　　在电邮卡车的主界面上点击“下载”，在弹出的窗口中填上你想下载文件的HTTP或FTP的URL , 按下OK键 即可。注意：电邮卡车只接受以http://或ftp://开头的URL。<br>
+　　另外，它还有断点续传、等待队列、历史、剪贴板监视E－mail设置、文件格式、等待队列设置、技术支持、服务器性能分析、支持文件链接的拖放功能等等。如果你感兴趣，你可以从http://mud.sz.jsinfo.net/per/yale/zip/etruck.exe处下载。<br>
+　　相信你用这两种方法一定可以得到你想要的软件。<br><b>(陕西　葛顽强)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年05月10日第18期</a></font> 
+</body>
+</html>

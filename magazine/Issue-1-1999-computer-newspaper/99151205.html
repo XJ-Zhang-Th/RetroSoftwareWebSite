@@ -1,0 +1,20 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+屏蔽Win98的“关闭系统”功能</span>
+
+
+<hr size="1" color="#000080"></p>　　我们知道，在用注册表编辑器Regedit对注册表进行修改时，一般情况下都需要重新启动系统才能使所做的修改生效。为了防止别人随意改变自己计算机的设置，你有没有想过把Win98“开始”菜单中的“关闭系统…”项屏蔽掉？当然，这需要使用注册表编辑器，请按如下操作进行：<br>
+　　1.单击“开始／运行…”菜单，键入命令“regedit”打开注册表编辑器。<br>
+　　2. 依次进入“HKEY_CURRENT_USER \ Software \ Microsoft \ Windows \ CurrentVersion \ Policies \ Explorer”，然后在右边窗口中的任意空白位置单击鼠标右键，选择“新建／DWORD值”，输入“NoClose”后回车，再用鼠标双击该字符串，出现“编辑DWORD值”对话框，然后将键值框中的数字由0改为1。<br>
+　　3. 修改完毕，退出注册表编辑器。此时，不必重新启动计算机即可使所做修改立即生效。虽然在“开始”菜单中仍有“关闭系统…”项，但是执行该命令时却会出现警告信息，而且即使按下“Ctrl＋Alt＋Del”组合键也没有作用。这样就可以有效防止别人随意关闭Win98了。<br>
+　　当然你只需按照上述步骤重新设置“Noclose”的值为0（或者干脆删除该项）即可正常退出Win98。如果你一时糊涂忘记了正确的修改路径呢？别着急，笔者再告诉你另外一个方法。<br>
+　　用鼠标右键点击桌面，选择“新建／快捷方式”，然后在命令行中键入“C:\windows\rundll.exe user.exe  ，exitwindows”，单击“下一步”，随便取个名字，最后单击“确定”。这样，不论是在任何时候，只要双击此图标即可正常退出Win 98了。<br>
+<b>(山东 鲁成岩）<p
+        align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年04月19日第15期</a></font> 
+        </td>
+      </tr>
+    </table>
+    </center></div>
+</body>
+</html>

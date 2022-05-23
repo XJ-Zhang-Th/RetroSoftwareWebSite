@@ -1,0 +1,32 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+用AutoRun快速定制右键菜单</span>
+
+
+<hr size="1" color="#000080"></p>
+　　光盘和硬盘的Autorun功能想必大家都已很熟悉了，近日笔者偶然发现了Autorun.inf的另一妙用——快速定制右键快捷菜单。此法不必修改注册表，十分简便快捷。具体步骤如下：<br>
+　　1.在硬盘的根目录建立一名为Autorun.inf的文件。<br>
+　　2.用文本编辑器打开该文件,输入如下内容:<br>
+　　[autorun]<br>
+　　shell\title1=<br>
+　　shell\title1\command=<br>
+　　shell\title2=<br>
+　　shell\title2\command=<br>
+　　……<br>
+　　其中,读者可将“title1”、“title2”等换成自定的任意字符。在每一段第一行等号后输入欲在快捷菜单中显示的字符，第二行等号后输入欲执行程序的路径和名称（若该程序与Autorun.inf在同一硬盘分区同一目录内可省略盘符）或为空。例如：<br>
+　　[autorun]<br>
+　　shell\show=＊＊＊＊《安装菜单》＊＊＊＊<br>
+　　shell\show\command=<br>
+　　shell\Game1=天地劫<br>
+　　shell\Game1\command=F:\天地劫\天地劫.EXE<br>
+　　shell\Game2=泰伯利亚之日<br>
+　　shell\Game2\command=泰伯利亚之日.EXE<br>
+　　shell\Game3=地下城守护者II中文版<br>
+　　shell\Game3\command=地下城守护者II中文版\dK2.exe<br>
+　　shell\show2=＊＊＊＊＊＊＊＊＊＊＊＊＊<br>
+　　shell\show2\command=<br>
+　　3.存盘退出，在资源管理器中按F5刷新。<br>
+　　这时右击光盘和硬盘的图标后即可发现快捷菜单中多了一段我们加入的内容。单击其中一项即执行对应的程序。此法也特别适用于制作光盘的安装菜单。<br><b>(阿信)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年09月27日第38期</a></font> 
+</body>
+</html>

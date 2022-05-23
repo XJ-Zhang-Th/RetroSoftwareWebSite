@@ -1,0 +1,55 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+<!--
+
+A:link {text-decoration: none; color: blue}
+A:visited {text-decoration: none; color: "#54646D"}
+A:active {text-decoration: none}
+A:hover {text-decoration: underline; color: 000080} 
+-->
+</style>
+<title>限定用户登陆站点</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+<div align="center"><center>
+
+<table border="0" width="700" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="100%" valign="top" align="center"><div align="center"><center><table border="0"
+    width="680" cellspacing="0" cellpadding="4">
+      <tr>
+        <td width="672" valign="top" bgcolor="#55002B"><p align="center"><font face="黑体"
+        color="#FFFFFF"><b>限定用户登陆站点</b></font></td>
+      </tr>
+      <tr VALIGN="BOTTOM" ALIGN="LEFT">
+        <td width="672" background="../../../images/底纹.gif"><p align="left">　　在目前的局域网中，Windows 
+        NT 和 NetWare 
+        为大多数企事业单位及学校所采用。由于网络中用户权限及工作环境不同，限定用户的登录工作站具有易于网络维护和安全管理等优点。本文将分别介绍Windows 
+        NT 和 NetWare 网络操作系统限定用户登录工作站的实现方法。<br>
+        　　一、NT操作系统<br>
+        　　在NT中以管理员(Administrator)或对用户有操作权限的账号登录主域控制器。单击“开始”→“程序”→“管理工具”→“域用户管理器”，选择一事先建立的用户如： 
+        USER1，点击“用户”菜单，选择“属性”选项，出现该用户的属性窗口。选择“登录到”，出现“登录到”窗口，缺省设置为“用户可登录到所有工作站”，选中“用户可以登录到下列工作站”，下面反白显示的文本框部分将变为可操作状态，在文本框中输入工作站计算机名如：WORK1。一共有八个文本框，可以输入八个工作站名。设置好后，则该用户USER1便只能在输入的工作站（如WORK1）上登录，当从其他工作站登录时,将提示不允许登录,请到其他工作站登录。<br>
+        　　二、NetWare操作系统<br>
+        　　在NetWare网络中以管理员(Admin)或对用户有操作权限的用户名登录,执行 
+        NETADMIN，依次选择：“管理对象”→一个事先建立的用户如：A→“查看或编辑此对象特性”→“账户限制”→“网络地址限制&quot;，出现“网络地址限制”菜单，在此菜单中缺省将显示为空表。按插入键，在“网络地址类型”中选择“IPX／SPX”，将出现“IPX／SPX”菜单，缺省显示为：网络 
+        FFFFFFFF 节点 FFFFFFFFFFFF。（其中“网络”为NetWare网络的内部网络号, 
+        “节点”为工作站网络号即网卡号。）在“网络”项后输入网络的内部网络号如：FFDF943B, 
+        在“节点”项后输入一工作站的节点地址如：0000E831A5E4,存盘退出后用户“A”便只能在节点为0000E831A5E4的工作站上登录，当在其他工作站登录时,将提示主管已限定你登录的工作站。（注：执行NLIST 
+        USER ／A 
+        可以显示内部网络号和工作站节点号。）重复以上操作为用户添加可登录的工作站。<br>
+        　　以上操作在简体中文版Windows NT 4.0 和NetWare 4.11 (简体中文版)实践通过。<br>
+        <strong>(辽宁　赵永)</strong></p>
+        <p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年03月08日第09期</a></font> 
+        </td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+</table>
+</center></div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+巧用API管理Windows</span>
+
+
+<hr size="1" color="#000080"></p>　　Windows作为一种单机操作系统，由于它操作简单，使用方便，所以很多单位或个人都使用它作为工作的平台，很多重要的事情都交给它去处理。 但是Windows几乎没有安全机制，任何人都可以自由进入，实施各种操作，容易导致重要资料的丢失。<br>
+　　如果能为进入Windows的每个用户分配用户名及密码，在进入系统之前检查该用户是否合法，规定只有合法用户才允许进入。这样就可以限制非法用户使用自己的计算机了。Windows的用户管理根本没有这项功能，所以只能自己编制程序来解决这个难题。要求该程序在Windows启动时自动运行，然后要求用户输入自己的合法用户号及密码。在输入过程中，把CTRL＋ALT＋DEL和CTRL＋ESC这两种组合键给锁住以防止用户突破程序的防线。在输入不正确的用户名及密码情况下，使用者只能选择重启或关闭计算机。同时此程序可以把用户及其登录的信息记录起来，以方便以后调查。<br>
+　　为了实现此功能，可以通过Windows提供的API函数来完成。SystemParametersInfo (97,false,NULL,0)函数可实现把CTRL＋ALT＋DEL和CTRL＋ESC等控制键锁住。程序在启动之时就先调用此函数，让Windows的控制键失效，只有在他输入正确的密码之后才调用SystemParameterInfo(97,true,NULL,0) 把功能键给恢复过来，实现正常的操作。如果使用者是非法用户，就算他对键盘一阵乱敲也无济于事，只能望“机”兴叹。还有，对非法用户我们可以为他准备一个“关闭计算机”的按扭，防止他在登录不成功的情况下，对电脑进行冷启动。可以调用ExitWindowsEx(1,1)函数关闭计算机，也可以实现重新启动。<br>
+　　程序调试完成后，可以把它加在AUTOEXEC.BAT文件里，或Windows的“启动”里，不过这两种方法都不怎么好，遇到高手时他可以在DOS下把启动的命令行删掉。所以建议大家在注册表“RunService”项里添加个串值把程序加进去,让Windows启动时自动执行。 <br> 
+<b>(广东   陆江)<p
+        align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年04月19日第15期</a></font> 
+        </td>
+      </tr>
+    </table>
+    </center></div>
+</body>
+</html>

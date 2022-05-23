@@ -1,0 +1,38 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+Delphi4的强力控件集-AHM98</span>
+
+
+<hr size="1" color="#000080"></p>　　早在Delphi3流行时,AHM控件集就已经声名远扬,现在，支持Delphi4的新版——AHM Triton Tools98(以下简称AHM98)已推出。AHM98提供的控件超过100个,其中有不少是增强型的图形控件,也有的是对WinAPI函数的封装,当然,也有对数据库与网络的支持。由于篇 幅关系，在这里只介绍几个具有通用价值的控件。<br>
+　　<b>1．AHMSystemTray</b><br>
+　　AHMSystemTray在Windows任务栏设置小图标就给你创造了捷径，用它的Icon属性来获取需要的图标。把它的PopMenu属性与一个PopupMenu控件关联,这就是鼠标左击小图标时的弹出菜单。它同时也提供了各类鼠标点击事件。需要注意的是：将程序从小图标复原的代码是Application.restore，而不能用ShowWindow函数，自然也不能直接将窗体的WindowState属性设置为wsNormal。<br>
+　　<b>2．AHMDroppedFiles</b><br>
+　　使用AHMDroppedFiles控件可以轻松实现文件拖放的功能，使用CollectBy属性可以获取目标文件的扩展名、全名或路径＋全名。只要在其OnDrop、OnEndDrop、OnStartDrop事件中编写所需的代码即可。例如：在窗体Form1上放置一个Memo控件Memo1,再放置一个AHMDroppedFiles控件，将CollectBy属性置为dFullPath，将Active属性置为True（否则该控件无效）。下面给出它的OnDrop、OnEndDrop、OnStartDrop事件代码。<br>
+　　procedure <br>
+　　TForm1.AHMDroppedFiles1Drop(Sender: TObject;  DroppedItem: String);<br>
+　　begin<br>
+　　memo1.Lines.LoadFormFile(DroppedItem);<br>
+　　end;<br>
+　　procedure<br>
+　　TForm1.AHMDroppedFiles1StartDrop(Sender: TObject);<br>
+　　begin<br>
+　　memo1.Lines.Clear;<br>
+　　end;<br>
+　　procedure TForm1.AHMDroppedFiles1EndDrop(Sender: TObject);<br>
+　　begin<br>
+　　memo1.Refresh;<br>
+　　end;<br>
+　　程序运行后,用鼠标将一文本文件拖至程序窗体后，Memo中便会显示该文件内容。Memo控件最多只能容纳64K的文本,因此在本例中若使用的文件过大将导致错误。<br>
+　　<strong>3．AHMStartUp</strong><br>
+　　想让你的程序在每次Windows启动时自动运行吗？AHMStartUp为你提供了最简单的方法，只需设置它的AutoStartUp属性便可达到目的。另外还有一个UniqueName属性,它将一个特殊的字符串放入Windows注册表中作为自动运行的标记。<br>
+　　<strong>4．AHMTipTricks</strong><br>
+　　 这一控件可以在你的应用程序中轻松实现“日积月累”对话框(如图)。它的Tips放在其Tips属性里，启动方法Execute可以放在主窗体的OnCreate事件里执行,另外，该控件的按钮与检查框的Caption属性可定制,因此很容易汉化。<br>
+　　<strong>5．[AHMStandard]里的AHMCommandLabel</strong><br>
+　　在应用程序里加上自己主页或者电子信箱的超级链接近来比较流行,其实实现这项技术很简单，使用AHMCommandLabel控件就能轻松做到,你只需在它的Command属性里指定命令类型即可。除Email和URL之外,它还支持运行文件和FTP等操作。<br>
+　　<strong>6．AHMOnlyOne</strong> <br>
+　　这一控件是用来实现应用程序单实例化，即可以防止同一程序在未关闭前再次开启。使用这一控件来实现非常简单,它是非可视化控件,通常在设计阶段只需确定它的OnExceed属性和OnExceeded事件即可。OnExceed属性决定在第二个程序实例试图被执行时的反应，共四种选项，推荐使用第四个即aRestoreAndExit；OnExceeded事件用来确定附加的行为,譬如弹出一个警告对话框。<br>
+　　关于AHM98的介绍就到这里，有兴趣的读者可以去Http://www.ahm.co.za下载。 <br>
+<b>(江苏　王捷)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年04月26日第16期</a></font> 
+</body>
+</html>

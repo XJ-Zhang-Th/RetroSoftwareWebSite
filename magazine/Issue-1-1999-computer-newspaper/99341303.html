@@ -1,0 +1,41 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+VB6.0中通过MSChart控件调用数据库</span>
+
+
+<hr size="1" color="#000080"></p>
+　　VB6.0中的MSChart控件是一个功能强大的高级图表工具，拥有丰富的图表绘制功能，可显示二维和三维的棒图、区域图、线形图、饼图等多种常用图表。近日我为了在双击图表的某个区域时将与该区域相对应的数据库的内容在DataGrid控件上显示出来，遇到了许多困难，最后用一个自定义的变量SelectSeries解决了问题，具体方法如下：<br>
+　　设数据库名称为“学生信息”，有一Access表“学生成绩”，其内容为一个班学生的考试成绩，包括学号、姓名、成绩3个字段，成绩字段格式是字符型，值为“优”、“良”、“中”、“差”中的一个。<br>
+　　窗体Form1包括一个MSChart控件McScore，类型为二维饼图，用于显示每种成绩的学生数；一个ADO控件AdScore用于连接数据库；一个DataGrid控件DgScore用于以表格形式显示数据库内容。<br>
+　　工作过程为：双击饼图的某个区域，则DgScore显示相应成绩的学生名单。<br>
+　　代码如下：<br>
+　　Option Explicit<br>
+　　Dim SelectedSeries as Integer ′自定义变量<br>
+　　Dim Rs() as String ′提取记录集用的字符串数组<br>
+　　Private Sub Form_Load()<br>
+　　′设定DataGrid控件的数据源<br>
+　　DgScore.DataSource=″AdScore″<br>
+　　′设定ADO控件的连接字串和初始的记录源，即显示内容<br>
+　　AdScore.ConnectString=″Provider=Microsoft.OLEDB.3.51;Persist_Security Info=False;Data Source=学生信息″<br>
+　　AdScore.RecordSource=″selet ＊ from学生成绩order by成绩″<br>
+　　AdScore.Refresh<br>
+　　′预设好提取记录用的SQL语句<br>
+　　Rs(1)=″select＊ from学生成绩where成绩=″＋Chr(34)＋″优″＋_Chr(34)＋″order by成绩″<br>
+　　Rs(2)=″select ＊from学生成绩where成绩=″＋Chr(34)＋″良″＋_Chr(34)＋″order by成绩″<br>
+　　Rs(3)=″select ＊ from学生成绩where成绩=″＋Chr(34)＋″中″＋_Chr(34)＋″order by成绩″<br>
+　　Rs(4)=″select ＊ from学生成绩where成绩=″＋Chr(34)＋″差″_Chr(34)＋″order by成绩″<br>
+　　End Sub<br>
+　　Private Sub McScore_SeriesSelected(Series as Integer,MouseFlags as _Integer,Cancel as Integer)<br>
+　　SelectedSeries=Series<br>
+　　End Sub<br>
+　　Private Sub McScore_PointSelected(Series as Integer,DataPoint as_Integer,MouseFlags as Integer,Cancel as Integer)<br>
+　　SelectedSeries=Series<br>
+　　End Sub<br>
+　　Private Sub McScore_Db1Click()<br>
+　　′改变ADO控件的记录源并刷新<br>
+　　Adoc1.RecordSource=Rs(SeletedSeries)<br>
+　　Adoc1.Refresh<br>
+　　End Sub　<br><b>　(湖南　高文杰)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年08月30日第34期</a></font> 
+</body>
+</html>

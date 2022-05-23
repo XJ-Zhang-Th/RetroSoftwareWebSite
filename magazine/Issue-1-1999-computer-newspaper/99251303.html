@@ -1,0 +1,76 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+VC实现对话框上信息的显示</span>
+
+
+<hr size="1" color="#000080"></p>
+　　利用 VC的AppWizard，可以很容易地实现工具条和菜单项的ToolTip，或在状态条上显示帮助信息，但要在对话框的控件上显示ToolTip和在状态条上显示控件信息并不容易实现。现在，我们用VC中的WM_SETCURSOR 与TTN_NEEDTEXT消息就可达到目的。具体操作如下：<br>
+　　一、利用 VC的 MFC AppWizard 生成一个 SDI 或 MDI 的应用程序<br>
+　　二、编辑对话框控件的字符串资源<br>
+　　例如：IDC_DBBUTTON1 = “This is 肖天鹏的第一自制按钮\n天鹏"，其中字符串“This is肖天鹏的第一自制按钮“将在鼠标移到控件上时显示在状态条上，字符串“天鹏"将作为 ToolTip 显示。<br>
+　　三、建立消息映射<br>
+　　在对话框的头文件 (＊.H) 中加入以下代码：<br>
+　　protected:<br>
+　　void SetStatusText(UINT nID=0);<br>
+　　／／{{AFX_MSG(CFileOp1)<br>
+　　afx_msg void OnDestroy();<br>
+　　afx_msg BOOL OnSetCursor(CWnd＊ pWnd, UINT nHitTest, UINT message);<br>
+　　／／}}AFX_MSG<br>
+　　afx_msg BOOL OnTipNotify( UINT id, NMHDR ＊ pNMHDR, LRESULT ＊ pResult );<br>
+　　DECLARE_MESSAGE_MAP()<br>
+　　在对话框的实现文件 (＊.CPP) 中加入以下代码:<br>
+　　BEGIN_MESSAGE_MAP(CFileOp1, CDialog)<br>
+　　／／{{AFX_MSG_MAP(CFileOp1)<br>
+　　ON_WM_DESTROY()<br>
+　　ON_WM_SETCURSOR()<br>
+　　／／}}AFX_MSG_MAP<br>
+　　ON_NOTIFY_EX(TTN_NEEDTEXT,0,OnTipNotvify)<br>
+　　END_MESSAGE_MAP()<br>
+　　四、编辑消息处理函数<br>
+　　BOOL CFileOp1::OnSetCursor(CWnd＊ pWnd, UINT nHitTest, UINT message) <br>
+　　{／／ TODO: Add your message handler code here and／or call default<br>
+　　if(pWnd==this)<br>
+　　SetStatusText();<br>
+　　else<br>
+　　{TOOLTIPTEXT m_psttt;<br>
+　　m_psttt.hdr.hwndFrom=m_hWnd;<br>
+　　m_psttt.hdr.idFrom=pWnd－>GetDlgCtrlID();<br>
+　　m_psttt.hdr.code=TTN_NEEDTEXT;<br>
+　　m_psttt.uFlags= TTF_IDISHWND;<br>
+　　SetStatusText(pWnd－>GetDlgCtrlID());<br>
+　　this－>SendMessage(WM_NOTIFY,m_psttt.hdr.idFrom,(LPARAM)＆m_psttt); }<br>
+　　return CDialog::OnSetCursor(pWnd, nHitTest, message);}<br>
+　　void CFileOp1::OnDestroy() <br>
+　　{SetStatusText();<br>
+　　CDialog::OnDestroy();}<br>
+　　void CFileOp1::SetStatusText(UINT nID)<br>
+　　{if(nID==0)<br>
+　　nID=AFX_IDS_IDLEMESSAGE;<br>
+　　CWnd ＊pWnd=AfxGetMainWnd()－>GetDescendantWindow(AFX_IDW_STATUS_BAR);<br>
+　　if(pWnd)<br>
+　　{AfxGetMainWnd()－>SendMessage(WM_SETMESS<br>
+AGESTRING ,nID);<br>
+　　pWnd－>SendMessage(WM_IDLEUPDATECMDUI);<br>
+　　pWnd－>UpdateWindow();}}<br>
+　　BOOL CFileOp1::OnTipNotify( UINT id, NMHDR ＊ pNMHDR, LRESULT ＊ pResult )<br>
+　　{ TOOLTIPTEXT ＊pTTT = (TOOLTIPTEXT ＊)pNMHDR;<br>
+　　UINT nID =pNMHDR－>idFrom;<br>
+　　if (pTTT－>uFlags ＆ TTF_IDISHWND)<br>
+　　{ nID = ::GetDlgCtrlID((HWND)nID);<br>
+　　if (nID)<br>
+　　{ TCHAR szFullText[256];<br>
+　　CString StrTipText;<br>
+　　AfxLoadString(nID,szFullText);<br>
+　　AfxExtractSubString(StrTipText,szFullText,1,′\n′);<br>
+　　if(!StrTipText.IsEmpty())<br>
+　　strcpy(pTTT－>lpszText,StrTipText);<br>
+　　pTTT－>hinst = AfxGetResourceHandle();<br>
+　　return(TRUE); } }<br>
+　　return(FALSE);}<br>
+　　五、在 Stdafx.h 文件中加入以下指令：<br>
+　　＃include &lt;afxpriv.h&gt;<br>
+　　＃include &lt;afxres.h&gt;<br>
+　　六、将该对话框作为一个 SDI 或 MDI应用程序的主框架的子窗口，生成这样一个对话框后，当你把鼠标移到某个控件 ( 必须有相应的字符串资源 )上时，就会出现该控件的 ToolTip和状态条信息。</b></p><b>(湖南　肖天鹏)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年06月28日第25期</a></font> 
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">解决WPS2000非正常删除后的重安装问题</span>
+
+</p>
+
+<hr size="1" color="#000080"><br>
+　　在使用WPS2000的过程中，如果我们在非正常情况下把它删除后重新安装，系统会出现如下提示: “WPS2000已经安装，请先执行卸装程序将WPS2000卸装后，再进行安装”，这时安装无法继续进行，这是因为WPS2000 在安装时系统首先检查计算机有没有安装过WPS2000，如果安装过，系统拒绝重新安装。在非正常情况下删除WPS2000，Windows系统注册表中还有大量的WPS2000注册信息。如想恢复安装，必须把Windows系统注册表中有关WPS2000 的注册信息全部删除。具体方法可按以下步骤进行。提醒大家注意，在修改Windows注册表前一定要先备份。<br>
+　　对于熟悉Windows系统注册表的朋友，可将注册表打开。 删除以下4个主键值中有关WPS2000注册信息的文件夹即可。<br>
+　　1.HKEY－CLASSES－ROOT\WPSFile<br>
+　　2.HKEY－CURRENT－USER\Software\Kingsoft<br>
+　　3.HKEY－LOCAL－MACHINE\software\CLASSES\wpsFile<br>
+　　HKEY－LOCAL－MACHINE\ software\ Microsoft\ Shared Tools \Text Converters\Lmport\wps2000<br>
+　　HKEY－LOCAL－MACHINE\software\windows\ Current Version \APP Paths\winwps32.Exe<br>
+　　HKEY－LOCAL－MACHINE\software\windows\ Current Version \Uninstall\wps2000专业版<br>
+　　4.HKEY－USERS\.DEFAULT\Softwars\Kingsoft<br>
+　　对于不熟悉Windows注册表的朋友方法如下：<br>
+　　1.单击注册表编辑器中“编辑”菜单，使用“查找”命令， 打开“查找”对话框。<br>
+　　2.在“查找目标”文本框中输入“WPS2000”回车，我们可将搜索到的数据或存有该数据的文件夹删除，然后再单击“编辑”菜单，使 用“查找下一个”命令，将查到的数据或存放该数据的文件夹删除。 以上操作反复进行，直到出现“完成对注册表的搜索”提示后， WPS2000的注册信息才能全部删除。<br>
+　　3.关闭注册表编辑器。<br>
+　　经过以上操作，WPS2000 注册信息将被全部删掉， 这时再安装 WPS2000。可以顺利进行。<br>
+<b>(山东　玉清 汤华）</b><p align="right">
+<span class="ourfont"><font color="#369681">本文出自：</font><a href="index.htm">《电脑报》1998年06月14日第23期</a>
+</body>
+</html>

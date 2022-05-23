@@ -1,0 +1,19 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+软件一点通</span>
+
+
+<hr size="1" color="#000080"></p>
+　　●不用点鼠标激活当前窗口</b><br>
+　　你还记得使用早期的Power Toy组件中的X－Mouse自动激活当前窗口吗？其实Windows 98也具有该功能。请打开注册表到HKEY_USERS\.DEFAULT\Cont－rol Panel\desktop，把右边UserPreferencemask 的键值由B0,00,00,00改为B1,00,00,00。现在你的鼠标指向哪里，那里的窗口就会自动成为当前的窗口。<br>
+<b>　　●不让别人更改你的Windows98设置</b><br>
+　　要想你的Windows98被别人使用时不能更改你的设置。首先要使系统的桌面不让别人调整，方法是在注册表的HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer下新建个二进制NoSaveSettings值设为01,00,00,00；控制面板也不能让别人乱动，同样你可以打开注册表到上面位置，新建一个二进制NoSetFolders，然后双击它将值设为01,00,00,00；你还可以保护你的开始菜单不被别人修改，同样打开注册表到上面位置，新建一个DWORD,名字叫做NoChangeStartMenu，将它的值设为1即可。<br>
+<b>　　●找回丢失的频道栏</b><br>
+　　打开注册表定位到：HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main，在右边找到Show_ChannelBand，将它的值改为yes，重启动即可。<br>
+<b>　　●修改Windows 98桌面的提示</b><br>
+　　每个Windows98 特殊的部件都有一个提示，比如把鼠标停留在“我的电脑”上，就会出现提示。修改这个提示的方法是：打开注册表定位到HKEY_CLASSES_ROOT\CLSID\{20D04FE0－3AEA－1069－A2D8－08002B303
+09D}， 修改右边的InfoTip 的内容为你想要的即可。其它特殊部件的提示也是这么改，如果你不记得它们的ID（就是括号括住的那一串符号），请用REGEDIT的搜索功能，把你看到的提示输进去查找即可。<br>
+　　要禁止它们显示提示并不是将它们一一改为空的内容或删除InfoTip，而是打开注册表定位到HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Expl－orer\Advanced，将右边ShowInfoTip 的值由1 改为0。<br><b>（江苏　陈彪）</B><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年12月20日第50期</a></font> 
+</body>
+</html>

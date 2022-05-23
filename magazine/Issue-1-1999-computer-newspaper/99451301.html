@@ -1,0 +1,44 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+VB编程中如何锁定鼠标</span>
+
+
+<hr size="1" color="#000080"></p>
+　　锁定鼠标!什么意思?有人一定不明白了,好!让笔者先说明一下吧!锁定鼠标就是让你的鼠标不能移动,不能单击,当然也不能双击,不能做任何事,反正就是让鼠标本来应有的功能都失效,就跟坏了的一样,很有趣的。你也可以尝试编写一个和你的朋友开个小小的玩笑,不过，不要忘记还原啊!OK!就让笔者用VB编程为各位演示一下这个程序吧!<br>
+　　首先,新建工程,在FORM1上放上两个COMMAND命令按钮(即COMMAND1与COMMAND2),其属性都保持不变,然后请输入以下程序代码:<br>
+　　Private Declare Function ClipCursor Lib ″user32″ (lpRect As Any) As Long<br>
+　　Private Type RECT<br>
+　　Left As Long<br>
+　　Top As Long<br>
+　　Right As Long<br>
+　　Bottom As Long<br>
+　　End Type      ／／以上代码请从API函数浏览器中复制即可。<br>
+　　Dim DENG As RECT<br>
+　　Dim SS As Boolean  ／／是锁定或是释放的判断<br>
+　　－－－－－－－－－－－－<br>
+　　Private Sub Form_Load()  ／／作初始化设置。<br>
+　　SS = True<br>
+　　Command1.Caption = ″单击将锁定鼠标,锁定后按回车将被释放″。<br>
+　　Command2.Caption = ″结束程序″<br>
+　　Form1.Caption = ″锁定鼠标的演示程序″<br>
+　　End Sub<br>
+　　－－－－－－－－－－－<br>
+　　Private Sub Command1_Click()  ／／锁定鼠标<br>
+　　If SS = True Then  ／／如果鼠标没有被锁定则锁定它。<br>
+　　DENG.Left = 0：DENG.Top = 0  ／／必要设置,四个都为零。<br>
+　　DENG.Right = 0：DENG.Bottom = 0<br>
+　　ClipCursor DENG : SS = False  ／／锁定鼠标且重新赋值给SS。<br>
+　　Else  <br>
+　　ClipCursor ByVal 0＆ : SS = True  ／／释放鼠标且重新赋值给SS<br>
+　　End If<br>
+　　End Sub<br>
+　　－－－－－－－－－－－<br>
+　　Private Sub Command2_Click()<br>
+　　End    ／／结束程序。<br>
+　　End Sub<br>
+　　现在运行一下吧(按下F5),单击COMMAND1鼠标将被锁定,锁定后要释放请按下回车键即可。当然你也可以把上面的DENG的LEFT,TOP,RIGHT,BOTTOM值都改成100(或每个都不相同的值)再试一试,相信你一定会有其他新的收获!<br>
+　　注:以上程序在中文WINDOWS98, 中文VB5.0专业版中调试通过!<br><b>
+（上海　季昭君）</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年11月15日第45期</a></font> 
+</body>
+</html>

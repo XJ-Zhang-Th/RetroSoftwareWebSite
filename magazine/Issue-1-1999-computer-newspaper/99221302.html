@@ -1,0 +1,44 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+Delphi4的窗口融合技术</span>
+
+
+<hr size="1" color="#000080"></p>　　Delphi4除了继承先前版本强大的面向对象的功能外，而且引入了十几项新技术、新特征。Docking 就是其中的一项，有人将Docking译为对接、入坞、结合等，也可以译为“窗口融合技术”。那么什么是窗口融合技术呢？窗口融合是一项先进的界面设计技术，体现了当今的发展趋势。Word97的浮动工具栏就是一种窗口融合技术，有时也称为Word97风格的浮动工具栏。下面针对目前比较流行的窗口与窗口的融合例程来进行：<br>
+　　经过笔者一段时间的使用，发现Panel控件最适合作两个窗口融合的工具。由于这是最一般的情况，所以这里举一个具有代表性的例子详细说明。我们要达到的要求是：程序运行后，出现主窗口，按一个按钮，出现另一个窗口，拖动此窗口，与主窗口融合在一起，融合后主窗口的Caption变成两个窗口的Caption相加。在主窗口form1中放置两个Panel控件(panel1和panel2)，一个Button控件(button1)；另一个窗口form2为空白窗口。具体属性设置如下：<br>
+　　panel1：<br>
+　　align：alleft；<br>
+　　docksite：true；<br>
+　　usedockmanager：true；<br>
+　　panel2：<br>
+　　align：albottom；<br>
+　　docksite：true；<br>
+　　usemanager：true；<br>
+　　form2：<br>
+　　anchors：[aktop，akbottom，akleft，akright]；<br>
+　　dragmode：dmautomatic；<br>
+　　dragkind：dkdock；<br>
+　　设置button1的onclick事件，对应的代码如下：<br>
+　　procedure TForm1.Button1Click(Sender: TObject);<br>
+　　begin<br>
+　　form2.Show;<br>
+　　a:=form1.caption;<br>
+　　b:=form2.caption;<br>
+　　end;<br>
+　　设置panel1和panel2的onundock事件，代码如下：<br>
+　　procedure TForm1.Panel1UnDock(Sender: TObject; Client: TControl;  NewTarget: TWinControl; var Allow: Boolean);<br>
+　　begin<br>
+　　form1.caption:=a;<br>
+　　form1.Refresh;<br>
+　　end;<br>
+　　设置panel1和panel2的ondockdrop事件，代码如下：<br>
+　　procedure TForm1.Panel1DockDrop(Sender:TObject; Source: TDragDockObject;  X, Y: Integer);<br>
+　　begin<br>
+　　form1.Caption:=a＋′,′＋b;<br>
+　　form1.Refresh；<br>
+　　end;<br>
+　　其中a，b为String型变量，用以保存窗口的最初标题，在form1的接口处声明。<br><b>（陕西　孙云）</b>
+
+<p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年06月7日第22期</a></font> 
+</body>
+</html>

@@ -1,0 +1,27 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+Shell的异步执行处理</span>
+
+
+<hr size="1" color="#000080"></p>　　利用VB的Shell语句可以调用外部程序，但因为Shell是异步执行的，如果当外部程序还没有完成任务，VB就会执行下一语句，这样往往会得到错误的结果。如果通过调用API函数GetExitCodeProcess和OpenProcess便能解决这一问题。<br>
+　　Declare Function GetExitCodeProcess Lib ″kernel32″ Alias ″GetExitCodeProcess″ (ByVal hProcess As Long, lpExitCode As Long) As Long<br>
+　　Declare Function OpenProcess Lib ″kernel32″ Alias ″OpenProcess″ (ByVal dwDesiredAccess As Long, ByVal bInheritHandle As Long, ByVal dwProcessId As Long) As Long<br>
+　　Public Const Process_Query_Information = ＆H400<br>
+　　Public Const Still_Active = ＆H103<br>
+　　Dim strWinDir As String<br>
+　　Dim pidNotepad As Long<br>
+　　Dim hProcess As Long<br>
+　　……<br>
+　　strWinDir = Environ(″windir″)<br>
+　　pidNotepad = Shell(strWinDir ＆ ″\notepad.exe″, vbNormalFocus)<br>
+　　hProcess = OpenProcess(Process_Query_Information, False, pidNotepad)<br>
+　　Do<br>
+　　GetExitCodeProcess hProcess, lngexitcode<br>
+　　DoEvents<br>
+　　Loop While lngexitcode = Still_Active<br>
+　　……<br>
+　　以上实例的运行结果是，程序循环直到记事本程序退出，才会继续运行下面的VB程序，其中， strWinDir = Environ(″windir″) 语句是通过环境变量获得当前系统的Window目录。这样就很好地解决了Shell语句的异步执行问题。<br>
+<b>（广西　郭丽华）</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年05月3日第17期</a></font> 
+</body>
+</html>

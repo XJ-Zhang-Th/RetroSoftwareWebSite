@@ -1,0 +1,56 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+<!--
+
+A:link {text-decoration: none; color: blue}
+A:visited {text-decoration: none; color: "#54646D"}
+A:active {text-decoration: none}
+A:hover {text-decoration: underline; color: 000080} 
+-->
+</style>
+<title>共享MODEM上网</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+<div align="center"><center>
+
+<table border="0" width="700" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="100%" valign="top" align="center"><div align="center"><center><table border="0"
+    width="680" cellspacing="0" cellpadding="4">
+      <tr>
+        <td width="672" valign="top" bgcolor="#55002B"><p align="center"><font face="黑体"
+        color="#FFFFFF"><b>共享MODEM上网</b></font></td>
+      </tr>
+      <tr VALIGN="BOTTOM" ALIGN="LEFT">
+        <td width="672" background="../../../images/底纹.gif"><p align="left">　　近日将家里两台电脑用两块带RJ45口的NE2000兼容网卡连接起来，想让两台电脑共享一个调制解调器上网。于是按照有关资料做， 
+        却没有成功，经过一番思索，最后终于成功实现MODEM共享，现把这个方法贡献出来和大家共享。<br>
+        　　一、首先建立Win95对等网　详细过程就不叙述了，不过要注意，如果是用双绞线，两端的1－3，2－6线应该对调。<br>
+        　　二、安装和设置软件　我们把带有MODEM的那台计算机称为服务器，不带MODEM的那台称为工作站。<br>
+        　　1．在服务器上安装并配置TCP/IP协议。以右键单击桌面上的“网上邻居”→“属性”，选中“TCP/IP→相应网卡”这一项，单击“属性”，点选“IP地址”标签，选中“指定IP地址”，并在“IP地址”栏中填上本机的IP地址。原则上IP地址可以自定，但是推荐从以下几个范围中选取，因为这几个地址不会和因特网上的任何一台计算机的名字重复：<br>
+        　　10.0.0.1 to 10.255.255.254<br>
+        　　172.16.0.1 to 172.31.255.254<br>
+        　　192.168.0.1 to 192.168.255.254<br>
+        　　请注意，在网络里各台机器的IP地址前三部分应该保持一致。比如，将服务器的IP地址设为：192.168.0.1,则工作站的IP地址可设为192.168.0.2（如果需要的话）。在“子网掩码”中填上255.255.255.0。<br>
+        　　再选中“DNS配置”标签，单击“启用DNS”，在主机框中填入本机的主机名字，域名可以不填。在“DNS服务器搜索顺序”中，填入你ISP的DNS，（可以把你的163和169的ISP的DNS均填入），然后单击“添加”。<br>
+        　　单击“确定”回到“网络属性”对话框，再单击“确定”， 
+        重新启动系统。<br>
+        　　2．在服务器上安装Wingate2.x。可以按照其默认的设置点击“下一步”直至安装完成。配置浏览器以IE4为例：单击“查看”菜单，选择“Internet选项”在“Internet选项”对话框中单击“连接”，选择“通过局域网连接到Internet”、“通过代理服务器访问Internet”，在地址栏中填入服务器的IP地址，如：192.168.0.1,端口为9080。<br>
+        　　3．在工作站上安装、设置TCP/IP协议。<br>
+        　　A．如果你安装的是注册过的Wingate，则设置非常简单。打开“网络属性”对话框，选中“TCP/IP→相应网卡”这一项，单击“属性”。选中“IP地址”标签，单击“自动获取IP地址”，单击“确定”回到“网络属性”对话框，再单击“确定”。 
+        然后将服务器上装有Wingate的目录设为共享，从工作站上执行Wingate目录下的wg2util.exe文件，按照提示一步一步执行下去就行了。至此两台机子的设置均已完成，只要服务器拨号上网，工作站也同时可以上网了。<br>
+        　　B．如果你安装的是未注册的Wingate，则打开“网络属性”对话框，选中“TCP/IP→相应网卡”这一项，单击“属性”。选中“IP地址”标签，单击“指定IP地址”，并在“IP地址”栏中填上本机的IP地址，如上所述填入192.168.0.2，在“子网掩码”中填上255.255.255.0。再选中“DNS配置”标签，单击“启用DNS”，在主机框中填入主机名字（服务器在“网络邻居”中的名字），域名可以不填。在“DNS服务器搜索顺序”中，填入你的服务器的IP地址，也就是192.168.0.1，单击“添加”。单击“确定”回到“网络属性”对话框，再单击确定，系统会重新启动。然后再启动wg2util.exe文件，设置浏览器等相应的Internet软件。至此本工作站也设置完成，同样可以通过服务器的MODEM上网了。<br>
+        <strong>(请作者速与我们联系)</strong></p>
+        <p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年03月08日第09期</a></font> 
+        </td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+</table>
+</center></div>
+</body>
+</html>

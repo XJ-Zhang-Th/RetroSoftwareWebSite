@@ -1,0 +1,43 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+在DELPHI编程中确定系统运行模式</span>
+
+
+<hr size="1" color="#000080"></p>
+　　系统运行模式就是指：WINDOWS是运行在哪种模式中,在WINDOWS3.X 中有正常模式,386增强模式;而现在的WINDOWS95/98有安全模式,运行在网络中的安全模式,正常模式等。如何才能区分系统是运行在上述的哪一种方式之下呢?在此，笔者就用DELPHI编程为您演示。<br>
+　　说明:笔者调用API函数中的GETSYSTEMMETRICS函数来完成下面的程序，其API函数在WINDOWS.PAS中有声明代码。<br>
+　　首先,新建一个工程,在FORM1上放上一个LABEL1和BUTTON1,其属性都不变,字体可设置大一些,然后输入以下代码:<br>
+　　unit GETMODE;<br>
+　　interface<br>
+　　usesWindows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,StdCtrls;<br>
+　　type  TForm1 = class(TForm)<br>
+　　Label1: TLabel;<br>
+　　Button1: TButton;<br>
+　　procedure Button1Click(Sender: TObject);<br>
+　　procedure FormCreate(Sender: TObject);<br>
+　　private{ Private declarations }<br>
+　　public { Public declarations }<br>
+　　end;<br>
+　　var  Form1: TForm1;<br>
+　　implementation {＄R ＊.DFM}<br>
+　　procedure TForm1.FormCreate(Sender: TObject);<br>
+　　begin<br>
+　　FORM1.CAPTION:=′确定WINDOWS运行模式的演示程序′;<br>
+　　BUTTON1.CAPTION:=′获取系统运行模式′;<br>
+　　end;<br>
+　　procedure TForm1.Button1Click(Sender: TObject);<br>
+　　VAR<br>
+　　RET:LONGINT;  ／／声明变量<br>
+　　begin<br>
+　　RET:=GETSYSTEMMETRICS(SM_CLEANBOOT);  ／／调用API函数<br>
+　　CASE RET OF   ／／CASE API函数的返回值<br>
+　　1:LABEL1.CAPTION:=′您的系统正运行在安全模式下′;<br>
+　　2:LABEL1.CAPTION:=′您的系统正运行在带有网络环境的安全模式下′;<br>
+　　ELSE LABEL1.CAPTION:=′您的系统正运行在正常模式下′;<br>
+　　END;<br>
+　　end;<br>
+　　end.<br>
+<b>(上海　季昭君)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年09月20日第37期</a></font> 
+</body>
+</html>

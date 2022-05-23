@@ -1,0 +1,39 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+实现热键激活后台进程</span>
+
+
+<hr size="1" color="#000080"></p>
+　　在DOS下编写常驻内存的应用（TSR）程序时，一般设置了热键激活方式，DOS用户对此非常熟悉。在Windows 9X环境下，有的时侯前台运行程序隐藏了Windows的任务栏，使用户不能切换，许多Game程序运行时便是如此。如果在你的后台进程中加入热键呼出功能，便无此虑了。<br>
+　　程序实现原理：首先用户预定一个热键，无论该程序是前台程序还是后台程序，只要用户按了这个键，该程序就会立即变为前台程序。程序中要对热键消息WM_HOTKEY进行捕获，并通过消息参数了解哪一个键被按下。<br>
+　　因为VC中的CLASSWIZARD中没有对消息WM_HOTKEY进行封装,我们只有通过编程实现对该消息的映射及处理（编程环境VC5, 工程为MFC APPWIZARD [EXE] 类型,本例的工程名为:EXAMPLE）。<br>
+　　具体实现步骤如下：<br>
+　　1． 声明热键消息处理函数原型<br>
+　　在CExampleView.h中消息映射声明处(AFX_mSG字样之后)加入如下语句:<br>
+　　LRESULT OnHotKey(WPARAM wParam,LPARAM lParam);<br>
+　　2． 消息与相应处理函数相关联<br>
+　　在CExampleView.Cpp中加入消息映射宏,使消息与相应处理函数发生关系，ON_MESSAGE(WM_HOTKEY,OnHotKey);    <br> 
+　　3． 为方便以后的操作<br>
+　　预先在CexamplView类中创建一个响应WM_CREATE和WM_DESTROY消息的函数OnCreate( )与OnDestroy( )的框架，（利用CLASSWIZARD很容易实现,请参考有关VC的书籍,在此不再赘述）。<br>
+　　4．向系统登记热键<br>
+　　在OnCreate()函数中加入如下代码以向系统登记热键,本例子的热键设为Ctrl＋Shift＋A.<br>
+　　RegisterHotKey(m_hWnd,1001,MOD_CONTROL|MOD_SHIFT,′A′);<br>
+　　RegisterHotKey(m_hWnd,1002,MOD_CONTROL|MOD_SHIFT,′a′);<br>
+　　5．处理热键<br>
+　　在消息处理函数OnHotKey()中对热键进行处理,并可加入用户希望运行的程序代码等：<br>
+　　LRESULT CExampleView::OnHotKey(WPARAM wParam,LPARAM lParam)<br>
+　　if (wParam== 1001||wParam= =1002)<br>
+　　CWnd::SetForegroundWindow();／／使得被激活窗口出现在前景<br>
+　　MessageBox(″Hello,How do you do!″);<br>
+　　//用户可在此添加代码<br>
+　　return 0;<br>
+　　6．程序运行完毕后解除热键<br>
+　　在OnDestroy()中通过UnRegisterHotKey()解除热键登记,释放系统资源.<br>
+　　UnRegisterHotKey(m_hWnd, 1001);  <br>
+　　UnRegisterHotKey(m_hWnd, 1002);  <br> 
+　　7．编译并运行程序<br>
+　　运行程序后,无论何时只要按下热键Ctrl＋Shift＋A后本程序便立即成为前台运行程序，并出现在DeskTop上。<br>
+<b>（湖南 张波云）</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年05月3日第17期</a></font> 
+</body>
+</html>

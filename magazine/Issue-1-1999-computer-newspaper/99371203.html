@@ -1,0 +1,28 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+Windows98技巧两则</span>
+
+
+<hr size="1" color="#000080"></p>
+　　<b>一、使用System.1st恢复系统注册表</b><br>
+　　如果Windows95／98启动或者运行时故障太多，以前又忘记了给Windows95／98运行最正常时的系统注册表作备份，或者根本启动不了Windows95／98,改怎么办，其实我们可以使用System.1st恢复系统注册表。<br>
+　　细心的Windows95／98用户应该知道，Windows98在安装成功后会把第一次正常运行的Windows95／98系统信息保存在启动盘（通常为C盘）根目录下System.1st的HSR（隐藏，系统，只读）属性的文件中，并且不会随Windows95／98系统配置的改变。<br>
+　　下面介绍使用System.1st恢复系统注册表的操作步骤（假定Windows98安装在C:\Windows目录下）：<br>
+　　(1) 在DOS环境下，执行如下系列命令：<br>
+　　Attrib －h －r －s C:\System.1st<br>
+　　Attrib －h －r －s C:\Windows\System.dat<br>
+　　Copy C:\System.1st C:\Windows\System.dat<br>
+　　Attrib ＋h ＋r ＋s C:\System.1st<br>
+　　Attrib ＋h ＋r ＋s C:\Windows\System.dat<br>
+　　(2) 重新启动Windows98<br>
+　　由于System.1st保存的是Windows95／98第一次正常运行时的系统信息，后面更改的Windows95／98软硬件配置信息未被更新到这个文件中，因此，此方法只能进行最保守的恢复。<br>
+　　<b>二、快速重新安装</b><br>
+　　凡是安装过Windows98的朋友都会感叹安装时间太长了,特别是采用覆盖方式所花的时间更长，但有时又不得不重装Windows98。<br>
+　　为了帮助用户快速地安装Windows98，下面给出一种简单的方法：<br>
+　　(1) 将Windows98光盘中的\Win98下的所有文件拷贝到D:\PWIN98目录中。<br>
+　　(2) 在DOS提示符下键入Smartdrv 10240 10240(创建10MB的磁盘高速缓冲区)。<br>
+　　(3) 在DOS提示符下键入D:\PWIN98\Setup／is／iq命令，则开始安装Windows98。<br>
+<b>(湖南　彭光宇)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年09月20日第37期</a></font> 
+</body>
+</html>

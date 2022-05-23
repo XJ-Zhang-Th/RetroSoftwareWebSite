@@ -1,0 +1,54 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+PowerBuilder编程技巧四则</span>
+
+
+<hr size="1" color="#000080"></p>
+　　<b>一、用Enter键实现物件的焦点切换</b><br>
+　　在PowerBuilder中已定义许多事件所对应的MessageID,而在其所提供的元件,大部分有对应的keydown事件,其ID值不一定相同,例如在datawindow－>pbm_dwnkey,singlelineedit－>pbm_keydown,其他参考使用手册。因此先对使用的元件新增key的使用者事件,当user在元件上按任何按键时,将会触发此keydown事件。<br>
+　　你将获得所传的参数key（按键代码）、keyflags（复合键代码）,当所按的是Enter时,你就把焦点切换到下一元件或下一栏位。<br>
+　　1.选择要处理的datawindowcontrol，然後选择menu的declare的userevents,此时会显示一个使用者事件box；<br>
+　　2.于eventname设定使用者事件名称例如:ue_checkkey,然后在eventID填入pbm_dwnkey(或从Pasteevent选择),然后按OK；<br>
+　　3.你可在datawindowcontrols的script中selectevent里发现多了一个使用者事件 ue_checkkey,并且此事件会传递2个参数keycodekey,unsignedlongkeyflags；<br>
+　　4.在script中可以如下填写：<br>
+　　choose case key<br>
+　　case KeyTab!//响应按Tab键<br>
+　　//writeyourcode<br>
+　　case KeyEnter!／／响应按Enter键<br>
+　　／／writeyourcode<br>
+　　case KeyEscape!／／响应按Esc键<br>
+　　／／writeyourcode<br>
+　　end choose<br>
+　　注意：(1)keycode是Enumeratedatatype，可在onlinehelp或browers中获得其属性；<br>
+　　(2)你可以设定returnvalue:0或1。<br>
+　　如果是在DataWindow上,可参考以下的方式:<br>
+　　在DataWindow宣告一userevent:<br>
+　　(1)如ue_enter,将EventID参考至pbm_dwnprocessenter；<br>
+　　(2)在ue_enter加入以下的程式码<br>
+　　send(handle(this),256,9,long(0,0))<br>
+　　return<br>
+　　<b>二、在MDI视窗内加入其他Controls，并使其在sheets视窗中正确显示</b><br>
+　　把MDIWindow的ClientArea打开(Resize)。ClientArea可视为一种Control，PB将它的名字内定为MDI_1。<br>
+　　//Example／／m1,m2,r1,r2areallinteger.<br>
+　　//movetheclientareatobeginat(m1,m2).mdi_1.Move(WorkspaceX()＋m1,WorkspaceY()＋m2)<br>
+　  //Resizetheclientareabasedonthevalue(r1,r2)yougived.mdi_1.Resize(r1,r2)<br>
+　　需要注意的是ClientArea打开後，区域内的Control会被盖掉。<br>
+　　<b>三、PowerBuilder与CommPort的连接</b><br>
+　　1．使用可以控制CommPort的OCX，例如MicrosoftCommunicationsControl或pdqComm。<br>
+　　2．InitiatetheOCX。<br>
+　　//Script如下，ole_1为OCXName<br>
+　　ole_1.object.CommPort=2<br>
+　　ole_1.object.Settings=“9600,N,8,1”<br>
+　　ole_1.object.PortOpen=true<br>
+　　ole_1.object.InputLen=0<br>
+　　3.GetData or PutData。<br>
+　　//GetData<br>
+　　ole_1.object.input()<br>
+　　//PutData<br>
+　　ole_1.object.output=‘ATDT4125678’＋char(13)<br>
+　　<b>四、在 grid中实现列标题覆盖多列</b><br>
+　　选中某列的标题title，点右键，选properties\position\layer，选中foreground。这时你可以改变标题的大小。同时禁止用户在运行程序时移动列的权利，在脚本中写入：dw_1.Modify(“DataWindow.Grid.ColumnMove=No”)<br><b>（飞马）</b>
+　　    <p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年05月24日第20期</a></font> 
+</body>
+</html>

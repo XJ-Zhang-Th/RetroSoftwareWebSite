@@ -1,0 +1,58 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+VB编程俱乐部</span>
+
+
+<hr size="1" color="#000080"></p>
+　　大家好！《VB编程俱乐部》又与你们见面了。非常感谢朋友们对《VB编程俱乐部》的支持，从朋友们的来信中发现，支持我们的朋友中不仅有许多中学生、大学生，还有许多现役军人，看来我们的栏目已经深入到各个领域。为了使这个栏目能进一步与朋友们交流，请大家在提交问题或解答问题时，用 
+      VBForums@126.com 或 
+      VBForums@bigfoot.com邮件地址，同时也可以通过访问网站http://VBForums.yeah.net 
+      在BBS板上讨论。如果需要订阅VBForums，请向 sub－vbforums@e－lists.lawton.com.cn 
+      发送一封空白信即可。<BR>　　问题1：请问用什么样的方法能使删除后的文件放到“回收站”里？<BR>　　答：下面的回答是Prisoner 
+      摘自Microsoft Knowledge 
+      Base中的一个例子，可以使删除后的文件放到回收站里。<BR>　　1）首先建立一个新模块；在模块中增加如下声明：<BR>　　Type 
+      SHFILEOPSTRUCT<BR>　　hWnd As Long<BR>　　wFunc As Long<BR>　　pFrom As 
+      String<BR>　　pTo As String<BR>　　fFlags As Integer<BR>　　fAborted As 
+      Boolean<BR>　　hNameMaps As Long<BR>　　sProgress As String<BR>　　End 
+      Type<BR>　　Public Const FO_DELETE = ＆H3<BR>　　Public Const FOF_ALLOWUNDO = 
+      ＆H40<BR>　　Declare Function SHFileOperation Lib ″shell32.dll″ Alias 
+      ″SHFileOperationA″ (lpFileOp As SHFILEOPSTRUCT) As Long<BR>　　2）建立一个名为 
+      ShellDelete 的函数，用于删除文件：<BR>　　Public Function ShellDelete(ParamArray 
+      vntFileName() As Variant)<BR>　　Dim I As Integer<BR>　　Dim sFileNames As 
+      String<BR>　　Dim SHFileOp As SHFILEOPSTRUCT<BR>　　For I = 
+      LBound(vntFileName) To UBound(vntFileName)<BR>　　sFileNames = sFileNames ＆ 
+      vntFileName(I) ＆ vbNullChar<BR>　　Next I<BR>　　sFileNames = sFileNames ＆ 
+      vbNullChar<BR>　　With SHFileOp<BR>　　.wFunc = FO_DELETE<BR>　　.pFrom = 
+      sFileNames<BR>　　.fFlags = FOF_ALLOWUNDO<BR>　　End With<BR>　　ShellDelete = 
+      SHFileOperation(SHFileOp)<BR>　　End 
+      Function<BR>　　3）下面就是用于删除文件并送到“回收站”的代码，你可以根据情况进行修改，使它符合你的需要：<BR>　　Private 
+      Sub Command1_Click()<BR>　　Dim FileToKill As String<BR>　　FileToKill = 
+      ″c:\test＊.txt″<BR>　　ShellDelete FileToKill<BR>　　MsgBox ″File(s) 
+      deleted″<BR>　　End Sub<BR>　　问题2：我有一含有密码的数据库(mdb)，使用以下语句可在VB中打开：Set testdb 
+      =Opendatabase(″File.mdb″,false,false,″；PWD=YourPassword″)，　我想将结果传给datagrid控件中，不知如何去做或在data控件中如何打开含有密码的数据库。<BR>　　答：打开的方法如下：<BR>　　Dta.DatabaseName 
+      = App.Path ＆ ″\″ ＆ PubDBName<BR>　　Dta.Connect = ″；pwd=″ ＆ 
+      PubDBPassword<BR>　　Dta.RecordSource = 
+      ″Polo_Browse″<BR>　　Dta.Refresh<BR>　　（本题答案由Taylor提供） 
+      <BR>　　问题3：一般用鼠标单击窗口右上角的“X”时，程序立刻退出，但有的程序在退出时会弹出一个确认窗口供确认，请问这是如何实现的?<BR>　　答：可以利用Form的Form_QueryUnLoad事件在用户单击“”时进行确认：<BR>　　Private 
+      Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)<BR>　　Cancel 
+      = True<BR>　　Select Case MsgBox(″真的关闭吗?″, vbOKCancel,″请您回答″)<BR>　　Case 
+      vbOK<BR>　　Cancel = False<BR>　　Case Else<BR>　　Cancel = True<BR>　　End 
+      Select<BR>　　End 
+      Sub<BR>　　问题4：我用VB写了一个应用软件，想将其做成电子注册版。但是，我对怎样获得电脑中的某一个区别于其它电脑的唯一参数（如：CPU串号／硬盘IDE参数等）的方法不了解，请指点。 
+      <BR>　　答：下 面 的 这 个 例 子 是 使 用 GetVolumeInformation获 得 磁 盘 的 序 列 号 
+      ：<BR>　　Private Declare Function GetVolumeInformation Lib ″kernel32″ Alias 
+      ″GetVolumeInformationA″ (ByVal lpRootPathName As String, ByVal 
+      lpVolumeNameBuffer As String, ByVal nVolumeNameSize As Long, 
+      lpVolumeSerialNumber As Long, lpMaximumComponentLength As Long, 
+      lpFileSystemFlags As Long, ByVal lpFileSystemNameBuffer As String, ByVal 
+      nFileSystemNameSize As Long) As Long<BR>　　Function 
+      GetSerialNumber(strDrive As String) As Long<BR>　　Dim SerialNum As 
+      Long<BR>　　Dim Res As Long<BR>　　Dim Temp1 As String<BR>　　Dim Temp2 As 
+      String<BR>　　Temp1 = String＄(255, Chr＄(0))<BR>　　Temp2 = String＄(255, 
+      Chr＄(0))<BR>　　Res = GetVolumeInformation(strDrive, Temp1，Len(Temp1), 
+      SerialNum, 0, 0, Temp2, Len(Temp2))<BR>　　GetSerialNumber = 
+      SerialNum<BR>　　End Function<BR>　　调 用 时 使 用 GetSerialNumber(″C:\″)就 可 以 
+      。<BR>　　（本题答案由askpro提供）<BR><B>（VB版主 庞一鸣）</B><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年08月2日第30期</a></font> 
+</body>
+</html>

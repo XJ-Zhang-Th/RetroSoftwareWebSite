@@ -1,0 +1,19 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+在Windows 9X中建立UCDOS的快捷方式</span>
+
+
+<hr size="1" color="#000080"></p>
+　　某些机器，在Windows 95／98 的MS－DOS方式（窗口）下运行UCDOS时，会弹出一个“UCDOS.BAT必须在MS－DOS方式下才能运行良好。想为该程序创建一个在MS－DOS方式下运行的快捷方式吗？”的对话框。虽然选择“否”有时可以正常地进入UCDOS，但很不方便，而且有的机器在Windows与UCDOS窗口之间切换时会出现花屏。解决的办法只要按以下方法建立UCDOS快捷方式就可以了。<br>
+　　1．在桌面上（或其他文件夹）按鼠标右键，在弹出的快捷菜单中选“新建”，再选“快捷方式”。<br>
+　　2．在“命令行”中键入：command ／k c:\ucdos\ucdos.bat。<br>
+　　3．在“选择快捷方式的名称”中，填上你喜欢的名称，如“运行UCDOS”，再按“完成”。<br>
+　　4．然后打开刚才建立的快捷方式的“属性”窗口，选“程序”卡，再按“高级”。<br>
+　　5．选定“防止基于MS－DOS的程序检测Windows”选项，取消“建议使用MS－DOS方式”选项。（这一步是关键！）<br>
+　　6．按“确定”退出，OK！<br>
+　　以后想要运行UCDOS时，只要点按这个快捷方式即可，运行完毕后用DOS命令EXIT返回Windows。<br>
+　　有的朋友可能会想：在快捷方式的“命令行”中填上“c:\ucdos\ucdos.bat”不就可以了吗？那是不行的。因为那样做的话，启动完UCDOS后，Windows 就认为程序运行完毕了。只有用Command ／k ucdos.bat这样的命令格式来启动UCDOS，才会在启动UCDOS后继续停留在命令提示符状态，等待用户输入命令。<br>
+　　在Windows 95／98中运行其他DOS程序时，也可以参照此方法来建立快捷方式。<br><b>（广东　曾庆才）</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年12月13日第49期</a></font> 
+</body>
+</html>

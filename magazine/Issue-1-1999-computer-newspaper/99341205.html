@@ -1,0 +1,16 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+清除媒体播放器的历史记录</span>
+
+
+<hr size="1" color="#000080"></p>
+　　微软的新版媒体播放器在打开文件的方式上与其它程序有所不同：它不是采用文件浏览界面，而是以类似于IE的地址栏的方式来打开文件。这样一来，在地址栏的下拉列表中就留下了大量的历史文件记录。<br>
+　　清除这些记录其实并不难，步骤如下：<br>
+　　1． 选择开始菜单中的“运行”项，在地址栏中输入“regedit”，启动注册表编辑器。<br>
+　　2． 依次展开HKEY_USERS\.Default\Software\Microsoft\MediaPlayer\Player\RecentURLList，此时程序的右半部出现了许多键值，它们按“URL0”、“URL1”、“URL2”的顺序排列，这些就是媒体播放器的历史记录。<br>
+　　3． 笔者发现媒体播放器程序只能按连续的数字顺序显示历史记录，例如，删除了“URL10”键值，那么显示历史记录时就只从URL0显示到URL9。因此，我们只要将“URL0”这个键值删除，程序中就不会显示历史记录。另外，我们也还可以对历史记录进行编辑，以实现我们的要求。<br>
+<b>（河北　魏昕宇）</b>
+<p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年08月30日第34期</a></font> 
+</body>
+</html>

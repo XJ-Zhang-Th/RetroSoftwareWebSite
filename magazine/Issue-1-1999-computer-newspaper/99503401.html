@@ -1,0 +1,46 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+小试“宏”刀</span>
+
+
+<hr size="1" color="#000080"></p>
+　　我是厂报的一名业余通讯员，自从办公室配备了微机后，我写作就不再动笔了。但单位上的微机还未联网，因此每次写完稿，都要重复以下操作步骤：<br>
+　　1.按工具栏“保存”按钮，在保存对话框打开后，指定保存位置“D：\稿件备份”，然后输入稿件文件名，按“保存”(即保存一份底稿)；<br>
+　　2.打开“文件”菜单，按“另存为”，然后指定保存位置“A：\”，再一次输入相同的文件名后，按“保存”(即再保存一份到A盘，A盘送往单位宣传部并拷入微机稿件库，等候择优发表)；<br>
+　　3.关闭此文档。<br>
+　　看了第39期CPCW网站的“掀起Word的宏盖头”后，灵机一动，既然自己有一定的VB语言基础，何不试试用“宏”来自动完成以上步骤。经过一番技术准备，我作出了如下的功能设计：<br>
+　　每次写作时打开一个名为“写作”的文档，在“写作”文档中写完稿件后，单击工具栏上的“写作结束”按钮启动宏，此时弹出一个对话框，只需在文本框中输入一次稿件文件名，再按“确定”键，宏就自动分别在文件夹“D:\稿件备份”和“A：\”中保存该文件，然后自动关闭“写作”文档；完成操作后，“写作”文档其实仍是一个空文档而没有任何内容，每次写作时可重复使用；“写作结束”宏按钮仅出现在打开的“写作”文档中。<br>
+　　设计完功能后，具体实现步骤如下：<br>
+　　1.首先启动Word97，新建一名为“写作”的空文档，并设置好页面；<br>
+　　2.单击“工具”/“宏”/“宏”，在“宏名”文本框处输入“写作结束”，“宏的位置”选当前的“写作”文档，单击“创建”(见图1)；<br>
+　　3.在系统打开的“MVB编辑器”中(如图2)直接输入如下代码：<br>
+　　Dim message As String, title As String, default As String<br>
+　　Dim myvalue As String, co As String<br>
+　　Dim msg1 As String, msg2 As String, msg3 As String<br>
+　　co = Chr(13) ＋ Chr(10)<br>
+　　msg1 = ″请输入文件名″<br>
+　　msg2 =″按“确定”键将文件归档并发送A盘″<br>
+　　msg3 =″按“取消”键返回当前的Word文档″<br>
+　　message = msg1 ＋ co ＋ msg2 ＋ co ＋ msg3<br>
+　　title = ″写作对话框″<br>
+　　default = ″临时文件名″<br>
+　　myvalue = InputBox(message, title, default)<br>
+　　If myvalue = ″″ Then End<br>
+　　ChangeFileOpenDirectory ″D:\稿件备份″<br>
+　　ActiveDocument.SaveAs FileName:=myvalue, FileFormat:=wdFormatDocument, _<br>
+　　      LockComments:=False, Password:=″″, AddToRecentFiles:=True, WritePassword _<br>
+　　      :=″″, ReadOnlyRecommended:=False, EmbedTrueTypeFonts:=False, _<br>
+　　      SaveNativePictureFormat:=False, SaveFormsData:=False, SaveAsAOCEletter:= _<br>
+　　      False<br>
+　　 ChangeFileOpenDirectory ″A:\″<br>
+　　 ActiveDocument.SaveAs FileName:=myvalue, FileFormat:=wdFormatDocument, _<br>
+　　      LockComments:=False, Password:=″″, AddToRecentFiles:=True, WritePassword _<br>
+　　      :=″″, ReadOnlyRecommended:=False, EmbedTrueTypeFonts:=False, _<br>
+　　      SaveNativePictureFormat:=False, SaveFormsData:=False, SaveAsAOCEletter:= _<br>
+　　      False<br>
+　　ActiveDocument.Close<br>
+　　输完后保存，这样就拥有了一个能简化操作的宏了。但为了使用方便，可把此宏指定到工具栏制作一个名为“写作结束”的按钮。如何将宏指定到工具栏请参见CPCW网站刊过的有关文章。顺便说一下，该宏是无法通过录制的方法得到的。<br>
+　　好了，这初尝“宏”果的滋味实在让人兴奋不已，以后我要做的事就是打开“写作”文档专心做文章，机械的扫尾工作就由电脑去做了。<br><b>　　(四川　杨爱因)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年12月20日第50期</a></font> 
+</body>
+</html>

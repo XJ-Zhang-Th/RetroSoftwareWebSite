@@ -1,0 +1,28 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+你的硬盘支持Ultra DMA吗？</span>
+
+
+<hr size="1" color="#000080"></p>
+　　Ultra DMA/33接口协议已推出两年多了，Ultra DMA/66也将于今年开始进入普及阶段，但是，早期的Windows 95系统是在Ultra DMA之前推出的，没有内建对Ultra DMA硬盘的支持，在Windows 95上使用这种工作模式就显得比较麻烦，加上Ultra DMA需要软硬件的良好配合才能正常工作，使得一部分朋友在实际操作过程中遇到了一些问题，无法成功使用Ultra DMA硬盘。<br>
+　　<b>使用Ultra DMA硬盘的条件</b><br>
+　　如果想要启用Ultra DMA特性，首先要确认系统是否具有以下三个条件：<br>
+　　1.硬盘必须支持Ultra DMA。从1997年底开始生产的硬盘基本上都支持Ultra DMA/33，1999年推出的部分型号硬盘则已经集成了Ultra DMA/66接口。如果无法确认手头的硬盘是否支持Ultra DMA模式，那么可以到硬盘厂商的网站上去查询一下，看看是否指明支持Ultra DMA（或UltraATA），也可以使用HWINFO等测试软件来检测。另一种判断方法是把硬盘挂在支持Ultra DMA的主板上，从主板的自检信息中应该可以看出硬盘支持的工作模式。<br>
+　　2.主板必须支持Ultra DMA。Intel自430TX芯片组开始就提供对Ultra DMA的支持，而较早的430HX、430VX和440FX等芯片组均无此功能，因此，自1997年底开始生产的主板中除了少数低档产品外，大都支持UltraDMA。在多数支持Ultra DMA的主板的CMOS设置中，“Integrated Peripherals”中会有一项“IDE Primary/Secondary Master/Slave Ultra DMA”，允许用户针对每一个IDE口的主从设备进行设置，其选项一般为“Auto”和“Disable”。另外一些主板虽然没有这样的设置选项，但在启动操作系统之前给出的系统设备概略信息列表中，会指出硬盘的工作模式是否支持UDMA Mode 2（即Ultra DMA/33）。<br>
+　　3.操作系统中必须安装有相应的驱动程序。UltraDMA实际上是由芯片组的Bus Master驱动程序提供支持的，Windows 95 OSR2及以前版本中都没有自带这种驱动程序，因此需要安装主板制造商或Intel或第三方提供的Bus Master驱动程序。Windows 98中内置了对Ultra DMA的支持，原则上不需要再安装额外的驱动程序，但对于一些采用兼容芯片组的主板来说，使用主板厂商提供的驱动程序可能会更好一些。<br>
+　　<b>Ultra DMA硬盘的使用方法</b><br>
+　　一般情况下，除了支持Ultra DMA/66的硬盘可能需要使用厂商提供的工具软件来设置其工作模式（Ultra DMA/33或UltraDMA/66）外，我们不用对硬盘本身进行任何设置。在主板的CMOS设置中，我们需要把已接上硬盘的IDE口的Ultra DMA选项设置成“Auto”，让主板自动检测硬盘的工作模式并进行相应的设置。<br>
+　　在操作系统方面，笔者建议Windows 95的用户升级到Windows 98，因为笔者在实践中发现，单独为Windows 95设计的Bus Master驱动程序有不少都存在着Bug，稳定性和兼容性都比Windows 98自带的驱动程序差一些。笔者还建议在安装驱动程序或改变设置之前备份注册表，以便发生意外时恢复。无论是在Windows 98中，还是在安装好驱动程序后的Windows 95中，打开系统属性的设备管理器，在磁盘驱动器下找到硬盘设备，通常是“Generic IDE Disk Type46(如图)或Type47”（一些兼容芯片组还能够辨认出硬盘的具体型号），在其属性的设置中有一项“DMA”，选中它，按下“确定”，然后按照提示重启动机器，即可启用硬盘的Ultra DMA工作模式。<br>
+　　<b>使用过程中的常见故障与处理方法</b><br>
+　　1.对不支持Ultra DMA的硬盘或光驱设置了DMA模式。<br>
+　　如果硬盘不支持Ultra DMA，但是在CMOS设置中打开了Ultra DMA选项，并在Windows系统中启用了DMA后，那么很有可能导致系统在重启过程中死机。此时可以启动至安全模式下，在系统属性中以升级驱动程序的方式，用Windows系统自带的标准IDE硬盘控制器替换掉Bus Master驱动程序。如果这一步操作不成功，那么可以在DOS下用备份的注册表覆盖掉出问题的注册表。如果未做备份，那么可以考虑重装一次系统。目前市面上支持Ultra DMA的光驱越来越多，但是不支持该工作模式的光驱仍然占多数，如果给光驱设置了错误的工作模式，同样可能导致系统出现死机或无法使用光驱等现象，此时的解决方法基本同上。笔者建议，在CMOS中设置时，只应打开确实支持Ultra DMA的IDE设备的Ultra DMA选项。<br>
+　　2.在Windows 98中安装了为Windows 95设计的驱动程序。<br>
+　　Windows 98自带有对Ultra DMA/33的支持，如果在Windows 98中安装了为Windows 95设计的Bus Master驱动程序，那么反而会引起系统的不稳定，可能导致出现频繁死机、非法操作或其它不正常现象，因此，除非已经明确知道该驱动程序是为Windows 98设计的，否则不要安装。出现这种情况后,可在系统属性中利用升级驱动程序的方法来恢复Windows 98自带的驱动程序，必要时可重装系统。<br>
+　　3.不能成功设置DMA模式。<br>
+　　某些情况下，在硬盘属性中设置了DMA方式后，重新启动时再次查看硬盘属性，可以发现DMA方式又被自动去掉了，出现这种现象有以下几种可能的原因：硬盘不支持Ultra DMA；未将主板上相应设置打开；支持Ultra DMA的硬盘与不支持Ultra DMA的光驱接在同一个IDE口上；主板本身对Ultra DMA的支持存在着兼容性问题。<br>
+　　4.Windows 95下Bus Master驱动程序与声卡或光驱发生冲突。<br>
+　　这通常发生在使用了较老的驱动程序的情况下，此时最好选择升级到Windows 98，或者只使用硬盘的PIO工作方式。如果故障现象为光驱无法使用，那么可以试试把光驱由主设备改为从设备，或者把光驱所在IDE控制器驱动程序改为Windows 95自带的标准IDE驱动程序。<br>
+<b>(四川　月林)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年05月17日第19期</a></font> 
+</body>
+</html>

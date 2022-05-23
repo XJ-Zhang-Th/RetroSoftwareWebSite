@@ -1,0 +1,41 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+轻松设置Permedia2参数</span>
+
+
+<hr size="1" color="#000080"></p>　　Permedia2是一块适合于图形制作用的3D显示卡，在3D MAX/PHOTOSHOP上表现出众。但也正是过于着重在图形制作方面下功夫，它的游戏性能有些不敢恭维，在运行某些游戏——如QuakeⅡ时，虽然它能完整地支持OpenGL加速，效果还说得过去，但有时候却莫名其妙的花屏；还有些需要Direct3D加速的游戏不能运行，摩托英豪Ⅱ就是一个明显的例子。它没有什么程序可以修改参数，为此我头疼了很久，现在好了，只需一个小东西——144K的压缩包，主程序279K，一切问题迎刃而解。众位拥有Permedia2的兄弟，看到这里先打住，唤醒你的“猫”，去http://3dlabs.dimension3d.com，把这个可爱的小东西下载到你的硬盘上（也可以到驱动之家找到Permedia2的驱动下载，压缩包名：p2tweak7）。<br>
+　　压缩包解开后，直接运行主程序p2tweak7.exe就可进行设置了。读readme知道这个程序是0.7版的免费软件。我们看到的是一个简洁明快的界面，所有的设置只需打勾后save即可。第一项设置就是我们最关心的Direct3D设置，一共有14项，够多了吧，普通方式下只能修改4个选项，吾等高级用户，当然是使用Advanced(高级设置)了。<br>
+　　1.AlwaysDither，设置是否一直抖动，现在好像没有什么游戏不能支持此项功能吧，应该打勾。<br>
+　　2.AppStats，这是个开发者使用的选项，用以调试，对实际使用没有影响，这项有效必须要有特殊的Permedia2构架，对于普通用户，是否选上都不要紧。<br>
+　　3.DisableAlphaTextures，是否不使用阿尔法材质，这要视情况而定，你可以分别在选和不选的情况下尝试运行游戏，再决定取舍。<br>
+　　4.Enable8bitP2Textures和Enable8bitRGBTextures，只要机器没有没什么特殊情况的话，当然选上。<br>
+　　5.EnableTrueColorTextures，这一项要注意，真彩的材质啊!开玩笑，我们的Permedia2只有最多8M显存，这同样需要游戏的支持，不过我建议还是去掉的好，除非你想测试一下你的PⅢ500。<br>
+　　6.FilterVideo，选上吧，它会让你的游戏背景动画效果上一个台阶（怎么有点像广告词？）。<br>
+　　7.Initialised，莫名其妙，初始化是肯定要的了。<br>
+　　8.NoDMA，用DMA方式绝对没错的，不过你最少要有64M以上的内存。如果有的话就把这个选项去掉吧。<br>
+　　9.NoFlip，跳过翻页请求，也是个较专业的选项，在使用跟踪调试工具时很有效，尚不知在游戏中有什么用，但对视频有影响，选择后播放视频文件时无法连续播放，普通用户当然不选了。<br>
+　　10.NoVBlankWait，在翻页之前不等待空白视频间隔……怎么读起来有点拗口?这是一个测试用的选项，对未经过Vblank优化的游戏的测试有效。<br>
+　　11.Patchmode，改变驱动程序使用材质补丁的动作，每选中一次就改变一次，共有3个层次——never（从不），selective（选择性的），always（一直使用）。<br>
+　　12.PermediaMip，mip是Permedia2的机器指令处理器，尚不知道对游戏有何影响，选上也无妨。<br>
+　　13.Quality，品质？先问一下你的爱机“芯”跳速度够不够快，内存够不够多，如果得到的回答是肯定的话，可以毫不犹豫的选上best，这个选项也有3个层次。<br>
+　　14.SubBuffers，置换缓冲区，一般选最大值32是没问题的。<br>
+　　接下来是OpenGL的选项：<br>
+　　1.DisableDelta，禁用Permedia2的Delta处理器，是不是恨透了你那块Permedia2？现在有机会报复了……<br>
+　　2.DisableMipMaps，禁用Mip贴图。如果在一些游戏中不时出现贴图错误的话，试着改一下该项。<br>
+　　3.DrawLineEndPoints，当你使用需要OpenGL支持的游戏或程序时，这个选项会影响正文和字体。<br>
+　　4.ForceNNTexFilter，强制使用Nearest－Neighbour－Filtering，对执行的速度和图像质量都有影响。<br>
+　　5.IgnoreInitBuffersDialog，忽略初始化缓冲区对话框（不知有何用处）。<br>
+　　6.NoDMA，不用再解释一遍了吧?<br>
+　　7.PerspectiveCorrection，透视图修正，能使用3种层次：best、fastest、glHint，这个也得视你的需要和机器速度而论。<br>
+　　8.TextureCompression，纹理压缩，对图像的质量与速度也有影响。<br>
+　　9.UseFastClear，不重画屏幕，所有着色直接输出到屏幕，对速度有很大的影响。<br>
+　　10.SubBuffers，最大只有8，还是用8吧。<br>
+　　第3组选项（3Dextensions）有点古怪：<br>
+　　1.Disable，不使用3D扩展。<br>
+　　2.SupportGDIDouble，图形设备接口使用双缓冲模式。<br>
+　　3.SupportGDISingle，图形设备接口使用单缓冲模式。<br>
+　　在看到第四组选项时，我的心跳突然加速了，这正是我梦寐以求的——SystemClock！<br>
+　　由于我用的是一块T＆W的Permedia2，在注册表里怎么都找不到SystemClock这一项，所以特别激动，一激动就昏了头，差点酿成大错，我居然把SystemClock当成了系统总线——100MHz！之后在几个游戏的运行当中都出现贴图不正确的现象，过后查看参考手册，吓出了一身冷汗，Permedia2的初始工作频率为80MHz，83MHz是官方建议的频率，93MHz就已经是稳定运行所有程序的最大值，94MHz以上就会出现各种各样的问题。我的Permedia2还算好的，撑到了100MHz没死掉，赶紧调回85MHz后停机查看。一摸散热片，MY GOD！从来没感到过一点热量的散热片已经有点烫手了，估计有60～70℃。众位大虾若是不想太快换掉那块Permedia2的话还是不要超过90MHz的好。第四组另一个选项是设置最大刷新率，哪位大虾的显示器够强劲的话，我建议他刷到100Hz试一下。<br><b>(湖北　陈学科)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年05月3日第17期</a></font> 
+</body>
+</html>

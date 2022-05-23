@@ -1,0 +1,19 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">VB6制作Win98风格的工具栏</span>
+</p>
+<hr size="1" color="#000080"><br>
+　　VB6提供了功能更为强大的ActiveX控件，其中CoolBar、ToolBar控件可以用来制作Win98风格的工具栏,其中CoolBar在“Microsoft Window Common Controls－3 6.0”部件中，ToolBar和ImageList在“Microsoft Window Common Control 6.0”部件中。具体实现步骤如下：<br>
+　　1.新建一个工程Project1，创建主窗体frmMain。<br>
+　　2.在主窗体中添加一个CoolBar控件(命名为CoolBar1)，调整其Align属性为1，即停靠在窗体上方。<br>
+　　注：CoolBar上不能直接添加按钮，所以它实际上只是一个“准工具栏”（或者说是“伪工具栏”）。<br>
+　　3.在CoolBar1内添加一个ToolBar控件(命名为ToolBar1)。右击CoolBar1，选择Properties,打开它的属性窗口，在Bands选项卡中可以通过单击Insert Band按钮增加工具栏的个数，单击Remove Band按钮减少工具栏的个数（默认为3个）。通过左右箭头改变Index的值，从而确定当前工具栏。为便于设计，将每个工具栏的NewRow复选框选定。<br>
+　　4.在第一个工具栏（Index=1）的Child下拉框中选择“ToolBar1”，于是ToolBar1就和CoolBar1的 “Band1” 大小保持一致。<br>
+　　5.在主窗体中添加两个ImageList控件(分别为ImageList1和ImageList2)。打开ImageList1的属性窗口，在Images选项卡中单击Insert Picture按钮，添加彩色图片（最好是32＊32图标文件，因为它的透明背景不受显示属性、桌面主题的影响）。给ImageList2添加对应的灰度图片。注意：要保证它们的顺序相同，一一对应。<br>
+　　6.打开ToolBar1的属性窗口，在Generals选项卡中设定ImageList为ImageList2；HotImageList为ImageList1；Appearance为0，Style为1。在Buttons选项卡中添加按钮，在每个按钮的Image框中输入对应图片的Index值，设定Caption。<br>
+　　工具栏按钮被按下的事件可以在ToolBar的ButtonClick事件中捕捉到。参数Button的Index属性指示被按下的按钮的索引号。<br>
+<b>(安徽　谢鹏)</b>
+<p align="right">
+<span class="ourfont"><font color="#369681">本文出自：</font><a href="index.htm">《电脑报》1998年06月14日第23期</a>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+用VB设计聚焦框程序</span>
+
+
+<hr size="1" color="#000080"></p>
+　　什么是聚焦框？在Windows中是这样解释的：当某个按钮被按下或某个控件正在使用时，由一个长方形的虚线框聚焦在此按钮或控件上来提示用户它正起作用。但是并非所有的控件在任何时候都能得到焦点（即得到聚焦框），有时我们在日常的编程中也许会用到它，用来提示用户一些必要的信息。这时你可以这样做：<BR>　　说明: 
+      在以下程序中可以使Picture控件得到聚焦框，且程序调用API函数来完成。<BR>　　首先，在FORM1上新建一个Picture1和一个Command1，然后输入以下代码：<BR>　　Private 
+      Declare Function DrawFocusRect Lib ″user32″ (ByVal hdc As Long, lpRect As 
+      RECT) As Long<BR>　　Private Type RECT<BR>　　X1 As Long<BR>　　Y1 As 
+      Long<BR>　　X2 As Long<BR>　　Y2 As Long<BR>　　End Type<BR>　　Dim lpRect As RECT 
+      ′在通用中声明调用API函数<BR>　　Private Sub Form_Load()<BR>　　Form1.WindowState = 2 
+      ′最大化窗口<BR>　　Picture1.Picture = LoadPicture(″C:\BMP\1.BMP″) 
+      ′请读者根据自己选择图片<BR>　　Command1.Caption =″设置聚焦框″<BR>　　End Sub<BR>　　Private Sub 
+      Form_Activate() <BR>　　Picture1.Move (Form1.ScaleWidth － 
+      Picture1.ScaleWidth) ／ 2, (Form1.ScaleHeight － Picture1.ScaleHeight) 
+      ／2′使Picture1居中显示<BR>　　End Sub<BR>　　Private Sub Command1_Click()<BR>　　Dim 
+      DENG As Long<BR>　　lpRect.X1 = Picture1.Left － 10<BR>　　lpRect.Y1 = 
+      Picture1.Top － 10<BR>　　lpRect.X2 = lpRect.X1 ＋ Picture1.Width ＋ 
+      20<BR>　　lpRect.Y2 = lpRect.Y1 ＋ Picture1.Height ＋ 20<BR>　　DENG = 
+      DrawFocusRect(hdc, lpRect)<BR>　　End Sub 
+      <BR>　　OK，大功告成，按F5运行，通过单击按钮Command1就可以实现Picture1控件被聚焦！ 
+      当然你也可以作适当调整，使它符合你个人的需要。 <BR><B>（上海　季昭君）</B> <p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年07月19日第28期</a></font> 
+</body>
+</html>

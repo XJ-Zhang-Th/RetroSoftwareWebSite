@@ -1,0 +1,15 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+PDF文件制作小经验</span>
+
+
+<hr size="1" color="#000080"></p>　　我在制作PDF文件的过程中，遇到了彩色图片显示为黑白色和汉字不能正确显示的问题。通过摸索，找到了解决的办法。<br>
+　　为了能够正确地显示图片的真实色彩，要在PDFMaker或者是Acrobat Distiller中的“General”菜单中选上“Use Distiller Assistant's driver／Force color images” 。<br>
+　　如果还不能正确地转换到PDF文件中，那就要看看你的虚拟打印机的属性了。在打印机设置中，把ADOBE PDF WRITER的颜色管理加入相应的以ICC为后缀的文件就可以了。<br>
+　　但需要注意的是，在用 ADOBE PDF WRITER进行转换时，中文字体不能正确地转换，因此，我建议大家去下载一个ADOBEPS（PS423.ZIP）和一个打印驱动程序（如ADOBE站点上的HP.EXE）就可以了。你只要把HP.EXE执行一下，将会产生很多以PPD为后缀的文件。再把PS423.ZIP解压后进行安装，并在选择驱动程序时输入HP.EXE。运行后产生的PPD文件，就可以很好地支持彩色和汉字字体了。当然别忘了在打印机属性的颜色管理中加入相应的以ICC为后缀的文件。你不妨一试。<br>
+　　所有用到的文件都可在ADOBE的站点：http://www.adobe.com上下载得到。<br>
+<b>(江西　蒋启梅)</b>
+<p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年05月3日第17期</a></font> 
+</body>
+</html>

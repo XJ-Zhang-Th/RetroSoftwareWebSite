@@ -1,0 +1,29 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+Virtual Drive使用经验谈</span>
+
+
+<hr size="1" color="#000080"></p>
+　　用了《电脑报》十三期上介绍的Virtual Drive 3.10（以下简称为VCD3.1），果然名不虚传，几乎所有的游戏和软件都支持。但有两个缺点，一是不能将光盘中无用的文件剔除出VCD镜像文件；二是试用版只有一个虚拟光驱，很不够用。然后又看了《电脑报》十五期上对VcdromX 3.2的介绍，下载后一用，第一个问题得到了解决，但VCD3.1的压缩功能就无法使用了。我将VCD3.1在Windows注册表中的信息详细研究之后，终于找到了解决以上两个问题的方法（在使用该方法前请先备份注册表）。</p>
+　　<b>一、拥有两个以上的虚拟光驱</b></p>
+　　1.打开注册表编辑器Regedit。<br>
+　　2.找到注册表中HKEY_LOCAL_MACHINE\SOFTWARE\FarStone\VirtualDrive\0100 , 修改 VCDLimit的值。这个值代表最大能拥有的虚拟光驱的数目。<br>
+　　3.找到注册表中的 HKEY_LOCAL_MACHINE\SOFTWARE\FarStone\VirtualDrive\0100\Settings，修改 UserVdrvTl 的值。这个值代表现在正在使用的虚拟光驱的数目。<br>
+　　4.找到注册表中的 HKEY_LOCAL_MACHINE\SOFTWARE\FarStone\VirtualDrive\0100\Vdrvs，修改 VirtualCdromTl 的值。这个值也代表现在正在使用的虚拟光驱的数目。数目最好和前面保持一致。<br>
+　　5.重新启动计算机（不要仅仅重新启动Windows，否则可能死机）。<br>
+　　打开你的资源管理器，看看是不是多了几个光驱。</p>
+　　<b>二、利用VCD3.1本身来压缩的VCD镜像文件</b></p>
+　　VCD3.1 本身没有像Logicraft的虚拟光驱软件那样提供压缩镜像文件的功能，而且也不能从虚拟出来的光驱中制作VCD镜像文件。其实我们可以只利用这个软件来实现该功能。这在用VcdromX制作了VCD文件后又想压缩这个文件的时候特别有用。前提条件是有与这个VCD文件一样大的磁盘空间来存放临时生成的文件。<br>
+　　1.先用VCD3.1 虚拟出两个（或以上）光驱。<br>
+　　2.使用VCD3.1，将其中一个光驱（假设代号为F）“装入”等待压缩的VCD文件。<br>
+　　3.修改注册表。<br>
+　　1找到 HKEY_LOCAL_MACHINE\SOFTWARE\FarStone\VirtualDrive\0100\Vdrvs\F（或你装入的虚拟光驱的代号D,E,F ……）<br>
+　　2修改 Flags值为 20H（十六进制值）。（原来的值应为10H）<br>
+　　4.使用VCD3.1的 Build Vcd 功能，在 Source中的CD－ROM的组合选择框中应该能选择成你装入的虚拟光驱（如果不能，请重新开启一下Virtual Drive的管理器就可以了）。<br>
+　　5.按照通常的方法从这个“光驱”制作一个压缩的VCD镜像文件。<br>
+　　6.制作完后修改注册表，将改动的值还原。<br>
+　　7.检查压缩后的文件没有问题以后，可以将以前没有压缩的VCD镜像文件删除。<br>
+　　欢迎有兴趣的朋友来信讨论，我的E－mail为：YuBoTsingHua@263.net。<br><b>(北京　喻波)</b>　　    <p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年05月24日第20期</a></font> 
+</body>
+</html>

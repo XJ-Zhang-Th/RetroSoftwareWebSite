@@ -1,0 +1,27 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+局域网SCSI光驱故障排除一例记</span>
+
+
+<hr size="1" color="#000080"></p>
+　　<strong>故障现象：</strong>公司局域网上有一台SCSI接口的Symbios 
+                        Logic SDMS外置式二倍速刻录光驱，在本地机上读写盘一切正常。在Windows 95局域网上通过共享读盘时，可以察看光盘中的文件目录和文件名，但读文件时，系统却提示出错找不到文件，不能打开和运行文件。该局域网为对等网，各工作站均为Acer 
+                        P150品牌机，预装中文Windows 95 OSR2。<br>
+        　　<strong>故障分析与排除：</strong>因该外置式刻录光驱的控制器是PCI插卡，插在PCI插槽中时要占用中断资源。首先查看系统的设备管理，发现“SCSI控制器”下的“PCINCR 
+        C810 SCSI Host Adapter”设备前有个黄色的“!”号，看来有资源冲突，查看“PCINCR 
+        C810 SCSI Host Adapter”设备的属性，但“冲突设备列表”中提示没有冲突。在“使用自动设备”复选框上点两下，使复选框中的“”去掉又加上，再点“确认”。竟发现设备管理窗口中多了一个“CD－ROM”设备，SCSI控制器也正常了，网络光驱也可使用了。但每次开机都要在“使用自动设置”复选框上点两下，网络光驱才能使用，问题还是没有解决。怀疑在Config.sys和Autoexec.bat中加载了与刻录光驱驱动程序相冲突的其它程序。打开这两个文件，其中除了加载有光驱驱动程序外，就只加载了Himem.sys，不会存在什么冲突。再仔细一看，Config.sys中加载光驱驱动程序竟有三条命令：<br>
+        　　DEVICE=c:\symbios\aspi8xx.sys<br>
+        　　DEVICE=c:\symbios\symcd.sys\D:SYM001<br>
+        　　DEVICE=c:\symbios\symdisk.sys<br>
+        　　其中，aspi8xx.sys是ASPI管理程序，symcd.sys是SCSI控制器驱动程序，symdisk.sys是刻录光驱驱动程序。试着把加载aspi8xx.sys、symdisk.sys文件的两条命令去掉，存盘后重启系统，竟然发现光驱可正常驱动，并且设备管理窗口中存在“CD－ROM”设备，SCSI控制器正常。由此想到，Windows 
+        95支持即插即用，自带一些常见品牌设备的驱动程序并自动加载。是不是这些驱动程序与硬件厂商的驱动程序有冲突呢?想到这一点，索性把Config.sys和Autoexec.bat全部删除。重新启动系统，再查看系统设备管理，SCSI控制器正常，CD－ROM设备也没有了，光驱进行读写工作一切正常。OK!大功告成!<br>
+        　　小结：在增加即插即用设备时，在不降低设备性能条件下，应尽量使用Windows 
+        95自带驱动程序。尤其不要加载DOS系统中的驱动程序，不然会降低系统性能，甚至出现一些莫明其妙的故障。<br>
+        <strong>(湖南　向志奇)</strong><p align="right"><font COLOR="#000000">本文出自：<a
+        href="index.htm">《电脑报》1999年04月12日第14期</a></font> </td>
+      </tr>
+    </table>
+    </center></div>
+</body>
+</html>

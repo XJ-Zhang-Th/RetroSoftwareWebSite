@@ -1,0 +1,30 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+Win98注册表妙用三则</span>
+
+
+<hr size="1" color="#000080"></p>
+<p><b>　　一、锁定桌面</b></p>
+　　桌面设置包括壁纸、图标以及快捷方式，它们的设置一般都是我们经过精心选择才设定好的。大多数情况下，我们不希望他人随意修改桌面设置或随意删除快捷方式。怎么办?其实修改注册表可以帮你锁定桌面，这里“锁定”的含义是对他人的修改不做储存，不管别人怎么改，只要重新启动计算机，你的设置就会原封不动地出现在你面前。<br>
+　　1.运行regedit进入注册表编辑器，找到如下分支：Hkey－Users\Software\Microsoft\Windows\CurentVersion\Polioies\Explores;<br>
+　　2.双击“No Save Setting”，并将其键值从0改为1；<br>
+　　3.确认后退出注册表编辑器，重新启动即可。<br>
+　　上面的修改是把计算机上所有用户的桌面设置全部锁定了，如果你只想锁定你自己的桌面，而不理会别人的设置是否被修改，可以在下面的路径中执行相同的操作：Hkey－Current－User\Software\Microsoft\Windows\Current Version\Policies\Explores。<br>
+<p><b>　　二、关闭“单击从这里开始”动画箭头</b></p>
+　　Win98开机时，有时候屏幕底部的任务条中会出现一个从右到左的动画箭头，指示“单击从这里开始”，用下面方法可以使它禁止显示：<br>
+　　1)打开注册表，进入下面路径：Hkey－Current－User\Software\Microsoft\Windows\Current Version\Policies\Explores;<br>
+　　2)建立一个二进制键名：“No Start Banner”；<br>
+　　3)双击该键名，并输入键值“01000000”；<br>
+　　4)确认后退出，并重新启动计算机<br>
+　　如果想使这个修改对所有用户生效，可到下面路径中执行相同的操作：Microsoft\Windows\Current\Current Version\Policies\Explores。<br>
+　　注：如果你的电脑开机时没这个动画箭头，一定是计算机在开机时自动加载了某个应用程序。
+<p><b>　　三、防止菜单随鼠标移动</b></p>
+　　在Win98中当你把鼠标指向下拉级联菜单的标题稍作停留，其下一级子菜单会自动弹出。有时候这个性能也会有“副作用”—在鼠标移动过程中，稍不留意，按一下左键，就可能启动一个你并不需要的窗口。可以修改注册表关闭这项功能，使单击该菜单才弹出其下一级子菜单：<br>
+　　1)打开注册表，进入下面目录：Hkey－Current－User\Control Pannel\Desktop;<br>
+　　2)添加一个键名：“Menu Show Delay”；<br>
+　　3)输入键值“65534”；<br>
+　　4)确认后重启计算机。<br><b>
+　　(重庆 邹琳)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年11月15日第45期</a></font> 
+</body>
+</html>

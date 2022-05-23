@@ -1,0 +1,36 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+用IFRAME建立网上阅览室</span>
+
+
+<hr size="1" color="#000080"></p>
+　　随着Internet在中国的飞速发展和不断普及，越来越多的人将网络作为获取信息、学习知识的最佳工具。国内外的各种传统媒体也争先恐后地在网上推出电子版：如《电脑报》、《光明日报》、《中国青年报》等等。于是，在网上读书看报就成了网虫兼书虫们乐此不疲的开心事了。<br>
+　　开启七八个浏览器窗口虽然可同时看几个网站，但浏览器窗口越开越多，机器的资源就越发紧张。对于那些喜欢在上网的同时听听MP3音乐的人来说，常常就只能忍痛割爱了（内存不够！）。有没有什么好的解决办法呢？<br>
+　　最容易想到的办法就是使用HTML语言中的Frame框架。设计过主页的朋友都知道，使用Frame可以将页面划分成几个互不影响的框架，每个框架中可以加载一个页面。而且，不同框架中的页面之间可以没有任何关系。这样可以充分地利用页面空间，加大页面的信息量。但是，Frame有个缺陷：只能将浏览器的窗口进行划分，对于大于Frame大小的页面就只能加上滚动条来移动显示窗口，很不方便。虽然，利用Frame，将不同的报刊站点放在不同的Frame中显示，可以减少同时打开浏览器的数目，但是，狭小的阅读空间却让人无法忍受！<br>
+　　其实，HTML语言中还有一个与Frame有着亲缘关系的标签IFRAME，利用它可以让我们达到目的。IFRAME是Inline Frame的缩写，称为内联框架。使用IFRAME，网页的设计者可以在HTML页面的任何地方插入一个内联框架，而不必像使用Frame前需要在一个主页面里用FrameSet标签为每个Frame划分空间。与一般的Frame不同的是，每个IFRAME可以独立地定义其大小，而不是瓜分本来就不大的一个浏览器窗口！也就是说，一个IFRAME可以和浏览器窗口一样大，甚至更大！这样，显示空间的问题也解决了。<br>
+　　下面的一个HTML页面文件，就是用IFRAME设计的一个“网上阅览室”。在一个页面上，IFRAME实现了同时显示三个不同报刊站点的内容，而每个站点的显示空间都是一个整屏！向Frame说再见吧！<br>
+　　你可以改变IFRAME的SRC属性，让它指向你所喜欢的报刊站点，定制你自己的网上阅览室！<br>
+　　注:请使用IE浏览器(3.0以上)，Netscape不支持该标签。<br>
+　　《html》<br>
+　　《head》<br>
+　　《title》网上阅览室《/title》<br>
+　　《/head》<br>
+　　《body》<br>
+　　《p align=″center″》《big》《font color=″＃0000FF″ face=″楷体_GB2312″》《strong》《big》《big》我的网上阅览室《/big》《/big》《/strong》《/font》《/big》《/p》<br>
+　　《p align=″center″》《font color=″＃FF0000″》光明日报《/font》《/p》<br>
+　　《IFRAME height=450 width=100％ src=″http://www.gmd.com.cn/″》<br>
+　　《/IFRAME》<br>
+　　《p align=″center″》　《/p》<br>
+　　《p align=″center″》《font color=″＃FF0000″》电脑报《/font》《/p》<br>
+　　《IFRAME height=450 width=100％ src=″http://www.cpcw.com″》<br>
+　　《/IFRAME》<br>
+　　《p align=″center″》　《/p》<br>
+　　《p align=″center″》《font color=″＃FF0000″》中国青年报《/font》《/p》<br>
+　　《IFRAME height=450 width=100％ src=″http://www.cyd.com.cn″》<br>
+　　《/IFRAME》<br>
+　　《/body》<br>
+　　《/html》<br>
+<b>（陕西　陈剑）</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年05月3日第17期</a></font> 
+</body>
+</html>

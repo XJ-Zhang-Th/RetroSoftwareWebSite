@@ -1,0 +1,82 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+专家坐堂</span>
+<hr size="1" color="#000080">
+<p align="center"><b>Windows NT Server 4.0为何安装不成功？</b></p>
+　　<b>读者温梓明问：</b>在安装Windows NT Server 4.0时，屏幕出现下列信息：“安装程序找不到由MS－DOS程序所准备的硬盘分区，当运行MS－DOS Windows NT安装程序时你必须指定一个Windows NT所支持的临时驱动器”(我的硬盘为ST 4.3GB，分为C、D、E三个区，文件系统为FAT32)。请问这是为什么?该怎样安装与使用NT 4.0?<br>
+　　答：由于Windows NT Server 4.0是于1996年发布的，那时还没有FAT32文件系统，因此，NT 4.0的安装程序无法识别FAT32分区。如果在FAT32分区上安装NT 4.0，则会出现如上提示。另外，NT 4.0在安装时，需要创建双引导环境（OS Loader 4.0），此环境是通过重新更换DOS的引导记录来完成的。如果使用的是FAT32分区，则OS Loader 4.0将无法完成FAT32分区有关数据转化计算，致使双启动失败。<br>
+　　为了能在你的硬盘上安装NT 4.0，请执行如下步骤：<br>
+　　(1)使用PMagic 3.50/4.0等软件将C盘上的FAT32分区转换为FAT16。如果你的NT 4.0不安装在C盘，如安装到D盘，也需要将D盘转换为FAT16。<br>
+　　(2)在C盘上执行WinNT /B命令即可。<br>
+　　在NT 4.0安装结束后，你可以访问除了C盘以外的FAT32分区，其方法是在NT 4.0中安装一个FAT32.EXE的软件，此软件可以让NT 4.0读取FAT32中的数据，但是仍无法将数据写到这些分区上。FAT32.EXE可以从《电脑报春节特刊》上找到。<br>
+　　另外，为了充分地使用NT 4.0，也便于以后升级到NT 5.0（即Windows 2000上），我建议你安装SP4或者SP5，这样，你就可以获得NT 5.0有关特性了。
+<p align="center"><b>如何安装设置Brother M－1724打印机？</b></p>
+　　<b>广西读者杨志伟问：</b>我有一台型号为Brother M－1724打印机，当我启动Windows 98准备安装该打印机的驱动程序时，发现Windows 98中没有Brother M－1724的驱动程序。我试着安装了Brother的打印机驱动程序（如M－1324、M－1824L、M－1924L）都无法正常运行。请专家能给予指点，我可以使用什么样的驱动程序来替代，或者从哪里可以获得该打印机的驱动程序（此打印机在DOS状态下的CCED、WPS等带有M－17242打印驱动程序的字处理软件中正常使用）。<br>
+　　答：此问题有许多来信提及。现将完全解决方法介绍如下（特别适用于类似打印机）：<br>
+　　(1)首先在Windows 98中安装Brother其他型号的打印机，如M－1324，此时，在C:\Windows\System子目录下将有一个brother24.drv文件，此文件必须替换为Brother M－1724的驱动程序需要的文件。<br>
+　　(2)在Windows 3.2中安装M－1724驱动程序（Windows 3.2提供了此打印机的驱动程序）。在安装后，将在D:\Windows\System子目录中将出现brother24.drv文件（假定Windows 3.x安装在D:\Windows中）。<br>
+　　(3)将Windows 3.x中的brother24.drv文件拷贝到Windows 98的相应子目录中。<br>
+　　(4)打开Windows 98的“资源管理器”，单击“Windows”目录，使“Windows的内容”显示出来。<br>
+　　(5)双击配置文件WIN.INI，“记事本”程序自动打开WIN.INI文件。<br>
+　　(6)编辑已打开的配置文件WIN.INI。<br>
+　　1在“[Windows]”段的最后一行添加以下内容：<br>
+　　Device=Brother 1724 24 pin printers,Brother,LPT1：<br>
+　　2在配置文件的结尾处添加下述语句：<br>
+　　[PrinterPorts]<br>
+　　Brother 1724 24 pin printers=Brother,LPT1:,15,45<br>
+　　(此处空一行)<br>
+　　[Device]<br>
+　　Brother 1724 24 pin printers=Brother,LPT1：<br>
+　　(7)保存修改过的WIN.INI文件，并退出记事本程序。<br>
+　　(8)重新启动计算机。<br>
+　　如果你有两台打印机，而另一台打印机在“安装新硬件”时已被自动设定为“默认打印机”，你又不需要经常用到老式打印机时，那么，就不需要在WIN.INI配置下的“[Windows]”段中添加“Brother 1724 24 pin printers=Brother,LPT1：”，因为这条语句的作用是把Brother 1724设定为“默认打印机”。<br>
+　　通过这样的文件替换，你就可以在Windows 98中使用Brother M－1724打印机了。<br>
+　　另外，江苏读者董宝强同志来信询问在Windows 95中如何驱动OKI5330SC打印机，你也可通过上面的方法加以解决。<br>
+
+<p align="center"><b>怎样在恒升KING586电脑上安装Windows 95?</b></p>
+　　<b>刘熠东读者问：</b>我有一台恒升KING586/166/16M/1.3G笔记本电脑，其16MB内存分为主板8M和外部8M，主板8M的内存条已经损坏。每次在DOS下装Windows 95时，到“检测计算机信息”这一步就死机，或者自动跳回到DOS状态。从理论上讲，Windows 95在8MB内存下应该也能安装和运行，不知能否通过更改电脑设置达到装上并运行Windows 95的目的?<br>
+　　答：确实Windows 95可以在8MB的笔记本电脑上安装与运行。你所遇到的现象主要与你的硬件或者软件设置有关，可以按照下面的方法去做：<br>
+　　(1)进入CMOS设置，将有关防病毒开关关闭（Disabled）；<br>
+　　(2)精简Config.sys、Autoexec.bat文件，建议将不必要的TSR程序或者驱动程序删除或者注释掉，特别是一些防病毒程序、磁盘缓冲程序等。下面的Config.sys、Autoexec.bat是建议安装配置：<br>
+　　Config.sys：<br>
+　　device=himem.sys<br>
+　　dos=high<br>
+　　device=cdrom.sys /d:1111<br>
+　　files=30<br>
+　　Autoexec.bat：<br>
+　　path c:\windows;c:\dos<br>
+　　mscdex.exe /d:1111 /E<br>
+<p align="center"><b>如何消除Windows 97升级到Windows 98后的冲突等
+</b></p>
+　　<b>周子读者问：</b>(1)华硕P2L97主板的“高级电源管理支持”从Windows 97升级到Windows 98时，就发生冲突，无法使用，只有删除。怎样才可消除冲突使之能正常使用?<br>
+　　(2)Windows 98可否在不上网的前提下Update?<br>
+　　(3)G－100显卡（8MB显存）在17″显示器上能否长期保持在分辨率1280×1024、刷新率85Hz、真彩色(24位)不失真、不模糊?<br>
+　　(4)如何在安装Windows 98时跳过Scan而直接安装?<br>
+　　答：(1)为了在中文Windows 98中正常使用电源管理功能，首先必须在BIOS设置程序中进行相应的参数设置。此时可以通过BIOS设置程序，将系统高级电源管理（APM：Advanced Power Management）功能设置好，使此项功能（通常有以下两种）生效：<br>
+　　●Power Management：Max Saving<br>
+　　●PM Control by APM：Yes<br>
+　　在进入中文Windows 98系统之后，使用鼠标左键依次双击桌面上的“我的电脑”、“控制面板”，然后在“控制面板“中查看是否有”电源管理“图标。如果有此图标，可以进行电源管理的设置操作；如果没有，则表明在中文Windows 98中还没有将电源管理功能激活，此时需要在“控制面板”中使用鼠标左键双击“系统”图标，然后选择“设备管理”选项卡，并在“设备管理”窗口中使用鼠标左键依次双击“系统设备”、“高级电源管理支持”，即可进入“高级电源管理支持属性”设置窗口。在此窗口中，分别有“常规”和“设置”两个选项卡。使用鼠标左键单击“通用”选项卡，则可以在“设备状态”栏中看到“该设备正常运转”的提示信息。使用鼠标左键单击“设置”选项卡，然后在所出现的窗口中，将“启用电源管理支持”的复选框设置成有效状态，此时就使中文Windows 98具备了系统电源管理的功能了。<br>
+　　(2)不行，Windows 98的Update不仅需要上网，而且必须是正版用户。<br>
+　　(3)可以。但需要显示器可以支持这样高的分辨率及刷新频率。对于一般的17"显示器，85Hz的刷新频率是缺省的设置。<br>
+　　(4)在安装程序Setup.exe后面可以带上许多参数，如/IS（跳过磁盘扫描）、/IQ（跳过硬件检测）、/im（跳过内存检查）等。请使用相应的参数进行安装。
+<p align="center"><b>Megabook笔记本电脑硬盘、软驱无法启动的问题</b></p>
+　　<b>山西读者续雷问：</b>我有一台韩国产Megabook笔记本电脑，其配置如下：Pentium 75 CPU、8MB内存、Phoenix笔记本专用BIOS、540MB硬盘、1.44MB高密软驱、无光驱。在使用PowerQuest公司的Partition Magic 3.0时，将Cluster Analysis由16KB改为4KB，在重启硬盘时就无法启动，而软驱也无法启动。请问如何解决?<br>
+　　答：你在使用PMagic时，将Cluster Analysis由16KB改为4KB时，已将你的那个FAT16分区的硬盘转化为FAT32分区，可能使硬盘无法启动。这是因为此分区不能为MS－DOS识别，只能为Windows 97、Windows 98的启动盘识别。为此，你可以这样操作：<br>
+　　(1)首先进入Phoenix BIOS，将开始启动的驱动器改为Floppy（软驱）。<br>
+　　(2)使用Windows 97或者Windows 98启动盘启动系统，然后进入C盘中。<br>
+　　(3)在软盘上执行PMagic，然后将Cluster Analysis由4KB改为16KB，这样就将原来的FAT32改为FAT16（这可能需要较长时间）。
+<p align="center"><b>为何MS－DOS提示符中不能使用光驱？</b></p>
+　　<b>湖北读者周发乾问：</b>我的电脑配置为：Pentium MMX 200 CPU、2.1GB硬盘、32MB SDRAM、24X光驱、Windows 98中文版操作系统。现存在如下问题：<br>
+　　(1)在从Windows 98中退到MS－DOS提示符中不能使用光驱，在Config.sys、Auotexec.bat中加载光驱驱动程序，可在纯DOS下使用光驱，但进入Windows 98后启动资源管理器及我的电脑时均死机。把光驱驱动程序从Autoexec.bat及Config.sys中去掉后正常，不知为什么?<br>
+　　(2)在纯DOS下无法使用PS/2鼠标，加载驱动程序也不行。<br>
+　　答：(1)Windows 98本身使用32位光驱虚拟驱动程序（cdfs.vxd），因而进入Windows 98就可以使用光驱了，但是一旦返回到MS－DOS提示符下，则此程序将关闭，此时需要在DOS下加载驱动程序（这是16位的）才能使用光驱。下面的方法可以让你在此状态下使用光驱：<br>
+　　a.创建如下批处理文件cdrom.bat：<br>
+　　device c:\nec\necide.sys /d:1111<br>
+　　mscdex.exe /d:1111<br>
+　　这里的device.com是一种加载驱动程序的程序，可从QEMM获得或者从创新公司的站点中下载。<br>
+　　b.启动cdrom.bat文件，则可以使用光驱。<br>
+　　如果你在启动Windows 98之前，在config.sys、autoexec.bat文件中加载了16位驱动程序，则可能与32位虚拟光驱程序产生冲突，并产生死机等现象。若非要这样做，请在“系统”的“疑难解答”中关闭32位磁盘驱动特性，但这会降低系统性能。我不建议你这样做。以上方法可以变通地解决这个问题。<br>
+　　(2)你必须到CMOS设置的“BIOS Features Setup”打开PS/2支持功能选项（PS/2 Function support），然后在Autoexec.bat加载相应的鼠标驱动程序即可。<br><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年06月21日第24期</a></font> 
+</body>
+</html>

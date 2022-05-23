@@ -1,0 +1,55 @@
+<html>
+
+<haed>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+<!--
+.ourfont{font-size: 12px;line-height: 17px;}
+A:link {text-decoration: none; color: blue}
+A:visited {text-decoration: none; color: "#54646D"}
+A:active {text-decoration: none}
+A:hover {text-decoration: underline; color: 000080} 
+-->
+</style>
+
+<title>《电脑报》</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<hr align="center" width="700">
+<div align="center"><center>
+
+<table border="0" width="700" cellspacing="0" cellpadding="4" bgcolor="#ECF7F4">
+  <tr>
+    <td width="100%" valign="top"><div align="center"><center><table border="0" width="680"
+    cellspacing="0" cellpadding="4">
+      <tr>
+        <td width="672" valign="top"><font face="黑体" color="#004080"><strong><p align="center">花儿为什么这样红<br>
+        </strong></font></td>
+      </tr>
+      <tr>
+        <td width="672" valign="top"><p class="ourfont" align="left"><font color="#369681">　　3.二级Cache和三级Cache的组合作用<br>
+        　　为什么通过“直接映射”三级Cache和“4路相关”二级Cache的组合，能够提高K6－3的性能呢？下面举个例子说明：<br>
+        　　1） 直接映射Cache（1MB三级Cache）可能包含较少用到的指令和数据。例如一行Cache必须在两个重要指令间“挑选”一个，而另一行Cache必须在两个不太重要的指令间选择。<br>
+        　　2） 4路相关Cache（256 KB二级Cache）由于有4行Cache，就不会有上述问题。它会在32KB内存地址中挑选最重要的指令。它将把最小、最近用到（LRU）的指令或数据替换为更重要（更常用到）的指令（或数据）。它更聪明、更具弹性。<br>
+        　　让我们看看32KB内存片共享同行Cache时的情况（见图2)。<br>
+        　　看到了吗？当32KB内存共享4行二级Cache时，2KB内存共享1行三级Cache。还记得开先的那个字处理例子吗？WORD需要12MB系统内存，并且你会重复使用许多功能，也许这些功能会占到1MB或2MB空间。你没有办法把这些“最常使用的功能”放到256KB二级Cache内。但二级Cache能确认把最重要的指令或数据放到4行Cache里（4× 
+        32 bytes=2048bytes），而三级Cache能对那些次常用的指令或数据进行缓冲，它们通过这种方式相互补充。<br>
+        　　商业应用程序（如字处理、数据库和图形软件等）通常具有重复使用大量指令或数据的特点，在带有1～2MB三级Cache的K6－3系统上就能运行得非常好。看看Anand的测试结果就明白了：在Winstone'99中，K6－3 
+        350的性能接近于PⅡ 450。<br>
+        　　当笔者听到有人说“Pentium MMX 200就能很快地运行所有商业程序”时，就忍不住想笑。当他在那块CPU上（即使有128MB内存）想要进行一些图片编辑或复杂网页编辑操作时，他就知道结果了。试试在WORD中编辑一个充满字符的大文本，并且打开拼写检查和语法检查，我曾在那种PC系统上工作过，让我告诉你结果吧：它很慢。虽然许多人只在他们的PC上做简单的工作，如写写信，但一旦你发现你的PC还要做其他工作如写复杂的文章、编辑视频、为照片添加效果、测试JAVA程序......你会发现，如果你的PC在Winstone 
+        '99中有很好的得分，你会很愉快的。<br>
+        　　<strong>四、总结</strong><br>
+        　　K6的执行单元比它的解码单元要强大一些，解码单元是K6架构中的瓶颈。因此，要发挥最大性能，就必须让快且大的一、二、三级Cache不停地把指令或数据供给解码单元。这就是为什么K6－3有如此精彩性能并从全速二级Cache中受益的原因。 
+        (Johan De Gelas原著 双木编译)<strong></p>
+        </strong></font><p align="right"><span class="ourfont"><font color="#369681">本文出自：</font><a
+        href="index.htm">《电脑报》1999年02月08日第06期</a></span></td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+</table>
+</center></div>
+</body>
+</html>

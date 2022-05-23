@@ -1,0 +1,32 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+定制Delphi应用程序的系统菜单</span>
+
+
+<hr size="1" color="#000080"></p>
+　　我们使用Delphi编制应用程序，编译运行后，在主界面的左上角出现一小图标，用鼠标单击此图标，会出现一下拉式菜单，这就是系统菜单。系统菜单包括[还原]、[移动]、[大小]、[最小化]、[最大化]和[关闭]六项。系统菜单是Delphi自动给每个应用程序加上的，不用特意设计。但在我们的应用程序中，有时为达到一定目的，不希望在主界面上有主菜单存在，这时就可以在系统菜单上做点文章，将自己的菜单选项加入到系统菜单中，以实现主界面的整洁。<br>
+　　下面是具体的实现方法。例如，我们要将[新建]和[保存]两选项加入到系统菜单中。先将一PopupMenu组件加入表单，双击此组件进入PopupMenu设计器，设置[新建]和[保存]菜单项，后单击表单空白处，再选中Objector Inspector的Event选项卡，双击OnCreate事件，进入单元窗口，编写如下代码：<br>
+　　Procedure Tform1,FormCreate(Sender:TObject);<br>
+　　Begin<br>
+　　With PopupMenul do<br>
+　　For I:=1 do<br>
+　　AppendMenu(getsystemmenu(self,handle,false),mf－popup,items[I],handle,pchar(items[I],caption));<br>
+　　在变量中添加：Var I:Integer；<br>
+　　编译运行后就会看到系统菜单中多了[新建]和[保存]两项。<br>
+　　下面我们来完成系统菜单项的响应。在Tform1的类定义中的Public部分插入如下代码：<br>
+　　Procedure WMSysCommand(var Msg:Tmessage)；<br>
+　　message WM－SysCommand;<br>
+　　其中WMSysCommand为用户定义的响应函数。<br>
+　　Procedure WMSysCommand(var Msg:Tmessage);<br>
+　　Var<br>
+　　Item:Tmenuitem;<br>
+　　Begin<br>
+　　Inherited;<br>
+　　Item:=popupmenu1.Finditem(msg.wparam,fkcommand);<br>
+　　If not(item=nil) then<br>
+　　Item.click;<br>
+　　End<br>
+　　这样，系统菜单项就可以调用原有菜单项的click函数。<br><b>(河北 蔡力强)</b>　　    <p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年05月24日第20期</a></font> 
+</body>
+</html>

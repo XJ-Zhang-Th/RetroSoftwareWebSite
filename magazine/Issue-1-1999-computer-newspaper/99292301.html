@@ -1,0 +1,42 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+实现AOpen主板的“瞬间开机功能”</span>
+
+
+<hr size="1" color="#000080"></p> 
+　　近日，升级机器，购得 AOpen AX6BC 主板一块，配 Celeron 300A CPU、AOpen PA70D(8MB显存，S3 
+      Savage3D芯片)显卡、火球七代 6.4GB 硬盘、64MB 
+      SDRAM。急急忙忙安装“Win98”，再装好所有驱动程序和应用软件，启动一切正常。<BR>
+　　由于主板支持“瞬间开机功能”，这使我想到，如果能实现硬盘回存瞬间开机,开机速度一如启动DOS就不是梦了。按图索骥：<BR>　　1.改变BIOS设置<BR>　　⑴ 
+      Power Management →Suspend Mode Option, 选择 “Suspend to Disk”；<BR>　　⑵ 
+      PNP／PCI Configuration →PnP OS Installed, 选择 
+      “NO”.<BR>　　2.将主板附带光盘上的AOZVHDD.EXE文件拷贝到C盘根目录，建立“挂到硬盘”文件。从安全模式下启动到DOS，运行C:&gt;AOZVHDD 
+      ／c ／file或C:&gt;AOZVHDD ／c 
+      ／partition（适合于FAT16／FAT32文件系统）。注意前者需要硬盘上有足够的连续空间，即连续的空间大于系统内存与显存之和，否则须先运行有关的磁盘整理程序。后者则需要保留一个足够大的空的分区（这里就用得着Partition 
+      Magic之类硬盘分区工具了），该分区要大于系统内存与显存之和，并且要考虑今后内存的扩展。<BR>　　3.重新启动，进入Windows后再关机时，就不要选择“关闭Windows”了，而是选择“将你的计算机转入睡眠状态”。<BR>　　这是针对 
+      Windows 95／98 安装时就装好了ACPI而言的。但我的电脑在安装 Windows98 
+      时没有装ACPI，按照上面的步骤操作电脑毫无反应。说明书上却没有多余的话了。经过反复摸索，终于发现设置好BIOS后，还得有下列一番“开肠剖肚”的小动作：<BR>　　1.安装、配置 
+      Windows 98<BR>　　(1) 运行 “Setup.exe ／p j” 安装 Windows 
+      98（当然“温酒吧”装好了就不必重装了)；<BR>　　(2)进入Windows 98，选择Control Panel（控制面板）→Power 
+      Management（电源管理），将所有的电源方案设置为 “Never”（从不），并打开“睡眠状态支持”；<BR>　　(3) 
+      安全模式启动到DOS，运行C:&gt;AOZVHDD ／c ／file或C:&gt;AOZVHDD ／c ／partition；<BR>　　(4) 
+      重新启动系统。<BR>　　2.从APM改变到ACPI(只有Windows 98需要改)<BR>　　(1) 运行 
+      “Regedit.exe”<BR>　　a.通过“HKEY_LOCAL_MACHINE／SOFTWARE／MICROSOFT／WINDOWS／CURRENT 
+      VERSION／DETECT”；<BR>　　b. 选择“编辑／新建／二进制值”，键值名为 “ACPIOPTION”；<BR>　　c. 
+      右击新建值，选择“修改”, 在“0000”后加 “01” 变成“0000 01”；<BR>　　d. 保存退出注册表编辑。<BR>　　(2) 
+      在“控制面板”中选择“添加新硬件”，允许 Windows 98检测新硬件 (Windows 98将找到“ACPI BIOS”并删除“Plug and 
+      Play BIOS”)；<BR>　　(3) 单击“完成”并重新启动系统。<BR>　　(4) 
+      在安全模式下进入DOS，然后运行C:&gt;AOZVHDD ／c ／file或C:&gt;AOZVHDD ／c 
+      /partition。<BR>　　3.从ACPI改变到APM<BR>　　(1) 运行 “Regedit.exe”<BR>　　a. 
+      通过“HKEY_LOCAL_MACHINE／SOFTWARE／MICROSOFT／WINDOWS／CURRENT 
+      VERSION／DETECT”；<BR>　　b. 右击“ACPI OPTION”并选择“修改”,改变“01”为 “02”即变成“0000 
+      02”（“02”意思是Windows 98是 ACPI 但关闭 ACPI 功能）；<BR>　　c. 
+      保存退出注册表编辑。<BR>　　(2)Windows 98将找到“Plug and Play BIOS”并删除“ACPI 
+      BIOS”；<BR>　　(3) 重新启动系统；<BR>　　(4) 再次运行“添加新硬件”，Windows 98将找到 “Advanced Power 
+      Management Resource”（高级电源管理）；<BR>　　(5) 点击 
+      “OK”（完成）。<BR>　　至此即大功告成！关机后再开机试试？自检完毕后，很快是“嘀——”一声长鸣，显示一行蓝底黄字“Your saved 
+      system information will now be restored, Please wait 
+      ....”几秒钟后即恢复先前关机时的画面。<BR><B>(湖南　匡德其)</B><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年07月26日第29期</a></font> 
+</body>
+</html>

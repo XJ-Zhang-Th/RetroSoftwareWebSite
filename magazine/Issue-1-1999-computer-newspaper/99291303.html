@@ -1,0 +1,30 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+VB实现窗口的弹出式菜单</span>
+
+
+<hr size="1" color="#000080"></p>
+　　在Windows95、Windows98或NT的风格中，有按动鼠标器右键弹出下拉菜单的操作，在VB执行环境下，有一些控件本身具有弹下拉菜单的功能，如TexTbox控件等，但大多数编辑类控件以及窗体本身却没有此功能，要在窗口中任意位置实现PopUpMenu（弹出式菜单），可借助VB的菜单工具来实现。<BR>　　首先，打开VB的“工具”菜单条，利用“菜单编辑器”为窗体生成一个菜单：<BR>　　标题(Caption) 
+      菜单条名(Name)<BR>　　编辑 menuEdit<BR>　　……复制 mnuCopy<BR>　　……剪切 
+      munCut<BR>　　其次，将生成的menuEdit菜单设置为不可视。<BR>　　Private Sub 
+      Form_Load()<BR>　　Me.menuEdit.Visibe=False <BR>　　′menuEdit菜单设置为不可视<BR>　　End 
+      Sub<BR>　　然后，利用MouseDown事件实现任意位置弹出PopUpMenu，如下例：<BR>　　本例中以RichTexBox控件为例，在其上面实现复制、剪切功能。<BR>　　1．复制功能的实现。<BR>　　Private 
+      Sub 
+      MnuCopy_Click()<BR>　　Clipboar.Clear′将剪贴板清空<BR>　　′将RichTexBox控件上选择上的内容复制到剪贴板<BR>　　Clipboard.SetTextRichTexBox1.SelText<BR>　　End 
+      Sub<BR>　　2．剪切功能的实现。<BR>　　Private Sub MnuCut_Click()<BR>　　Clipboard.Clear 
+      ′将剪贴板清空<BR>　　′将RichTextBox控件上选择了的内容复制到剪贴板<BR>　　Clipboard.SetTextRichBox1.SelText<BR>　　′将RichTexBox控件上选择了的内容删除<BR>　　SendKeys″{DELETE}″,True<BR>　　End 
+      Sub<BR>　　3．在RichTexBox控件的MouseDown事件中实现任意位置弹出PopUPMenu。<BR>　　OPrivate Sub 
+      RichTexBox1_MouseDown(Button As Integer,Shift As Integer,x As Single,Y As 
+      Single)<BR>　　Dim MnuFile AS Menu ′声明一个菜单类型的变量<BR>　　Set munFile=Me.MenuEdit 
+      ′将MenuEdit赋给菜单变量<BR>　　if Button=2 Then 
+      ′判断是否按动鼠标器右键<BR>　　′判断RichTexBox控件上选择了的内容是否存在，决定复制、剪切菜单条是否可操作。<BR>　　If 
+      Len(RichTexBox.Text)=0 Or Len(RichTexBox.SelText)=0 
+      Then<BR>　　mnuCopy.Enabled=Flase ′复制菜单条不可操作。<BR>　　nmuCut.Enabled=False 
+      ′剪切菜单条不可操作。<BR>　　nmuCopy.Enabled=True ′复制菜单条可操作。<BR>　　nmuCut.Enabled=True 
+      ′剪切菜单条可操作。<BR>　　End IF<BR>　　PopupMenu mnuFile ′弹出PopUpMenu。<BR>　　End 
+      If<BR>　　End 
+      Sub<BR>　　这样，在VB执行环境中，操作窗体上的RichTexBox控件，按动鼠标器右键就可弹出下拉菜单，实现复制、剪切功能。<BR><B>(宁夏 
+      王晓东)</B><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年07月26日第29期</a></font> 
+</body>
+</html>

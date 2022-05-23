@@ -1,0 +1,12 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+在PB中运行外部程序</span>
+
+
+<hr size="1" color="#000080"></p>　　PB提供了一个运行外部程序的函数Run，其调用格式为Run(String{，WindowState})。其中String为要运行的应用程序文件名及其所需参数。WindowState为应用程序运行的窗口的状态，例如Run(“D：\Fli\Aaplay.exe WaveLogo.fli”，Maximized)。但是如果我们想通过文件对话框选择所需运行的程序，例如我们想通过对话框来选取一个.FLI文件，然后用Aaplay.exe来播放它，这时，由于Run函数只能运行指定的程序，因而用上述方式就无法实现。不过，我们可以用下述方法来实现：<br>
+　　首先定义一个字符串型变量Getfile，用它来表示通过文件对话框打开的文件名，然后再定义一个字符串变量Isthisfile，再令Isthisfile=“Aaplay.exe”＋Getfile。最后用函数Run(Isthisfile，Maximized)即可。<br>
+　　上述方法的原理是由于Run函数内不能传递参数，所以只能运行指定的程序，因而不能直接运行通过对话框选择的程序，在上述方法中，我们通过字符串型变量的赋值，使通过对话框选取的文件名成为指定的文件名，从而可以调用Run函数来运行它。<br><b>(陕西　陈弘)</b>
+<p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年06月7日第22期</a></font> 
+</body>
+</html>

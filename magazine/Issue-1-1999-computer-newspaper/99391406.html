@@ -1,0 +1,20 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+给IE5增加多语种支持</span>
+
+
+<hr size="1" color="#000080"></p>
+　　近日，我在机器上安装了Windows 98第二版，感觉系统明显稳定多了，但美中不足的是其中的IE5不带繁体编码和日文编码。为了解决这一问题我想重装IE5，但系统不让装，提示说我的IE5版本低了。我本想从微软网站下载其他语言编码，但本地上网非常慢，后来我终于设法让Windows 98第二版接受了我的IE5的光盘。步骤如下：<br>
+　　1.运行REGEDIT.exe,打开注册表编辑器。<br>
+　　2.展开HKEY_CURRENT_USER项直至找到如下分支：<br>
+　　[HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer]<br>
+　　选中“Internet Explorer”选择“注册表”中的“导出注册表文件”项，保存名为“LX1”  在“导出范围”的“选择的分支”中选择如上分支，接下来删除此分支。<br>
+　　3.展开HKEY_LOCAL_MACHINE项直至找到如下分支：<br>
+　　[HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer]  <br>
+　　  选中“Internet Explorer”选择“注册表”中的“导出注册表文件”项，保存名为“LX2” 在“导出范围”的“选择的分支” 中选择如上分支，接下来删除此分支。<br>
+　　4.退出注册表编辑器，放入IE5的光盘，此时可顺利安装IE5的其他套件了，你不必担心此时会把你的高版本换成低版本，选中繁体编码和日文编码，完成IE5的安装，重新启动机器。<br>
+　　5.找到你刚才保存的两个注册表文件，分别双击以导入注册表，这样你的IE5版本又为最高版了。<br>
+　　此时，你就顺利完成IE5的编码添加了，当你以后需要添加其他编码时，系统会直接提醒你放入IE5的光盘，而不再从网上下载。<br>　<b>(湖北　梅琴)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年10月4日第39期</a></font> 
+</body>
+</html>

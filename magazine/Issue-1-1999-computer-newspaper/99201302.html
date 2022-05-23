@@ -1,0 +1,60 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+在VB中用API实现多媒体</span>
+
+
+<hr size="1" color="#000080"></p>
+　　在VB中用API实现多媒体主要是调用Windows的mmsystem.dll库。以下为调用API的声明(这些代码放在程序的声明部分中)：<br>
+　　′播放CD和AVI所需要的声明。<br>
+　　Declare Function mciSendString Lib ″MMSYSTEM″(ByVal lpstrCommand as String，ByVal lpstrReturnStr as Any,By Val wRetumLen as Integer,ByVal hCallBack as Integer) as Long<br>
+　　′播放WAV所需要的声明<br>
+　　Declare Function sndPlaySound Lib ″MMSYSTEM.DLL″(ByVal lpszSoundName as String,ByVal wF1ags as Integer) as Integer<br>
+　　′检测声卡所需要的声明<br>
+　　Declare Function auxGetNaumDevs Lib ″MMSYSTEM″()as Integer<br>
+　　′所用到的全局变量声明<br>
+　　Global Const SND_SYNC=＆H0000 　　′播放WAV用到的全局变量<br>
+　　Global Const SND_ASYNC=＆－H0001 ′播放WAV用到的全局变量<br>
+　　Global Const SND_NODEFAULT=＆H0002 ′播放WAV用到的全局变量<br>
+　　Global Const SND_LOOP=＆H0008 ′播放WAV用到的全局变量<br>
+　　Global Const SND_NOSTOP=＆－H0010 ′播放WAV用到的全局变量<br>
+　　′接下来是调用这些声明<br>
+　　Function auxTest()as Boolean<br>
+　　Dim i As Integer<br>
+　　i=auxGetNumDevs()<br>
+　　If i>0 Then<br>
+　　AuxTest=True ′如果有声卡则返回真<br>
+　　Exit Function<br>
+　　Else<br>
+　　AuxTest=False ′如果未检测到声卡则返回假<br>
+　　Exit Function<br>
+　　Else<br>
+　　AuxTest=False ′如果未检测到声卡则返回假<br>
+　　Exit Function<br>
+　　End If<br>
+　　End Function<br>
+　　2.播放CD的源代码<br>
+　　Sub PlayCD(b As Integer)<br>
+　　′ b为所播的音轨号<br>
+　　Dim a As Long<br>
+　　a=mciSendString(″open cdaudio alias cd wait″,0＆,0,0)  '初始化驱动<br>
+　　a=mciSendString(″set cd time format tmsf″,0＆,0,0)<br>
+　　a=mciSendString(″play cd from″＆ Str(b),0＆,00) ′播放音轨<br>
+　　End Sub<br>
+　　3.播放AVI的源代码<br>
+　　Sub playAVI(AVIFile As String)<br>
+　　Dim RVal as Long<br>
+　　AVIFile=″play″＋AVIFile＋″fullscreen″  ′全屏幕播放AVI文件<br>
+　　RVal=mciSendString(AVIFile,0＆,0,0＆)<br>
+　　End Sub<br>
+　　4.播放WAV的源代码<br>
+　　Sub playWAV(WAVFile As String)<br>
+　　Dim Flag as Integer<br>
+　　Dim a as Integer<br>
+　　wFlag=SND_ASYNC or SND_NODEFAULT<br>
+　　a=sndPlaySound(WAVFile,Flag)<br>
+　　End Sub<br>
+　　以上程序是我在调用多媒体时所常用的模块，你只需将上面的模块在程序中直接调用即可。<br>
+<b>(秦嘉)</b>　　    <p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年05月24日第20期</a></font> 
+</body>
+</html>

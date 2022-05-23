@@ -1,0 +1,11 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+制作BIOS紧急恢复盘</span>
+
+
+<hr size="1" color="#000080"></p>
+　　如果你准备升级主板BIOS，你必须面对BIOS被损坏的风险。虽然，《电脑报》已介绍了多种修复方法，但它们在具体实施时并不方便。我们知道，AWARD BIOS中有一个boot block引导块在升级时一般不会被覆盖，可用来引导系统修复BIOS。由于boot block只支持ISA显卡和软驱，在采用AGP（或PCI）显卡的系统中，显示器是黑屏的，修复过程中只能“摸黑”进行键盘操作，极易出错。本人经过实验，制作了主板BIOS紧急恢复盘，在升级失败时插入此盘，可自动完成整个修复过程，非常方便。拥有此盘，犹如给主板买了一份保险。制作过程如下（以本人的微星MS－6163主板为例）：首先在DOS状态下，制作一张系统启动软盘（FORMAT  A:/S），从微星网站上下载最新BIOS升级程序至A盘（文件名为W663MJ24.EXE）。用A盘重新启动系统，运行W663MJ24.EXE程序，其自动在A盘上解压出四个文件：AWDFL708.EXE、FLASH.DOC、W663MJ24.BIN、W663MJ24.TXT。然后运行AWDFL708.EXE程序，按屏幕提示将主板原BIOS程序备份出来（文件取名为W663MJ23.BIN），退出AWDFL708.EXE程序。最后在A盘上编辑一个自动批处理文件AUTOEXEC.BAT，内容如下：AWDFL708  W663MJ23.BIN  /SN /PY。针对此主板的紧急恢复软盘即制作完毕。<br>
+　　当遇BIOS升级失败或被CIH病毒破坏后，可将此软盘插入，再开机，系统会自动将BIOS重新刷新一遍（此时屏幕无显示），等两三分钟以后（以软驱指示灯熄灭为准），你的主板已起死回生。取出软盘，再按下F1键，系统将重新启动并恢复屏显……<br><b>(四川  郑华)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年09月13日第36期</a></font> 
+</body>
+</html>

@@ -1,0 +1,21 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+用Win98启动盘紧急营救系统一例</span>
+
+
+<hr size="1" color="#000080"></p>
+　　有一次，我在操作过程中误删注册表，导致系统不能正常启动，启动信息显示：“找不到MFC42.DLL文件”。当时，想到恢复Win98的办法有：一是重装Win98，看似简单，实则不易；二是使用Win98的启动盘帮助恢复系统。于是翻阅1998年第37期《电脑报》上关于Win98启动盘新特点的介绍，得知可从该盘上获得EXT.EXE，通过运行它，可以把本机上Win98丢失的系统文件从Win98安装盘的CAB包中释放到硬盘上。而事实上，EXT.EXE文件并不在启动盘上，而是在它启动过程中所创建的一个2MB的虚拟盘上，至于虚拟盘的盘符会在启动成功后告诉你。在本例中为F：盘。具体操作如下:<br>
+　　1.插入Win98启动盘从软驱启动电脑；<br>
+　　2.在A:\>符下键入F:并回车；<br>
+　　3.在F:\>符下键入EXT.EXE并回车；<br>
+　　4.这时出现提示：Please enter the path to the Windows CAB files(a:)：此处键入Win98安装盘所在的盘符与路径，本例为：G:\Pwin98\Win98，回车；<br>
+　　5.之后又出现提示：Please enter the name(s) of the file(s) you want to extract: 此处键入启动时显示丢失的系统文件名MFC42.DLL并回车；<br>
+　　6.再次出现提示：Please enter the path to extract to(″Enter″ for current directory):此处要求键入文件将被释放到的<FONT color="#CC0000">目录</font>，我将<FONT color="#CC0000">目录</font>确定在C:\Windows\system并回车；<br>
+　　7.这时，该程序提示让你再次确认刚才输入的路径、文件名和<FONT color="#CC0000">目录</font>：Is this Okay?(y/n):键入y并回车。该程序搜索Win98安装盘的CAB文件包，很快在59.CAB中找到了MFC42.DLL并成功地释放到指定位置，系统显示：extracting C:\windows\system\MFC42.DLL。<br>
+　　8.再次重新启动电脑，系统又报告丢失了C:\windows\system\MSVCRT.DLL文件。<br>
+　　9.重复操作1－8步骤，该程序在Win98安装盘的60.CAB中找到了MSVCRT.DLL并成功地释放到了指定位置。<br>
+　　10.再次启动电脑，一切OK！<br>
+<b>(甘肃　姜毅)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年08月16日第32期</a></font> 
+</body>
+</html>

@@ -1,0 +1,17 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+用VB播放FLASH动画</span>
+
+
+<hr size="1" color="#000080"></p>
+　　Flash是一种矢量格式的动画文件， 可以包含动画，声音，超文本链接，而文件的体积却很小。在网页上使用Flash可以作出很漂亮的全屏动画和动态菜单条。<br>
+　　你想在VB程序里作出类似的效果吗?在VB中使用Flash4自带的Swflash.ocx控件就可以了。方法如下：<br>
+　　首先，打开VB5，新建一个工程， 在工具箱上单击右键，选择部件，在部件窗口的控件列表中选择Shockwave flash，然后确定，Flash控件就被加到工具箱上。<br>
+　　然后将Flash控件放到窗体上，并调整至适当的大小，然后在属性窗口里设置movie属性为Flash动画文件的路径(如:c:\demo.swf)，设置scale model属性为2，quality 属性为 1。(参见附表)<br>
+　　双击窗体，在form_load( )过程里加入：<br>
+　　shockwaveflash1.playing=true <br>
+　　按F5就可以看到播放的Flash动画了。(注意:编译以后的可执行文件不包含动画文件)如果动画里加上动态按钮，配合鼠标位置判断，就可以作成动态工具条或动态菜单了。<br><b>(河南 梁海波)</b>
+<p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年12月20日第50期</a></font> 
+</body>
+</html>

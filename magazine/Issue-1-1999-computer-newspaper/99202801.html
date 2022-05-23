@@ -1,0 +1,31 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+特洛伊木马的克星——The Cleaner2.1</span>
+
+
+<hr size="1" color="#000080"></p>
+　　如果我们的电脑被特洛伊木马潜入，那是一件非常危险的事情，我们上网毫无安全保障，随时都有受人控制的危险。有什么办法可防止这类事情的发生呢?第一不要随便运行来历不名的软件，第二安装查杀特洛伊木马的软件。这类软件很多，这里介绍的The Cleaner2.1就是其中的一种。它的功能最强大，查杀的各类特洛伊木马种类最多，可多达100多种！其中很多种我们大多数网友听都没听过。我手上的版本为2.1.0.2,也是最新版本。有了它我们可以将电脑“清洁”得干干净净，放心大胆地上网。下面我们就来看看它的强大功能。<br>
+　　The Cleaner2.1的下载地址：http://www.dynamsol.com/puppet/，下载后双击就可直接安装，安装后我们在开始→程序中可以找到它，打开程序，出现如图1界面。</p>
+　　<img src="images/280101.gif" width="278" height="173"><br>
+　　　　　　　　　　　　图1</p>
+　　它共分以下几个部分，左边为特洛伊木马列表，多达117种，几乎所有较出名的这里都有，如Netspy、BO、Netbus、Girlfriend、Happy99、BackDoor以及它们的一些不同版本。下边为命令按钮，共五个：Clean 用来清除已发现的特洛伊木马；Detect All检测硬盘中所有的文件，这需要5到10分钟，根据你硬盘大小文件多少而定(笔者2.5G硬盘全部检测一遍用时5分钟)，当检测完毕后，将报告检测速度、用时和列出机子中所有已被安装或存在而尚未安装的特洛伊木马；Scan Selected Files 可检测单个文件，单击它，在打开的对话框中选中需检测的文件即可，这个功能对处理我们下载的软件和收到来历不名的软件特别有用；Check for Update 方便上网升级和更新；Exit退出。窗体右上方用于当你单击某个特洛伊木马时将出现对该特洛伊木马的简单描述。因此，通过The Cleaner2.1可以初步了解100多种特洛伊木马的活动情况，对我们防止黑客的攻击大有帮助。右中为查出的本机已有的特洛伊木马及其安装后在系统和注册表中的位置。右下为颜色监视器，绿色为完成清除任务；黄色为要求重新启动电脑才能清除干净；红色的甲壳虫将出现在已发现的特洛伊木马列表中；灰色为无任务；红色为未知错误。笔者为了测试The Cleaner2.1 ,特意下载并运行了Girlfriend，经检测所有文件后，The Cleaner报告发现Girlfriend。单击左边的特洛伊木马列表中的Girlfriend，经二三秒的分析检测，出现如下两个选项，remove c:\windows\windll.exe 和remove windll.exe from \software\microsoft\windows\currentversion\run，前一项为安装后Girlfriend 的所在位置，后一项为Girlfriend 运行后在注册表中的位置，选中这两个选项，点Clean 命令，即可清除Girlfriend。清除后，前一选项变成黄色条块，说明需重新启动电脑才能清除干净，后一选项变成绿色条块，说明注册表中已清除干净（见图2）。</p>
+　　<img src="images/280102.gif" width="270" height="200"><br>
+　　　　　　　　　　　　图2</p>
+　　当我重新启动电脑打开The Cleaner 进行检测后，已经找不到Girlfriend了，你看清除一个特洛伊木马就这么轻松简单，只要点几下鼠标就完事。在这里需要说明的是在清除特洛伊木马前，需将其它杀毒软件关闭，以避免冲突。当你的电脑中发现多个特洛伊木马时，可以将它们全部清除再重新启动而不用清一个重启动一次。<br>
+　　The Cleaner 2.1 可提供多种设置方便你的使用，在这里我们点菜单栏File→Options , 出现图3界面。</p>
+　　<img src="images/280103.gif" width="200" height="185"><br>
+　　　　　　　　　图3</p>
+　　它共有六个选项：Prompt to scan files 在打开程序时询问是否搜索所有文件；Autoscan为启动程序后立即自动搜索；Autoclean 在搜索完成后自动清除特洛伊木马，建议不要选此项；Autoexit 搜索或清除后自动退出，将不提交搜索报告；Show report after scan 搜索后提交报告；Email report 这是个新鲜玩意，可以将搜索报告用E－mail方式发送到指定邮箱中，在第一栏中填写你的E－mail地址，在第二栏中填写发送邮件的服务器地址。更酷的是The  Cleaner2.1还提供任务栏命令方式，具体格式如下：cleaner.exe [/a/r /n /m /d /u][/e: emailaddress][/s:smtpserver][/p] ，其参数解释如下：<br>
+　　/a －  设置为自动搜索，自动清除，自动退出<br>
+　　/r － 自动搜索，自动退出<br>
+　　/n － 缺省方式<br>
+　　/m － 最小图标方式<br>
+　　/e:emailaddress － 指定接收报告的邮箱<br>
+　　/s:smptserver － 指定邮件发送服务器<br>
+　　/p －  根据你在options（选项） 对话框的设置而运行程序<br>
+　　/d － 重置为缺省方式<br>
+　　/u － 连网更新特洛伊木马数据库，下载后退出<br>
+　　该软件499K，免费使用30天，注册费19.95美金。该主页宣称不久将推出3.0版。<br><b>(湖南　叶纪宁)</b>　　    <p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年05月24日第20期</a></font> 
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+使用Rand()函数随机选取记录</span>
+
+
+<hr size="1" color="#000080"></p>
+　　在数据库管理软件中，VFP较以往的DBASE增加了许多函数，Rand()便是其中之一，这为我们处理一些随机问题带来了极大方便。随机函数Rand()的格式功能如下：<br>
+　　格式：Rand(x)<br>
+　　其中参数x为种子数值，它决定了函数返回的数值序列，可省略。<br>
+　　功能：产生一个(0，1)区间的随机数。<br>
+　　说明：使用Rand()时，若参数是负数，则将使用系统时钟的种子值，若要获得不重复的随机数序列，可以先使用负数作为参数，然后再使用不带参数的Rand()。本人在搞题库设计时，有这样一个问题：在含有n个记录的题库中，随机先取m条记录作为试题，其中n&gt;=m&gt;1，在抽取试题时，必须保证试题不重复。其方法是：利用Rand()将库中的n个记录号随机先取m个记录号放于数组B中，且保证选取的记录号不能相同，为此，编写一个如下的小程序段：<br>
+　　：＆＆统计库中记录个数n<br>
+　　：＆＆确定选取的记录个数m<br>
+　　Dime b(m)<br>
+　　B(1)=int(n＊Rand(－1)＋1) ＆＆保证产生的随机数为整数并且在[1，n]区间内<br>
+　　i=2<br>
+　　do while i&lt;=m<br>
+　　t=1 ＆＆为检验产生的记录号是否重复的标志<br>
+　　a=int(n＊Rand()＋1)<br>
+　　j=1<br>
+　　do while j&lt;=i－1 ＆＆检验新产生的记录号是否与前i－1个记录号重复<br>
+　　if a=b(j)<br>
+　　t=－1<br>
+　　exit<br>
+　　else<br>
+　　j=j＋1<br>
+　　endif<br>
+　　enddo<br>
+　　if t=－1  ＆＆若重复，重新产生<br>
+　　loop<br>
+　　else<br>
+　　B(i)=a  ＆＆不重复，第i个记录号产生<br>
+　　i=i＋1<br>
+　　enddo<br>
+　　通过以上程序段，即可保证试题的随机选取，并且编程者本身事先也不知道选择哪m条记录，除非n条记录全选。<br>
+<b>(山东　袁志新)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年07月5日第26期</a></font> 
+</body>
+</html>

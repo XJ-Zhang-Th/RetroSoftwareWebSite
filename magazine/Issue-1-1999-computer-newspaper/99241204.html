@@ -1,0 +1,23 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+备份Outlook Express 5 邮件信息五步法</span>
+
+
+<hr size="1" color="#000080"></p>
+　　重装Windows操作系统时，我们都希望保存已下载的Outlook Express 5邮件及以往连线预订的新闻和新闻组。下面就讲讲重装系统时无需再次上网便将邮件、新闻及所有新闻组进行保存的五步法：<br>
+　　第一步，运行regedit，依次打开Hkey_crrrent_user\Software\Microsoft\Internet AccountManager\Accounts\等主健，其下分别有：00000001、00000002....及0000000a、0000000b....等子键。每一子键就是你的一个邮件或新闻账号设置。打开accounts主键后，将该键下各子键的注册表导出并保存，或者记录accounts主键下各子键所对应的账号设置。例如：在你重装系统前，accounts主键下共有六个子键，各子键所对应的账号分别为：<br>
+　　00000001       邮箱<br>
+　　00000002       邮局<br>
+　　00000003       Hotmail<br>
+　　0000000a       news1<br>
+　　0000000b       news2<br>
+　　注意将其记下，以备重装系统后需进行系统注册表修改之用。<br>
+　　第二步，备份windows\application data\microsoft\outlook文件夹下的所有信息，或备份windows\Temporary Internet Files\文件夹下的所有信息（视其Outlook Express设置而定）；如果你的Windows是多用户设置，则需备份windows\profiles目录下的相应信息。<br>
+　　第三步，重装Windows系统及IE5后，进行IE及Outlook Express内各邮件与新闻服务器等账号设置。应特别注意的是：当设置好各新闻服务器账号后，将会弹出“您想联机下载新闻账号中的新闻组吗”对话框，此处应选“否”。 <br>
+　　第四步，运行regedit，将重装系统前导出的注册表文件引入注册表；或进入accounts主键，查看该主键下各账号子键是否与重装系统前相同，若不同，则将各子键键名进行修改至重装系统前各账号所对应的键名（如第一步所述）。<br>
+　　第五步，将第二步中备份的所有信息文件还原至相应文件夹下。再次运行Outlook Express，你将会惊喜地看到原来下载的所有邮件、新闻信件及所有预定与未预定的新闻组均得以恢复至相应账号下。<br>
+　　需要特别指出的是，如果你的Outlook Express5信息文件是保存在windows\Temporary Internet Files\文件夹下，则按上述方法复原其下的所有信息文件及其子文件夹（其中content.ie5文件夹下的Index.dat可在DOS下置换，若你为双系统，可在另一系统中正常复制）时，你还会发现原来用IE浏览的网页历史仍然灿烂辉煌地摆在你的面前。<br>
+<b>(湖南　周利华) </b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年06月21日第24期</a></font> 
+</body>
+</html>

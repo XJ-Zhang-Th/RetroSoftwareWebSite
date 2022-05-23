@@ -1,0 +1,26 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+Windows 9x MS-DOS窗口中汉字的输入与显示</span>
+
+
+<hr size="1" color="#000080"></p> 
+　　在Windows 95或Windows 
+      98的MS－DOS窗口中，汉字的输入与显示是比较困难的，直接用Windows中提供的输入法无法输入汉字，且UCDOS也无法在窗口下使用，那该如何输入汉字呢?<BR>　　其实，在Windows\Command目录下，有一个Pdos95.bat文件，它提供在MS－DOS窗口中汉字输入与显示的功能，也可不启动Windows而直接在DOS下使用，此文件内容如下(∥后为笔者所加注释)：<BR>　　pbios.exe 
+      ∥中文系统内核<BR>　　font16.exe∥16＊16字体驱动程序<BR>　　hzvio95.exe∥MS－DOS7.00显示驱动程序<BR>　　hzkbd.exe∥通用词典输入法<BR>　　instdict 
+      pinyin∥安装拼音输入法<BR>　　instdict shanpin∥安装双拼输入法<BR>　　instdict 
+      quwei∥安装区位输入法<BR>　　instdict 
+      guobiao∥安装国标输入法<BR>　　ctrlpan∥安装控制台程序<BR>
+　　<B>一、启动中文环境</B><BR>　　只需在DOS的提示符下输入Pdos95，回车即可。<BR>
+　　<B>二、切换输入法</B><BR>　　启动好中文环境后，屏幕右下角会显示黄色的“Windows 
+      中文DOS方式”，表明已经能够显示汉字了，要切换到中文输入方式，只需同时按下“Ctrl＋Space”键即可，屏幕在左下角会显示绿色的“拼音___________空”字样，此时，就可用拼音输入法输入汉字了。如果要使用其它输入法，可以按下“Ctrl＋Shift”键转换，可依次调出“拼音”、“双拼”、“区位”、“国标”等多种输入法(可惜“五笔输入法”没有)，而且黑底绿字，非常显眼。我们也可把转换输入法定义成UCDOS的形式，只需修改Pdos95.bat批处理文件，修改为以下形式即可：<BR>　　instdict 
+      pinyin a_f1∥Alt＋F1 转换至拼音输入法<BR>　　instdict shanpin a_f2∥Alt＋F2 
+      转换至双拼输入法<BR>　　instdict quwei a_f6 ∥Alt＋F6 转换至区位输入法<BR>　　instdict guobiao 
+      a_f4∥Alt＋F4 转换至国标输入法<BR>
+　　<B>三、全角半角转换</B><BR>　　同时按下“Shift＋Space”键可进入全角状态，主要是针对英文，再按下“Shift＋Space”键可退回半角状态。<BR>　　<B>四、配置输入法</B><BR>　　配置输入法用CSETUP程序，可设置联想，显示模式等参数，改动配置文件后，需退出中文DOS方式(用QUIT程序)，再启动Pdos95.bat后才可使用。<BR>　　<B>五、汉字打印</B><BR>　　要进行打印，首先要启动FOUTLINE.EXE程序，这是一个轮廓字符驱动程序，然后启动打印驱动程序，共有CR3240.EXE、HPLJ300.EXE、HPLJ600.EXE、LQ1600K.EXE四个驱动程序，选择与自己打印机相关的驱动程序。此外，与打印机相关的还有一个PRTMON.EXE(打印监控)程序。<BR>
+　　<B>六、退出中文DOS方式</B><BR>
+　　只需在提示符下输入“QUIT”命令后按回车即可。<BR><B>（浙江 王中华 
+  ）</B><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年08月2日第30期</a></font> 
+</body>
+</html>
+

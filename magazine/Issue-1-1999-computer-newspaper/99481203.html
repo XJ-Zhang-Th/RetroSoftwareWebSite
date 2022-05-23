@@ -1,0 +1,19 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+使WIN98只做一种工作</span>
+
+
+<hr size="1" color="#000080"></p>
+　　有的人用电脑只做一种工作，想获得最稳定的系统和防止别人滥装或使用其它程序而影响机器稳定，希望Win98只能用来做一种工作。这种愿望当然能实现，只是要修改一些文件方能完成。<br>
+　　Microsoft公司过去曾经发售过Windows的运行版本，使用户只能运行特定的一种Windows应用程序。如果使用这种版本便不能调用其它的Windows应用程序和附件。在Win98中也能实现这种功能，要想建立专门为一种应用服务的Win98，只要按照以下步骤操作就可以了。<br>
+　　(1)使用任意一种文本编辑器(如记事本)打开SYSTEM.INI文件。<br>
+　　(2)找到[Boot]节，在该节中找到以下命令：<br>
+　　shell=Explore.exe<br>
+　　(3)将等号后面的Explorer.exe改成要唯一运行的Windows应用程序名及其完整路径，例如：<br>
+　　shell=C:\Program Files\Microsoft Office\Office\Winword.exe<br>
+　　修改完毕后保存文件，然后重新启动Win98。此时你会惊奇地发现Win98启动后直接打开了Word程序，桌面上空空如也，任务栏也不见了。此时的Win98只能用来完成Word的功能。需要注意的是，经过以上的修改后，由于任务栏和“开始”按钮都被屏蔽掉了，因此关闭计算机的唯一方法是先退出该应用程序，再按Ctrl＋Alt＋Del键调出“关闭程序”菜单，然后单击“关机”按钮。<br>
+　　要想恢复正常的Win98，可在启动Win98时按F8键，选择Command Prompt only启动选项，然后使用Edit命令重新编辑SYSYTEM.INI，将其复原即可。<br><b>
+（甘肃　杨文亮）</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年12月6日第48期</a></font> 
+</body>
+</html>

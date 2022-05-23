@@ -1,0 +1,82 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+C++编程俱乐部</span>
+
+
+<hr size="1" color="#000080"></p>　　<strong>问题1：在消息WM_ENABLE中用“GetDlgItem(IDC_BUTTON)－>EnableWindow(FALSE);”语句来Disable一个ID_BUTTON按钮时，却没有发生变化，这是为什么？</strong><br>
+　　答：CWnd类中的EnableWindow函数用来Enable或Disable一个窗口类的对象，因为CButton类继承于CWnd类，所以你也可以用它来操作一个按钮。Enable一个基于窗口类的对象可以用以下代码：<br>
+　　pWnd－>EnableWindow(TRUE);<br>
+　　Disable一个对象可用<br>
+　　pWnd－>EnableWindow(FALSE);<br>
+　　其中，pWnd为一个指向窗口对象的指针(这里是指向按钮的指针)，该问题关键在于VC中消息WM_ENABLE告诉窗口它正在Disable或Enable，但它并不能使一个窗口Enable或Disable。<br>
+　　<strong>问题2：如何才能将最近使用过的几个文件名（包含路径）显示出来?</strong><br>
+　　答：你不需要建立一个CRecentFileList类，它已经由CWinApp基类完成了。你只需在 initinstance中调用LoadStdProfileSettings()函数就可以了。CRecentFileList类中有一个CWinApp保护成员变量(如m_pRecentFileList)，所以你应该在你的继承类中处理它。<br>
+　　void CMdiApp::OnFileMruFile1()<br>
+　　{ ／／ TODO： Add your command handler code here<br>
+　　CString vl_name ;<br>
+　　ASSERT( m_pRecentFileList－>GetSize() > 0);<br>
+　　vl_name = (＊m_pRecentFileList)[0];<br>
+　　CWinApp::OnOpenRecentFile(ID_FILE_MRU_FILE1);<br>
+　　}<br>
+　　<strong>问题3：在设计浮动菜单时设定为GRAYED的菜单项，如何在运行时激活它?</strong><br>
+　　答：只要在适当的时候调用EnableMenuItem函数就可以了。EnableMenuItem函数带有两个参数，一个是需要改变的菜单项的ID，而第二个参数则是通知函数应采取的动作，可以用MF_ENABLE或MF_GRAYED。<br>
+　　void CMyView::OnRButtonDown(UINT nFlags， CPoint point)<br>
+　　{CScrollView::OnRButtonDown(nFlags， point);<br>
+　　CMenu ＊menu， ＊popup;<br>
+　　menu = new CMenu();<br>
+　　／／ load menu from resource file<br>
+　　menu－>LoadMenu( IDR_POPUPMENU );<br>
+　　popup = menu－>GetSubMenu(0);  ／／ item 0 is DUMMY<br>
+　　UINT nEnable;<br>
+　　nEnable = MF_BYCOMMAND|MF_GRAYED;<br>
+　　if( your test )<br>
+　　{nEnable = MF_BYCOMMAND|MF_ENABLED;}<br>
+　　popup－>EnableMenuItem( ID_YOUR_ID， nEnable );<br>
+　　／／display menu<br>
+　　ClientToScreen(＆point);<br>
+　　popup－>TrackPopupMenu(TPM_LEFTALIGN | TPM_R IGHTBUTTON，point.x， point.y， this );<br>
+　　delete menu;}<br>
+　　其中your test为判断条件，根据具体情况来改成相应的条件。<br>
+　　<strong>问题4：我创建了一个使用数据库的MFC应用程序，用类模板生成CDaoRecordset直接打开数据库(不通过ODBC)，请问应如何打开有密码保护的数据库?</strong><br>
+　　答：方法一：请试用下面的一段代码： <br>
+　　DAODBEngine＊ pDBEngine = AfxDaoGetEngine();<br>
+　　ASSERT(pDBEngine != NULL);<br>
+　　COleVariant varUserName (strUserName， VT_BSTRT);<br>
+　　COleVariant varPassword (strPassword， VT_BSTRT);<br>
+　　DAO_CHECK(pDBEngine－>put_DefaultUser (V_BSTR(＆varUserName));<br>
+　　DAO_CHECK(pDBEngine－>put_DefaultPassword (V_BSTR(＆varPassword));<br>
+　　方法二：使用CDaoDatabase的Open方法： <br>
+　　MyDaoDatabase－>Open(″C：\MyDatabaseFile.mdb″，FALSE，FALSE，″;PWD=MyPassWord″);<br>
+　　注意，请别忘了“;PWD=MyPassWord”前面的“;”号。<br>
+　　<strong>问题5：我想让调用的函数和被调用的函数属于同一个类，结果在调用CreateThread时出现如下错误：<br>
+　　error C2440: ′type cast′ : cannot convert from ′unsigned long (__stdcall Cdmi::＊)(void ＊)′　to ′unsigned long (__stdcall ＊)(void ＊)′</strong><br>
+　　答：一、unsigned long (__stdcall Cdmi::＊)(void ＊)是指向Cdmi某个成员函数的指针。<br>
+　　二、unsigned long (__stdcall ＊)(void ＊)仅仅是一个C形式函数的指针。<br>
+　　编译器无法将一转换为二是因为C＋＋成员函数取第一个(隐藏)参数″this pointer″ 作为成员函数，但作为静态成员时则例外。可按如下方法解决：<br>
+　　class XMyThread<br>
+　　{public：<br>
+　　void StartThread(void);<br>
+　　virtual UINT ThreadFunction(void);<br>
+　　static UINT __bogusthreadfunc(LPVOID lpparam);};<br>
+　　void XMyThread::StartThread()<br>
+　　{AfxBeginThread(__bogusthreadfunc，this);}<br>
+　　UINT XMyThread::ThreadFunction(void)<br>
+　　{／／here you do all your real work<br>
+　　return 0;}<br>
+　　UINT XMyThread::__bogusthreadfunc(LPVOID lpparam)<br>
+　　{XMyThread＊ This = dynamic_cast(lpparam);<br>
+　　return This－>ThreadFunction();}<br>
+　　由于版面有限，我们没有加入停止线程的代码。如果需要，可以继承XMyThread，并重写ThreadFunction()函数,如：<br>
+　　class XAnotherThread ： public XMyThread<br>
+　　{virtual UINT ThreadFunction(void);};<br>
+　　UINT XAnotherThread :: ThreadFunction(void)<br>
+　　{／／do some other work here<br>
+　　return 0;} <br></TD></TR></TABLE><p
+        align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年04月19日第15期</a></font> 
+        </td>
+      </tr>
+    </table>
+    </center></div>
+</body>
+</html>

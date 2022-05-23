@@ -1,0 +1,38 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+大家来谈修改开机LOGO</span>
+
+
+<hr size="1" color="#000080"></p>
+　　自从本报第15期刊登了《修改开机画面上的LOGO》一文以来，在读者中引起巨大反响，不少读者来信询问CBROM软件在何处可下载，这里为大家提供一个网址：http://topage.126.com。这是作者的主页，有问题也可直接与他联系。另外，也有不少读者对这个问题提出了自己的看法，下面这两篇就比较有代表性。
+<p align="center"><b>修改品牌电脑Logo的经验</b></p>
+　　看了《电脑报》1999年第15期上的《修改开机画面上的LOGO》，立刻从作者网站上下载了该套修改软件，并很快在我的磐英P2－112A（EPA格式）上实验通过，但在我1997年购的联想P5I430TX TITANIUM IB＋（LOGO为BMP格式，BIOS版本号1.5，日期98.6.5）上怎么也试不成功，不论我写入什么样式的BMP图案，启动时都不会显示任何标志。<br>
+　　经过若干次失败后，本想放弃努力，但脑中一闪而过一个念头，最终帮我解决了问题，下面是我的尝试及解决过程：
+　　1.按原文方法写入TEST.BMP（136×126×16）后重新启动，经检查无作用；<br>
+　　2.用extract参数将原BIOS中的BMP图像spdesy.bmp存取出来，命令行为：<br>
+　　CBROM  BIOS.BIN  /logo  extract　，回车后输入BMP文件名spdesy.bmp<br>
+　　3.在Windows下用画笔、PHOTOSHOP等软件打开spdesy.bmp均失败，但用ACDSEE可以查看该文件确为启动时显示的logo，格式为136×71×256的BMP文件；<br>
+　　4.用画笔自制格式为136×71×256的LIJIANG.BMP，再次写入BIOS后仍然不能显示！至此好像已是山穷水尽。
+　　5.根据第3步出现的问题，我猜测可能原BIOS所用BMP文件格式有问题，于是调出Ultraedit，以16进制方式对比查看spdesy.bmp和LIJIANG.BMP，发现spdesy.bmp的头2个字节为20 01，而NORMAL.BMP的头2个字节为42 4D（BM），遂将LIJIANG.BMP的头2个字节改为20 01后存盘退出到DOS；<br>
+　　6.用CBROM将改过的BMP写入BIN文件，并用QDIFLASH.EXE（QDI主板专用的写入程序）将BIN写入BIOS；<br>
+　　7.重启动，睁大眼看……哇塞!真是酷毙了，原来QDI真的是以这种方式制作的BIOS LOGO，我可又算是长了番见识。
+　　至此，修改LOGO的经历算是告一段落，经过这番尝试，我总结了几条经验，供有志于吃螃蟹的同志参考：<br>
+　　1.改之前要保存原BIOS并看清原LOGO的格式；<br>
+　　2.对BMP格式，应用extract参数提取原BIOS中的BMP文件，并用看图软件查看它所用的格式，保证自制文件的格式与原文件相同；<br>
+　　3.如果自制文件无效，可检查原文件格式是否做了手脚<br>
+　　4.改写BIOS时，如果仅仅变动LOGO部分，在写入过程中发生断电等情况不会使系统不能自举，所以你大可放心尝试。<br>
+　　最后，祝愿大家都能顺利的“造出”自己的品牌机！
+<p align="center"><b>其他修改BIOS LOGO的软件</b></p>
+　　在第15期的《电脑报》上看到了一篇关于修改开机LOGO的文章，我很感兴趣，于是也想换一换自己的电脑上的开机LOGO。但找遍了许多软件下载地，怎么也找不到作者所说的CBROM。 无奈中，我去到联想QDI的主页上转了转，无意中竟发现了一个更好用的更改开机LOGO的小工具：CBLOGO。用它可以很容易的修改电脑的开机LOGO，甚至不用借助Flash来将LOGO写进BIOS。<br>
+　　不过在改变LOGO之前，必须用Flash把BIOS取出来：先重新启动计算机并进入MS－DOS方式，再执行Flash pindy.bin/g，这样你的BIOS里的东西就被复制到pindy.bin这个文件里来了。现在你可以用CBLOGO把文件里的开机LOGO提取出来，存为一张bmp的文件，键入：CBLOGO pindy.bin lws.bmp/g你原来的开机LOGO就被存到lws.bmp里。在这里要看清楚它的文件大小，千万记下来，你自己的LOGO最好别超过它，否则BIOS里放不下就可能会出问题！<br>
+　　接下来你可以用画笔或PHOTOSHOP等绘图软件来画一张自己的LOGO，最多不超过256色。当然也可以用现成的。画完后用“文件／另存为”把它存为256色的位图文件。再重新启动计算机并进入纯MS－DOS方式，执行：CBLOGO ＊.bmp/g(这里的＊.bmp也就是你所画的LOGO的文件名）就可以。<br>
+　　现在重新启动计算机，怎么样？自己的LOGO感觉就是不一样吧？不过有一点事先声明：更改BIOS是有一定风险的，如果您因为看了本文而遭受什么损失，本人概不负责。<br>
+　　附上：<br>
+　　flash.exe和cblogo.exe的下载地址：<br>
+　　http://www.qdigrp.com/gb/p－d_util.htm<br>
+　　我的主页：http://www4.netease.com/～pindy<br>
+　　我的E－mail:weisong@ynmail.com<br>
+<strong>(励江　Pindy)</strong><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年05月10日第18期</a></font> 
+</body>
+</html>

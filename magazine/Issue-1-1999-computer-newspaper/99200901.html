@@ -1,0 +1,25 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+五月BUG追击</span>
+
+
+<hr size="1" color="#000080"></p>
+　　虽然三公子我不想承认，但是每次微软更新软件都是电脑界的一件大事。最近的大事当然是Internet Explorer 5.0了。记得在刚开始写“捉虫手记”的时候我就说过，只要是软件，必然有BUG，即使是微软也无法幸免，甚至由于微软出的软件庞大而经常是BUG满身。<br>
+　　IE 5.0当然也是这样，IE 5.0的BUG在本月中占了极大的比重。<br>
+　　Office 2000快来了，可是Office 97的BUG还是不断出现，这次又冒出了几个，或许这能够让WPS2000更容易地击败Office 2000。
+<p align="center"><b>NT的BUG</b></p>
+　　微软为Windows NT(Server and Enterprise Edition 4.0，Work Station 3.51和4.0, Server 4.0 Terminal Edition)发布了一个最新的补丁程序，用来修复通过剪贴板侵入系统的问题，微软指出这个问题目前还停留在理论阶段，还没有收到任何使用该方法侵入系统的报告。<br>
+　　NT 4.0 with Service Pack 4的补丁网址为：ftp://ftp.microsoft.com/bussys/winnt/winnt-public/fixes/usa/NT40/hotfixes-postSP4/Gina-fix/。NT 4.0 with Service Pack 3的补丁在ftp://ftp.microsoft.com/bussys/winnt/winnt-public/fixes/usa/NT40/hotfixes-postSP3/Gina-fix/。 但是微软说这个补丁可能会使SP－3的其他补丁失效，因此推荐的方法是，先将NT升级到SP4，然后再安装SP4的补丁程序。NT 4.0 Terminal Server Editiond的补丁在 ftp://ftp.microsoft.com/bussys/winnt/winnt-public/fixes/usa/NT40TSE/hotfixes-postSP3/Gina-fix/.
+<p align="center"><b>Word 97的BUG</b></p>
+　　微软的Word 97无法正确处理在HTML文件中包含有标点符号的标签，如果你的网页使用Word 97保存过，那么其显示时的正确性就有待考虑了。我实验的代码段《a herf='javascript:window.open(“a.html”,“aa”,“”);'>在使用Word 97保存后成了 《a href=“javascript:window.open(a.html,aa,)”》，在浏览器中运行出错。解决方法是安装Office 97 Service Pack Release 2(SR－2)，而最好的方法是不要用Word 97进行网页编辑，找一套好的网页编辑器来代替它。<br>
+　　在Word 97中并不是永远所见即所得的，不信你可以试试去找一个ESP（Encapsulated PostScript）文件，将它插入到文档中，然后删除，打开打印预览，你可以发现文件确实被删除了。然后打印一下看看，啊，怎么还在呢？对了，这就是最新发现的Word 97 BUG。解决方法是安装Microsoft Office 97 Service Pack 2。
+<P align="center"><b>IE5的若干BUG</b></p>
+　　Virus Scan 4.0.2 Service Pack 1和其他程序之间存在着一定的冲突，其中包括Microsoft Outlook 98（即Internet Explorer 5.0附带的OutLook 5.0）。OutLook可能会导致位于Emalscan.dll的非法页面错误，或者位于Kernel32.dll的非法页面错误。Network Associates已经发布了Virus Scan 4.02 Service Pack 2来修正这些问题（是Patch的Patch，所以需要先安装Service Pack 1），该程序可以在ftp://ftp.mcafee.com/pub/antivirus/win9x/svc_pack/V98sp402.zip找到。有兴趣的朋友也可以在ftp://ftp.mcafee.com/pub/antivirus/win9x/svc_pack/V98SP2.TXT获得详细的信息。<br>
+　　Point－to－Point Tunneling Protocol (PPTP) 被推荐为公司建立低成本虚拟个人网络的解决方案， 最近美国West Cost Graphics Firm警告用户不要将浏览器升级为Internet Explorer 5.0，因为这将会导致用户无法使用PPTP。Keylabs对运行于95、98、NT Client下的Internet Explorer 4, Internet Explorer 5和Netscape 4.51进行了同样的测试：通过PPTP连接同一个Windows NT 4服务器。结果发现，Internet  Explorer 5无法通过PPTP读取测试网页。<br>
+　　KeyLab发现，在NT Client上通过PPTP连接，Internet Explorer 4和 Netscape 5.41都能够快速读取测试网页。Internet Explorer 5只能在允许微软对Client and Server设置进行修改时才能够访问。微软知识库Q222936中提到这个BUG。事实上是Windows 9X拨号网络(DUN)的一个问题，只要升级到1.2或者1.3版本就可以修正。微软提供的解决方法是使用Microsoft's suggested work－around for the tend使用VPN(Virtual Private Network)服务器的IP来代替服务器名。 <br>
+　　如果你在同一个POP3服务器上有多个E－mail账户，其中一个账户选择下载后删除邮件，其他选择在服务器上保留信件，那么你将会陷入一遍一遍收取同一封邮件的境地。微软OutLook开发组在Ie5.outlookexpress新闻组上贴出的帖子表示，“OutLook Express 5.0中的一个BUG干扰了Outlook Express判断邮件是否已经下载的能力，导致了同一个信息被反复下载”。这个问题在Internet Explorer 5最新版本中仍然存在。但是这个问题却没有出现在测试版本的Outlook Express 5中，微软说将在以后的版本中修复。<br>
+　　目前唯一的一个解决方法是将有Outlook Express恢复为以前的4.0版本，或者设定所有的POP3账户使用同一种方法收取邮件。不过中国人有一个还要好的解决方法，就是去下载一套张小龙的FOXMAIL 3.0。<br>
+　　微软的Internet Explorer 5.0和Beta版本的Windows 2000存在兼容性问题， 你将无法进行完全安装或者部件安装（自定义）。微软可能会专为Windows 2000提供一个特殊的Internet Explorer 5.0升级版本。	</TD></TR></TABLE>　　    <p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年05月24日第20期</a></font> 
+</body>
+</html>

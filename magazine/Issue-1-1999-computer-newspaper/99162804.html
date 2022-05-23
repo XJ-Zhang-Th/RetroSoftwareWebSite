@@ -1,0 +1,11 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+IE分级审查口令的消除</span>
+
+
+<hr size="1" color="#000080"></p>
+　　一朋友因家有小孩，为不希望自己的孩子看见有关暴力或性方面的内容，便设定了IE分级审查口令。结果一疏忽，自己也忘了。他特来问我有没有办法消除口令。由于我很忙，暂时抽不开身。不然完全可以到他家用Win95上的Softice跟踪口令帮他解决。我便想，微软大多软件的口令与注册表有关，是不是IE的分级审查口令也设定在注册表中呢！于是我用自已正在使用的计算机来测试一下。首先我用Regedit备份一份未设IE分级审查口令的注册表, 备份文件名为old.reg。然后设定口令后又备份一份注册表，备份文件名为now.reg。最后用MS－ DOS的fc文件比较命令来查看两个文件中不相同的部分，以便检查口令是否与注册表有关。我在DOS下用fc old.reg now.reg后一共发现有4处不同，其中有一处在[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Ratings]这个主键处明显不同。在now.reg文件中多一个“Key"=hex:79,f8,e6,e8,d1,88,87,4b,6e,6b,f1,f8,14,2d,20,d6键值。我当即就用regedit将该主键右边窗口中的“key"=hex:79,f8,e6,e8,d1,88,87,4b,6e,6b,f1,f8,14,2d,20,d6删除。重新启动后，我发现口令就被清除了。朋友立即回家，照我的方法也成功地清除了口令。以上方法在Win  98 IE 4.0上通过。<br>
+<b>(四川　郭　拉)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年04月26日第16期</a></font> 
+</body>
+</html>

@@ -1,0 +1,20 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+DELPHI菜单编制一例</span>
+
+
+<hr size="1" color="#000080"></p>
+　　DELPHI不仅完全支持面向对象编程，内部有支持数据库编程控件，并且内部封装了完备的WINAPI函数，这使得能够实现任何其他语言的编程功能，而且更加容易。下面介绍编程中通常需要实现的菜单编制的一例,实现编辑菜单中的Undo（重做）功能。<br>
+　　在专业软件的编辑菜单中，一般都设有Undo功能项，在DELPHI的组件中没有提供直接的支持，但通过向当前操作的编辑控件传送EM_UNDO、EM_CANUNDO消息，我们就能轻松实现这一功能。程序代码如下：<br>
+　　ProcedureTuserFrom.MnuUndoClick(Sender:Tobject);//放弃前一次操作<br>
+　　Begin<br>
+　　IfSendMessage(ActiveControl.Handle,EM_CANUNDO,0,0)then<br>
+　　//判断前次编辑操作是否能放弃<br>
+　　SendMessage(ActiveControl.Handle,UNDO,0,0);<br>
+　　Else<br>
+　　ShowMessage(′不能重做′);<br>
+　　End;<br>
+　　如果当前操作窗口是基于MDI的子窗口，则把目标句柄ActiveControl.Handle改为ActiveMDIChild.ActiveControl.Handle即可正常运行。<br><b>（广东　唐庆）</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年06月21日第24期</a></font> 
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+修改开机画面上的LOGO</span>
+
+
+<hr size="1" color="#000080"></p>　　对许多读者来说，BIOS似乎是一个神秘的部件，不敢轻易改动。其实BIOS与一般软件之间的区别很小，仅仅在于它是固化在主板上的较为重要的一个程序而已。我们甚至可以自己对它进行修改，请看下面这篇文章。<br>
+　　相信大家对电脑开机的时候显示的那个“能源之星”的LOGO，已经十分熟悉了吧！很早以前就在一报纸上看见过介绍有软件可以更换这个LOGO的文章，无奈那个时候还没上Internet，这样“特别”的软件真的还不知道到哪里去找才好。<br>
+　　前几天上网见有这样的软件，便下载下来，马上就用我的主板进行测试。谢天谢地，我成功了，下面给大家介绍我的经验。<br>
+　　先来看看简单的流程：将你的BIOS文件转换到磁盘上→用软件把里面的LOGO文件换掉→把改好的BIOS文件写进FLASH ROM里→完成。怎么样，很容易吧！但在实际操作的时候还是有很多问题要注意的。首先要确认你的主板是否是可以升级的BIOS，接着就要找来合适你主板使用的BIOS文件，如果找不到也没太大关系，因为我们可以自己从FLASH ROM里面拷贝出来。接着就要用到的相关软件了，其中最重要的是名为CBROM的软件，它是AWARD公司的产品，使用AWARD公司的BIOS的用户可以放心使用。这个软件除了可以用来换LOGO以外，还有很多其它的功能，各位可以慢慢的挖掘。还有一个软件是BMP2EPA，它的功能是把我们自己设计好的BMP图形文件转换成专用的EPA LOGO格式。当然还不能少的软件就是BIOS写入软件AWDFLASH，这个软件相信不用我多介绍了，升级过BIOS的朋友都应该知道它。下面以我换LOGO的过程来举个例子：<br>
+　　我用的是技嘉的TX主板，BIOS文件是到该公司的主页下载的最新版本。如果你找不到自己主板的BIOS文件，可以用AWDFLASH来生成。具体方法是进入AWDFLASH后按一下回车，接着按“Y” ，按要求输入文件名，这时生成的那个文件就是你要找的BIOS文件了。<br>
+　　接着要做的就是用CBROM来看看你这个BIOS文件里的“能源之星”LOGO是用什么格式存放的。一般比较旧的主板都是用EPA格式，新的主板也有直接用BMP格式的。我的BIOS文件是WCXBIOS.BIN,打入cbrom126 wcxbios.bin/d后显示如下:<br>
+　　CBROM V1.26B (C)Award Software 1998 All Rights Reserved.<br>
+　　＊＊＊＊＊＊＊＊ wcxbios.bin BIOS component ＊＊＊＊＊＊＊＊<br>
+　　No.Item－Name Original－Size Compressed－Size Original－File－Name <br>
+　　=============================================================== <br>
+　　0.System BIOS 20000h(128.00K) 15179h(84.37K) original.tmp<br>
+　　1.EPA pattern 0093Fh(2.31K) 003F3h(0.99K) wcx.epa<br>
+　　2.XGROUP CODE 01767h(5.85K) 010B2h(4.17K) awardext.rom<br>
+　　3.NCR ROM 04000h(16.00K) 02594h(9.39K) NCR307.16K<br>
+　　Total compress code space=1A000h(104.00K)<br>
+　　Total compressed code size=1910Eh(100.26K)Remain compress code space=00EF2h(3.74K)<br>
+　　从“EPA pattern”这行字可以看出我的主板BIOS的LOGO文件使用的是EPA格式，因为各主板的差异，文件名可能会有不同，但这个没关系，知道它是使用EPA格式就已经够了。现在我们已经可以开始制作自己的LOGO了，用图形软件创建一幅136×126 Pixels的 2色(1bit)BMP图形，画出你喜欢的LOGO图形并保存成一个文件后，就到BMPTOEPA这个软件出场了。这个软件有DOS和WINDOWS两个版本，功能上没太大的区别。我将我绘制的BMP图形文件取名为wcx.bmp ，打入:epados wcx.bmp wcx.epa后，进入到该软件的界面，在这里还可以为你设计的LOGO填上颜色，但只能逐个色块的填，修改满意后,存盘退出，就生成wcx.epa这个文件。当然，如果你不想自己设计LOGO，也可以用一些已经做好的现成EPA文件，我把以上提到的软件和几十个EPA文件打包成一个文件放到了我的站上,有兴趣想改改的朋友可以到http:∥www.netease.com/～topage下载。这个压缩包里面就包含了很多很COOL的EPA文件，什么K6－Ⅲ、Pentium Ⅲ等等LOGO都有。选定EPA文件后就可以用CBROM来把BIOS文件里原来那幅EPA换掉，具体操作是输入: cbrom126 wcxbios.bin/epa wcx.epa即可。再用CBROM来查看BIOS文件信息的时候,你就应该发现原来的那个EPA文件已经被你换掉了。检查无误后，进入AWDFLASH，在输入框里输入你已经修改好的BIOS文件的文件名，回车，接着如果你想保存原来的BIOS的话就按Y，不需要的话，按N跳过，再向上帝祈祷给几秒钟不断电，按下Y，几秒后，升级完成，过程和一般升级BIOS没什么两样，重新开机，如无意外，原来显示“能源之星”的LOGO的位置已经换成你选的那个LOGO了!<br>
+　　如果你在输入：cbrom126 wcxbios.bin/d后看到的第一条信息里不是EPA pattern……而是bmp……那么换起来就更加简单了，因为这样就不需要用BMPTOEPA这个软件转来转去,直接就可以用16色的BMP图形，其它的命令一样。据我所知，升技和大众的一些主板就是用BMP而不是EPA格式，大家在改的时候一定要看清楚哦。用BMP格式的主板BIOS还有一种更COOL的玩法：用cbrom126 wcxbios.bin/logo wcx.bmp这个命令的话，升级BIOS重开机后，你会发现屏幕上整屏都是由wcx.bmp平铺出来的图形，这个时候显示“能源之星”的那个页面也不会出现，可见其优先权之高。由此可知，要做出像品牌电脑那样的开机画面也不难，只要你的FLASH ROM的空间够，再设计一幅全屏的16色BMP图像，用这种方式写进去就可以了！放心，如果图形的尺寸太大,写不进去的话，最多是提示出错，不能写进去而已，没什么大不了的。<br>
+　　最后要注意的是以上一切操作请在纯DOS或“Safe Command Prompt Only”环境下进行，如果你没升级BIOS的经验，最好还是彻底弄懂之后再做修改。<br>
+<b>(吴朝相)</b>
+<p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年04月19日第15期</a></font> 
+</body>
+</html>

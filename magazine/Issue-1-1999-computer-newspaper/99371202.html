@@ -1,0 +1,23 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+手工修改PhotoShop中文字体显示错误</span>
+
+
+<hr size="1" color="#000080"></p>
+　　PhotoShop以其强大的图像编辑和处理功能倍受青睐，是目前最受欢迎的图像处理软件之一。目前流行的几个版本的PhotoShop都存在一点小bug，那就是在用文字工具进行文字编辑时字体栏中不能正确显示中文名称，如宋体显示为simsun、黑体显示为simhei等，使用非常不便。虽然有人已为此编写了补丁，但本人试用过，它虽在Windows95、Windows98中运行正常，但与NT兼容性不大好。本人找到了一种解决办法，在此介绍给遇到同样问题以及无法找到补丁而抱憾的朋友们。<br>
+　　PhotoShop安装后会在Program Files\Common Files\Adobe\TypeSpt路径下建立Adobefnt.lst文件，PhotoShop在启动中会读取该文件，正是该文件决定字体栏中中文字体的显示。通过更改该文件即可实现字体的中文显示。具体的方法是：<br>
+　　1.用Word打开Adobefnt.lst文件，文件中字体属性段落格式如下：<br>
+　　＆BeginFont<br>
+　　Handler:…<br>
+　　…<br>
+　　FamilyName：…<br>
+　　…<br>
+　　WinName：…<br>
+　　％EndFont<br>
+　　其中关键语名是FamilyName:…(冒号后面部分即为字体栏所显示的内容)。<br>
+　　2.我们只要把所有段落中WinName:…语名中冒号后面的中文文字及符号粘贴到同段落FamilyName：…中冒号后面，并替换掉原有英文文字及符号(你甚至可以为字体自行命名)。<br>
+　　3.保存为原文件格式并退出Word。现在启动PhotoShop,看一看字体栏中的显示，所有中文字体都出现了。<br>
+<b>(河北　韩鹏)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年09月20日第37期</a></font> 
+</body>
+</html>

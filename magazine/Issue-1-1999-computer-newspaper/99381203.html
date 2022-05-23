@@ -1,0 +1,13 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+FrontPage 2000与IE5不兼容的解决方法</span>
+
+
+<hr size="1" color="#000080"></p>
+　　微软6月份推出的WIN98第二版已经内置了IE5。IE5的功能较IE4又强大了很多，不过安装IE5后再安装FrontPage 2000时会有出错提示，而且FrontPage 2000也不能打开，这是因为IE5使用的服务器扩展文件的版本与FrontPage 2000不兼容引起的。<br>
+　　解决的方法是：在Office 2000的光盘中的\PFiles\Common\Msshared\websrvEx\40\bin目录中找到下面几个文件：fp4areg.dll、fp4anwi.dll、fp4atxt.dll、fp4autl.dll、fp4avss.dll、fp4awec.dll、fp4wel.dll、fpencode.dll、fpexedll.dll、fpmmc.dll，将它们拷贝到C:\Program Files\Common Files\Microsoft shared\web server Extensions\40\BIN里面覆盖掉原来的同名文件就可以了。<br>
+　　值得注意的是：这些文件是系统文件，要先将它们的隐藏属性去掉才能看见它们。这个方法对WIN98第二版测试版和英文正式版同样有效。<br>
+<b>(黑龙江　孙赫)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年09月27日第38期</a></font> 
+</body>
+</html>

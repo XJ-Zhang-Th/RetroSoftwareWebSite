@@ -1,0 +1,50 @@
+<html>
+<body style="font-size:9pt;line-height=150%" bgcolor="#FFFFF">
+<p><span style="font-family:宋体;font-size:12pt">
+VFP中重复数据输入表单的制作</span>
+
+
+<hr size="1" color="#000080"></p>
+　　几乎所有的VFP应用程序，都要遇到将数据输入表单的情况。有一个大家经常碰到的问题，那就是如果输入的记录大多数字段数据相同，或者仅仅主关键字不同，而其余项相同的话，普通的解决办法只能是全部录入了，这样做显然费时费力，效率不高。对这个问题，有必要寻求一种方便高效的办法。这里给出本人在编制实验室仪器管理系统中所用的解决方法。为简单起见，仅给出一些必不可少的控件及其属性和代码。<br>
+　　先定义所用的数据表YIQIKU.DBF，结构如下：<br>
+　　字段名称：  仪器编号     仪器名称　　仪器位置     启用日期<br>
+　　字段类型：  数值型     字符型　字符型      日期型<br>
+　　字段宽度：5 20  6  8<br>
+　　数据录入仅使用一个表单frminput。<br>
+　　控件共11个，下面分三类说明它们的属性。<br>
+　　第一类：标牌（Lable）共四个，其标题（Caption）分别为“仪器编号”、“仪器名称”、“仪器位置”、“启用日期”。<br>
+　　第二类：文本框（Textbox）共四个，其名称（Name）分别为“txt仪器编号”、“txt仪器名称”、“txt仪器位置”、“txt启用日期”，MaxLength属性分别为5，20，6，8。其中“txt启用日期”的Value属性设为“=DATE()”。<br>
+　　第三类：命令按钮（Commandbutton）共三个，其标题分别为“录入”、“清除”、“退出”，其名称分别为“cmd录入”、“cmd清除”、“cmd退出”。<br>
+　　现在说明命令按钮的事件代码。<br>
+　　“cmd录入”控件的“click”事件代码：<br>
+　　locate for 仪器编号==val(thisform.txt仪器编号.value) ＆＆检查主关键字是否重复，由于“txt仪器编号”控件的value属性是字符，故用VAL( )函数转换<br>
+　　if found()=.f.<br>
+　　go bottom  ＆＆指针移至表的末尾<br>
+　　append blank   ＆＆添加空记录<br>
+　　dimension m.memadd[4]  ＆＆定义内存数组存放记录数据<br>
+　　m.memadd[1]=val(thisform.txt仪器编号.value)<br>
+　　m.memadd[2]=thisform.txt仪器名称.value<br>
+　　m.memadd[3]=thisform.txt仪器位置.value<br>
+　　m.memadd[4]=thisform.txt启用日期.value<br>
+　　gather from m.memadd＆＆数组数据入库表<br>
+　　else <br>
+　　if   messagebox(″本仪器资料已经在库！″,0,″录入″)=1<br>
+　　return<br>
+　　endif<br>
+　　endif<br>
+　　return<br>
+　　“cmd清除”控件的click事件代码为：<br>
+　　thisform.txt仪器编号.value=″″<br>
+　　thisform.txt仪器名称.value=″″<br>
+　　thisform.txt仪器位置.value=″″  <br>
+　　thisform.txt启用日期.value=DATE()<br>
+　　“cmd退出”控件的click事件代码为：<br>
+　　thisform.release( )  ＆＆释放本表单<br>
+　　表单“frminput″的load事件代码：<br>
+　　use YIQIKU.DBF ＆＆打开库表<br>
+　　其unload事件代码：<br>
+　　use ＆＆关闭库表<br>
+　　运行本表单时，光标先出现在“仪器编号”录入文本框，输入完5个数字后，光标自动移到下一项目。全部项目录完，单击“录入”按钮，则启动“cmd录入”的click事件处理程序。本段程序先检查“仪器编号”是否与库表中原有的仪器记录重复，重复则屏幕给出提示，如不重复则将输入数据先存入一个数组，再存入表中。显然，如果有许多相同的仪器，仅“仪器编号”不同，就可以只修改“仪器编号”，而无须再重新输入其余数据，而如果所有数据均不相同，就可以按“清除”按钮将原来数据清除，这样就可以节约大量的时间。<br>
+　　<b>(北京　谢古今)</b><p align="right"><font COLOR="#000000">本文出自：<a href="index.htm">《电脑报》1999年10月11日第40期</a></font> 
+</body>
+</html>
