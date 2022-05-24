@@ -7,3 +7,6 @@ This is a static HTML website for collecting classic operating systems and softw
 This is a project aimed at sharing classic computer software or newspapers and magazines. Due to limited personal ability, this project only provides static HTML pages, and only collects **classic software and hardware applications or newspapers and magazines with Chinese as the main language** .
 
 ## 如何为本项目作出贡献 / How to contribute to this project
+本项目支持如下两种贡献方法：
+* 提交PR （我会尽快处理）
+* 若想为本项目提供软件或报刊杂志，可以于Issues区提供，请选择对应的Lable。
